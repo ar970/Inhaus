@@ -1,121 +1,99 @@
-export type Product = {
-  id: string;
-  name: string;
-  altName: string;
-  tag: string;
-  blurb: string;
-  price: number;
-  compareAt: number;
-  accent: string;
-  variantLabel: string;
-};
-
-export const products: Product[] = [
-  {
-    id: "black",
-    name: "Black",
-    altName: "Noir",
-    tag: "Bestseller",
-    blurb: "Light-roast, 100% Arabica. Clean, bright, naturally sweet — built for water-based drinks.",
-    price: 499,
-    compareAt: 599,
-    accent: "#2A1C14",
-    variantLabel: "BLACK",
-  },
-  {
-    id: "classic",
-    name: "Classic",
-    altName: "Crème",
-    tag: "For milk",
-    blurb: "Medium–dark roast, Arabica + Robusta. Bold, rich, and made to cut clean through cream.",
-    price: 549,
-    compareAt: 649,
-    accent: "#B5654A",
-    variantLabel: "CLASSIC",
-  },
-];
-
-export const comparisonRows: { label: string; black: string; classic: string }[] = [
-  { label: "Best base", black: "Water-based drinks", classic: "Milk-based drinks" },
-  { label: "Roast", black: "Light roast", classic: "Medium–dark roast" },
-  { label: "Beans", black: "100% Arabica", classic: "80% Arabica · 20% Robusta" },
-  { label: "Flavor", black: "Clean, bright, sweet", classic: "Bold, rich, full-bodied" },
-  { label: "Perfect for", black: "Americanos, iced black", classic: "Lattes, cappuccinos" },
-];
+/* ─── Core product facts (single speciality coffee concentrate) ──────── */
 
 export const steps: { n: string; title: string; copy: string; icon: "bottle" | "drop" | "cup" }[] = [
-  { n: "01", title: "Pour", copy: "One part INHAUS concentrate into your favourite cup.", icon: "bottle" },
-  { n: "02", title: "Add milk or water", copy: "Three parts of either, hot or over ice. That's the whole recipe.", icon: "drop" },
-  { n: "03", title: "Sip", copy: "Café-grade coffee in about ten seconds. No machine required.", icon: "cup" },
+  { n: "01", title: "Pour", copy: "Pour the INHAUS concentrate into your favourite cup.", icon: "bottle" },
+  { n: "02", title: "Add milk or water", copy: "Top it up — hot or over ice — and give it a quick stir.", icon: "drop" },
+  { n: "03", title: "Sip", copy: "Café-grade speciality coffee in seconds. No machine required.", icon: "cup" },
 ];
 
 export const benefits: { title: string; icon: "bean" | "drop" | "house" | "cup" | "star" | "bottle" }[] = [
-  { title: "100% Arabica", icon: "bean" },
+  { title: "Speciality coffee", icon: "bean" },
   { title: "No added sugar", icon: "drop" },
   { title: "No preservatives", icon: "star" },
-  { title: "20 cups / bottle", icon: "cup" },
-  { title: "Brews in 10 sec", icon: "bottle" },
-  { title: "Roasted in-haus", icon: "house" },
+  { title: "Ready in seconds", icon: "bottle" },
+  { title: "Just add milk or water", icon: "cup" },
+  { title: "No machine needed", icon: "house" },
 ];
 
+/* ─── What can you make (from the real drink line-up) ────────────────── */
+export const drinks: { name: string; mood: string; time: string; icon: "cup" | "drop" | "bean" }[] = [
+  { name: "Mocha", mood: "Hot · Comfort", time: "2 min", icon: "cup" },
+  { name: "Iced Caramel Latte", mood: "Iced · Indulgent", time: "1 min", icon: "drop" },
+  { name: "Classic Americano", mood: "Hot or Iced", time: "1 min", icon: "bean" },
+  { name: "Iced Hazelnut Latte", mood: "Iced · 60 sec", time: "1 min", icon: "cup" },
+  { name: "Classic Latte", mood: "Hot · Smooth", time: "2 min", icon: "drop" },
+];
+
+/* ─── Default reviews (used pre-persona; personas override these) ─────── */
 export const reviews: { quote: string; name: string; role: string }[] = [
   {
-    quote: "I cancelled my café subscription. INHAUS Classic in oat milk is genuinely better than my usual order.",
+    quote: "One stir and it tastes like my neighbourhood café. I'm never going back to instant.",
     name: "Ananya R.",
-    role: "Work-from-home, Bengaluru",
+    role: "Bengaluru",
   },
   {
-    quote: "Black over ice with soda is my whole summer now. Bright, clean, not a hint of bitterness.",
+    quote: "Iced americano in under a minute, no machine. This is genuinely how I drink coffee now.",
     name: "Dev M.",
-    role: "Home barista, Mumbai",
+    role: "Mumbai",
   },
   {
-    quote: "Ten seconds and it tastes like the good neighbourhood place. The bottle lasts me three weeks.",
+    quote: "Speciality coffee without the ceremony. Pour, add milk, done.",
     name: "Priya S.",
-    role: "New parent, Delhi",
+    role: "Delhi",
   },
 ];
 
+/* ─── FAQ — reconstructed from the brewcasso / STIR screenshots ───────── */
 export const faqs: { q: string; a: string }[] = [
   {
-    q: "Are there any preservatives or chemicals?",
-    a: "None. INHAUS is cold-extracted coffee and water — nothing else. No sugar, no preservatives, no chicory.",
+    q: "How do I make coffee with the concentrate?",
+    a: "Pour the concentrate into your cup, add milk or water — hot or iced — give it a quick stir, and it's ready. That's the whole recipe.",
   },
   {
-    q: "How many cups are in one bottle?",
-    a: "Roughly 20 cups per 250ml bottle at our recommended 1:3 ratio. Brew stronger or lighter to taste.",
+    q: "Is this the same as instant coffee?",
+    a: "No. This is real brewed speciality coffee, concentrated into liquid form. Instant is dried and reconstituted; INHAUS keeps the aroma and body of a freshly brewed cup.",
   },
   {
-    q: "What is the shelf life?",
-    a: "Unopened, 6 months in a cool, dark place. Once opened, refrigerate and finish within 4 weeks.",
+    q: "Do I need any special equipment?",
+    a: "None at all — no machine, no grinder, no filter. If you have a cup and something to pour, you're set.",
   },
   {
     q: "How much milk or water should I add?",
-    a: "Start at one part INHAUS to three parts milk or water, hot or iced, then dial it to your strength.",
+    a: "Start with roughly one part concentrate to three parts milk or water, then adjust to taste — stronger or lighter, hot or over ice.",
   },
   {
-    q: "Which variant should I choose?",
-    a: "Pick Black for water-based drinks like Americanos and iced black coffee. Pick Classic for anything with milk — lattes, cappuccinos, iced lattes.",
+    q: "Can I use it for iced coffee?",
+    a: "Absolutely. Pour over ice and top with cold milk or water for an instant iced latte or iced americano.",
   },
   {
-    q: "Where are the beans sourced from?",
-    a: "Single-origin Arabica from estates in Chikmagalur, with a touch of Robusta in Classic for body.",
+    q: "Can I customise the strength?",
+    a: "Yes — just change the ratio. More concentrate for a bolder cup, more milk or water for a smoother one.",
   },
   {
-    q: "Where do you deliver?",
-    a: "Across India. Free shipping on orders over ₹999, dispatched within 24 hours on weekdays.",
+    q: "Does it contain preservatives or additives?",
+    a: "No preservatives, no additives, and no added sugar. Just speciality coffee, the way it should be.",
   },
   {
-    q: "Can I return the product?",
-    a: "If your first bottle isn't for you, write to us within 14 days and we'll make it right — refund or replacement.",
+    q: "Is the concentrate vegan?",
+    a: "Yes — the concentrate itself is 100% plant-based. What you add to it (milk or water) is entirely up to you.",
+  },
+  {
+    q: "How long does it last?",
+    a: "Full shelf-life and storage details will be confirmed with the final product. Keep it cool and sealed for the best flavour.",
+  },
+  {
+    q: "Do you offer a trial or returns?",
+    a: "If your first order isn't for you, reach out and we'll make it right. Complete trial and return terms will be shared at launch.",
   },
 ];
 
+/* ─── Default marquee (personas override these) ──────────────────────── */
 export const marqueeItems: string[] = [
-  "100% ARABICA",
-  "NO SUGAR",
+  "SPECIALITY COFFEE",
+  "JUST ADD MILK OR WATER",
+  "READY IN SECONDS",
+  "NO MACHINE",
+  "NO ADDED SUGAR",
   "NO PRESERVATIVES",
-  "20 CUPS / BOTTLE",
-  "BREWS IN 10 SEC",
-  "MADE IN INDIA",
+  "STIR & SIP",
 ];

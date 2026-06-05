@@ -1,74 +1,61 @@
 "use client";
 
-import Bottle from "@/components/Bottle";
 import Button from "@/components/ui/Button";
 import Sticker from "@/components/Sticker";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import { Steam } from "@/components/Doodles";
-import { products, type Product } from "@/lib/data";
+import ProductPlaceholder from "@/components/ProductPlaceholder";
+import { DoodleIcon } from "@/components/Doodles";
+import { benefits } from "@/lib/data";
 import { usePersona } from "@/context/PersonaContext";
 import { personaContent } from "@/lib/personas";
 
-function ProductCard({ product, delay }: { product: Product; delay: number }) {
-  return (
-    <Reveal delay={delay} className="card group flex flex-col overflow-hidden">
-      {/* illustrated product image */}
-      <div
-        className="relative flex h-64 items-center justify-center overflow-hidden"
-        style={{
-          background: "radial-gradient(120% 120% at 50% 10%, var(--theme-surface) 0%, var(--theme-accent-soft) 70%, var(--theme-accent-soft) 100%)"
-        }}
-      >
-        <Steam className="absolute left-1/2 top-6 h-10 w-8 -translate-x-1/2 text-clay/60" />
-        <Bottle
-          className="w-[120px] transition-transform duration-300 group-hover:-translate-y-1"
-          accent={product.accent}
-          variant={product.variantLabel}
-        />
-        <Sticker className="absolute right-4 top-4" rotate={6} tone="espresso">{product.tag}</Sticker>
-      </div>
-
-      {/* details */}
-      <div className="flex flex-1 flex-col p-6">
-        <div className="flex items-baseline justify-between gap-3">
-          <h3 className="font-serif text-[28px] italic leading-none">{product.name}</h3>
-          <span className="label text-espresso/50">{product.altName}</span>
-        </div>
-        <p className="mt-3 flex-1 text-sm text-espresso/75">{product.blurb}</p>
-
-        <div className="mt-5 flex items-center gap-2">
-          <span className="font-serif text-2xl">₹{product.price}</span>
-          <span className="text-sm text-espresso/45 line-through">₹{product.compareAt}</span>
-          <Sticker className="ml-auto" rotate={-4} tone="sage">Save ₹{product.compareAt - product.price}</Sticker>
-        </div>
-
-        <Button href="#" className="mt-5 w-full">Add to cart</Button>
-      </div>
-    </Reveal>
-  );
-}
+const defaultContent = {
+  headline: "Speciality coffee concentrate.",
+  sub: "Pour, add milk or water, sip. Café-grade coffee in seconds — no machine, no mess.",
+};
 
 export default function Products() {
   const { persona } = usePersona();
-  const c = persona ? personaContent[persona].products : {
-    headline: "Two pours. Pick yours.",
-    sub: "One clean and bright, one bold and creamy. Both are 20 cups of café in a single little bottle.",
-  };
+  const c = persona ? personaContent[persona].products : defaultContent;
 
   return (
     <section id="products" className="section">
       <div className="container-x">
-        <SectionHeading
-          eyebrow="Our products"
-          title={c.headline}
-          subtitle={c.sub}
-        />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {products.map((p, i) => (
-            <ProductCard key={p.id} product={p} delay={i * 0.08} />
-          ))}
-        </div>
+        <SectionHeading eyebrow="The product" title={c.headline} subtitle={c.sub} />
+
+        <Reveal className="mx-auto mt-12 max-w-4xl">
+          <div className="card grid items-center gap-8 p-6 md:grid-cols-2 md:p-10">
+            {/* product visual — placeholder until final art lands */}
+            <ProductPlaceholder className="py-2" />
+
+            {/* details */}
+            <div>
+              <span className="label text-clay">Speciality coffee concentrate</span>
+              <h3 className="mt-2 font-serif text-[34px] italic leading-none">INHAUS Concentrate</h3>
+              <p className="mt-4 text-espresso/75">
+                Real brewed speciality coffee, concentrated. Just pour, add milk or water, and stir — a café-grade cup in seconds.
+              </p>
+
+              <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-3">
+                {benefits.slice(0, 4).map((b) => (
+                  <li key={b.title} className="flex items-center gap-2.5 text-sm text-espresso/80">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-espresso/15 text-crema">
+                      <DoodleIcon name={b.icon} className="h-4 w-4" />
+                    </span>
+                    {b.title}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <Button href="#join">Notify me</Button>
+                <Sticker tone="espresso" rotate={-3}>Coming soon</Sticker>
+              </div>
+              <p className="mt-3 text-xs text-espresso/50">Pricing & pack details dropping shortly.</p>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

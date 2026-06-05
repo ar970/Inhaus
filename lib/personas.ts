@@ -1,27 +1,25 @@
 export type Persona = "student" | "creator" | "professional";
 
 export interface PersonaTheme {
-  /* CSS variable values set on <html data-persona="..."> */
   bg: string;
   surface: string;
   ink: string;
   accent: string;
   accentSoft: string;
   accentSecondary: string;
-  /* Raw hex for gate card hover fill */
   gateHover: string;
   gateText: string;
 }
 
 export interface PersonaContent {
   label: string;
-  mono: string;            // UPPERCASE short label
-  tagline: string;         // gate one-liner
-  gateDescription: string; // gate sub-label
+  mono: string;
+  tagline: string;
+  gateDescription: string;
   announcement: string;
   hero: {
     eyebrow: string;
-    headline: string;      // use \n for line break
+    headline: string; // \n = line break
     sub: string;
     cta: string;
     ctaSecondary: string;
@@ -80,106 +78,66 @@ export const personaContent: Record<Persona, PersonaContent> = {
     label: "Student",
     mono: "STUDENT",
     tagline: "Fuel for the grind.",
-    gateDescription: "₹25 a cup. No café run. No excuse.",
-    announcement: "Student deal: ₹499 / bottle · That's just ₹25 a cup",
+    gateDescription: "Skip the café run. Brew it in seconds.",
+    announcement: "Student favourite · Café coffee without the café run",
     hero: {
       eyebrow: "Made for the grind",
       headline: "Your café.\nAlways open.",
-      sub: "₹25 per cup, 20 cups per bottle. No machine, no queue — just pour, add milk or water, and get back to it.",
-      cta: "Grab a bottle",
+      sub: "Café-grade coffee whenever you need it — no machine, no queue. Just pour, add milk or water, and get back to it.",
+      cta: "Grab yours",
       ctaSecondary: "How it works",
     },
     products: {
-      headline: "Pick your fuel.",
-      sub: "Black for all-nighters, Classic for early starts. Both under a minute. Both better than the café queue.",
+      headline: "Your fuel, sorted.",
+      sub: "Speciality coffee that's ready before your laptop wakes up. Pour, add milk or water, done.",
     },
     why: {
       headline: "No café run. No machine. No excuses.",
-      sub: "INHAUS fits in your hostel fridge, your bag, your schedule. Twenty cups, one bottle, ₹25 each.",
+      sub: "INHAUS fits your hostel fridge, your bag, your schedule — speciality coffee in seconds, whenever the grind calls.",
     },
     reviews: [
-      {
-        quote: "Survived finals on Black. Literally. I owe INHAUS a thank-you card.",
-        name: "Arjun S.",
-        role: "3rd year, IIT Bombay",
-      },
-      {
-        quote: "My roommate thought I had a barista hidden in my room. It's just INHAUS and milk.",
-        name: "Priyanka N.",
-        role: "MBA student, Delhi",
-      },
-      {
-        quote: "₹25 a cup. I've done the math. This is just how I live now.",
-        name: "Kabir M.",
-        role: "Design student, Ahmedabad",
-      },
+      { quote: "Survived finals on this. Literally. I owe INHAUS a thank-you card.", name: "Arjun S.", role: "3rd year, IIT Bombay" },
+      { quote: "My roommate thought I had a barista hidden in my room. It's just INHAUS and milk.", name: "Priyanka N.", role: "MBA student, Delhi" },
+      { quote: "One stir and I'm sorted. This is just how I live now.", name: "Kabir M.", role: "Design student, Ahmedabad" },
     ],
     newsletter: {
       headline: "Join the grind. Get 10% off.",
-      sub: "Student prices, real café quality. Plus brew tips, study playlists, first dibs on new roasts.",
+      sub: "Real café quality made for student life — plus brew tips, study playlists, and first dibs on new flavours.",
     },
-    marquee: [
-      "₹25 A CUP",
-      "20 CUPS / BOTTLE",
-      "NO MACHINE NEEDED",
-      "100% ARABICA",
-      "NO SUGAR",
-      "BREWS IN 10 SEC",
-      "HOSTEL FRIENDLY",
-    ],
+    marquee: ["NO CAFÉ RUN", "READY IN SECONDS", "NO MACHINE NEEDED", "SPECIALITY COFFEE", "NO ADDED SUGAR", "STIR & SIP", "HOSTEL FRIENDLY"],
   },
 
   creator: {
     label: "Creator",
     mono: "CREATOR",
-    tagline: "Flow state in a bottle.",
-    gateDescription: "Stay in it. The good coffee is already here.",
-    announcement: "Free shipping over ₹999 · First pour: 10% off with code POUR10",
+    tagline: "Stay in the flow.",
+    gateDescription: "Stay in it. The good coffee's already here.",
+    announcement: "Free shipping across India · 10% off your first order with POUR10",
     hero: {
       eyebrow: "Your creative fuel",
       headline: "Stay in\nthe flow.",
-      sub: "When you're in the zone, the last thing you need is a café run. Pour, add milk, keep making.",
+      sub: "When you're in the zone, the last thing you need is a café run. Pour, add milk or water, keep making.",
       cta: "Enter the flow",
-      ctaSecondary: "Find your pour",
+      ctaSecondary: "What you can make",
     },
     products: {
-      headline: "Two pours. One obsession.",
-      sub: "Black for the focused hours. Classic for the late-night sessions. Both on your desk in ten seconds.",
+      headline: "One pour. Total focus.",
+      sub: "Speciality coffee on your desk in seconds — no interruption to your process, no compromise on the cup.",
     },
     why: {
-      headline: "The bottle on the desk. Not the queue outside.",
-      sub: "No interruption to your process. Same quality you'd get at a good café — poured on your terms.",
+      headline: "The cup on your desk. Not the queue outside.",
+      sub: "No break in your process. The same quality you'd get at a good café — made on your terms, in seconds.",
     },
     reviews: [
-      {
-        quote: "The bottle lives on my desk now. Non-negotiable part of my setup.",
-        name: "Shreya V.",
-        role: "Illustrator, Pune",
-      },
-      {
-        quote: "I make content about coffee. INHAUS is embarrassingly good. Said it.",
-        name: "Dev R.",
-        role: "Food creator, Mumbai",
-      },
-      {
-        quote: "Black over ice is my whole creative process summarised.",
-        name: "Aarav K.",
-        role: "Photographer, Bengaluru",
-      },
+      { quote: "It lives on my desk now. Non-negotiable part of my setup.", name: "Shreya V.", role: "Illustrator, Pune" },
+      { quote: "I make content about coffee. INHAUS is embarrassingly good. Said it.", name: "Dev R.", role: "Food creator, Mumbai" },
+      { quote: "One stir over ice is my whole creative process summarised.", name: "Aarav K.", role: "Photographer, Bengaluru" },
     ],
     newsletter: {
       headline: "Create more. Brew less.",
-      sub: "Pour ideas, first dibs on limited roasts, and 10% off your first bottle.",
+      sub: "Pour ideas, first dibs on limited flavours, and 10% off your first order.",
     },
-    marquee: [
-      "FLOW STATE IN A BOTTLE",
-      "100% ARABICA",
-      "NO SUGAR",
-      "20 CUPS / BOTTLE",
-      "BREWS IN 10 SEC",
-      "NO INTERRUPTIONS",
-      "POUR & CREATE",
-    ],
+    marquee: ["FLOW STATE ON TAP", "SPECIALITY COFFEE", "NO ADDED SUGAR", "READY IN SECONDS", "NO MACHINE", "NO INTERRUPTIONS", "STIR & CREATE"],
   },
 
   professional: {
@@ -187,52 +145,32 @@ export const personaContent: Record<Persona, PersonaContent> = {
     mono: "PROFESSIONAL",
     tagline: "Sharper mornings.",
     gateDescription: "No machine. No barista. Just results.",
-    announcement: "Free shipping over ₹999 · Subscribe & save 15% · Cancel anytime",
+    announcement: "Free shipping across India · Subscribe & save · Cancel anytime",
     hero: {
       eyebrow: "Premium. Efficient. Yours.",
       headline: "Sharper mornings.\nBetter outcomes.",
-      sub: "No machine. No barista. Café-grade coffee in ten seconds — so you can focus on what actually moves the needle.",
+      sub: "No machine. No barista. Café-grade coffee in seconds — so you can focus on what actually moves the needle.",
       cta: "Start sharp",
       ctaSecondary: "See the difference",
     },
     products: {
       headline: "Precision in every pour.",
-      sub: "Built for people who don't compromise on quality or time. The same great cup, every single morning.",
+      sub: "Built for people who won't compromise on quality or time. The same great cup, every single morning.",
     },
     why: {
-      headline: "Ten seconds. No compromise.",
-      sub: "INHAUS replaces the café run, the machine maintenance, and the inconsistency — without sacrificing a single thing.",
+      headline: "Seconds to brew. Zero compromise.",
+      sub: "INHAUS replaces the café run, the machine, and the inconsistency — without giving up a single thing on taste.",
     },
     reviews: [
-      {
-        quote: "I used to spend ₹200 and 20 minutes at the café every morning. Not anymore.",
-        name: "Nisha P.",
-        role: "Product Manager, Bengaluru",
-      },
-      {
-        quote: "My entire team is on INHAUS now. Office efficiency is probably unrelated.",
-        name: "Rahul D.",
-        role: "Founder, Delhi",
-      },
-      {
-        quote: "Black. Cold. 6am. That's the whole ritual. INHAUS makes it work.",
-        name: "Meera S.",
-        role: "Consultant, Mumbai",
-      },
+      { quote: "I used to spend twenty minutes at the café every morning. Not anymore.", name: "Nisha P.", role: "Product Manager, Bengaluru" },
+      { quote: "My whole team is on INHAUS now. Office efficiency is probably unrelated.", name: "Rahul D.", role: "Founder, Delhi" },
+      { quote: "One stir. Cold. 6am. That's the whole ritual.", name: "Meera S.", role: "Consultant, Mumbai" },
     ],
     newsletter: {
-      headline: "Sharpen the routine. Save 15%.",
-      sub: "Subscribe for consistent quality, a 15% saving, and early access to new roasts.",
+      headline: "Sharpen the routine.",
+      sub: "Subscribe for consistent quality, member pricing, and early access to new flavours.",
     },
-    marquee: [
-      "CAFÉ GRADE AT HOME",
-      "100% ARABICA",
-      "NO SUGAR",
-      "10 SEC BREW",
-      "20 CUPS / BOTTLE",
-      "NO MACHINE",
-      "PREMIUM CONCENTRATE",
-    ],
+    marquee: ["CAFÉ GRADE AT HOME", "SPECIALITY COFFEE", "NO ADDED SUGAR", "READY IN SECONDS", "NO MACHINE", "STIR & SIP", "CONSISTENT EVERY CUP"],
   },
 };
 

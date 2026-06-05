@@ -23,7 +23,7 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="section">
+    <section id="join" className="section">
       <div className="container-x">
         <div
           className="relative overflow-hidden rounded-[28px] px-6 py-14 text-center md:px-12 md:py-20"

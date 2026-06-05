@@ -1,6 +1,6 @@
 "use client";
 
-import Bottle from "@/components/Bottle";
+import ProductPlaceholder from "@/components/ProductPlaceholder";
 import Sticker from "@/components/Sticker";
 import Reveal from "@/components/Reveal";
 import { DoodleIcon } from "@/components/Doodles";
@@ -10,11 +10,11 @@ import { personaContent } from "@/lib/personas";
 
 const collage = [
   { text: "No sugar", tone: "crema" as const, className: "left-0 top-6", rotate: -9 },
-  { text: "100% Arabica", tone: "paper" as const, className: "right-2 top-2", rotate: 7 },
-  { text: "20 cups", tone: "sage" as const, className: "right-0 top-28", rotate: -5 },
+  { text: "Speciality", tone: "paper" as const, className: "right-2 top-2", rotate: 7 },
+  { text: "No machine", tone: "sage" as const, className: "right-0 top-28", rotate: -5 },
   { text: "No preservatives", tone: "paper" as const, className: "left-2 top-32", rotate: 8 },
-  { text: "BYOB", tone: "clay" as const, className: "left-6 bottom-10", rotate: -7 },
-  { text: "10-sec brew", tone: "paper" as const, className: "right-4 bottom-8", rotate: 6 },
+  { text: "Stir & sip", tone: "clay" as const, className: "left-6 bottom-10", rotate: -7 },
+  { text: "3-sec stir", tone: "paper" as const, className: "right-4 bottom-8", rotate: 6 },
 ];
 
 const defaultContent = {
@@ -34,7 +34,7 @@ export default function WhyInhaus() {
           <div className="absolute inset-0 rounded-[36px]"
             style={{ background: "radial-gradient(120% 120% at 50% 20%, rgba(255,255,255,0.06) 0%, rgba(0,0,0,0.20) 100%)" }}
           />
-          <Bottle className="relative z-10 w-[170px]" accent="var(--theme-accent)" variant="INHAUS" />
+          <ProductPlaceholder className="relative z-10" variant="dark" />
           {collage.map((s) => (
             <Sticker key={s.text} className={`absolute z-20 ${s.className}`} rotate={s.rotate} tone={s.tone}>
               {s.text}

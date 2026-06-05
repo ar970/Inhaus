@@ -1,25 +1,24 @@
 "use client";
 
 import Button from "@/components/ui/Button";
-import Bottle from "@/components/Bottle";
 import Sticker from "@/components/Sticker";
 import Reveal from "@/components/Reveal";
+import ProductPlaceholder from "@/components/ProductPlaceholder";
 import { Stars, Steam, Bean, Cup } from "@/components/Doodles";
 import { usePersona } from "@/context/PersonaContext";
 import { personaContent } from "@/lib/personas";
 
 const defaultContent = {
-  eyebrow: "Liquid coffee concentrate",
-  headline: "Café in\na bottle.",
-  sub: "Barista coffee at home in ten seconds. Pour, add milk or water, sip — no machine, no mess.",
-  cta: "Shop the pour",
+  eyebrow: "Speciality coffee concentrate",
+  headline: "Café coffee,\nin seconds.",
+  sub: "Pour, add milk or water, and sip. Café-grade coffee at home — no machine, no mess.",
+  cta: "Explore",
   ctaSecondary: "How it works",
 };
 
 export default function Hero() {
   const { persona } = usePersona();
   const c = persona ? personaContent[persona].hero : defaultContent;
-
   const headlineLines = c.headline.split("\n");
 
   return (
@@ -52,29 +51,20 @@ export default function Hero() {
         {/* Visual */}
         <Reveal className="order-1 md:order-2" delay={0.1}>
           <div className="relative mx-auto flex max-w-md items-center justify-center">
-            <div className="absolute inset-0 -z-10 rounded-[36px] bg-[radial-gradient(120%_120%_at_50%_15%,var(--theme-surface)_0%,var(--theme-accent-soft,#EFE2CC)_60%,var(--theme-soft,#E3D2B8)_100%)] shadow-soft"
-              style={{ "--theme-accent-soft": "var(--theme-soft)", "--theme-soft": "var(--theme-accent-soft)" } as React.CSSProperties}
-            />
             <div
               className="absolute inset-0 -z-10 rounded-[36px] shadow-soft"
-              style={{
-                background: "radial-gradient(120% 120% at 50% 15%, var(--theme-surface) 0%, var(--theme-accent-soft) 60%, var(--theme-accent-soft) 100%)"
-              }}
+              style={{ background: "radial-gradient(120% 120% at 50% 15%, var(--theme-surface) 0%, var(--theme-accent-soft) 70%, var(--theme-accent-soft) 100%)" }}
             />
 
-            {/* doodle accents */}
-            <Steam className="absolute left-[18%] top-6 h-12 w-9 text-clay/70" />
-            <Bean className="absolute right-[16%] top-12 h-9 w-9 -rotate-12 text-espresso/50" />
-            <Cup className="absolute bottom-10 left-8 h-12 w-12 text-espresso/55" />
+            <Steam className="absolute left-[15%] top-6 h-12 w-9 text-clay/60" />
+            <Bean className="absolute right-[13%] top-12 h-9 w-9 -rotate-12 text-espresso/45" />
+            <Cup className="absolute bottom-10 left-7 h-12 w-12 text-espresso/50" />
 
-            <Bottle className="relative z-10 w-[180px] py-8 md:w-[230px]" accent="var(--theme-ink)" variant="BLACK" />
+            <ProductPlaceholder className="relative z-10 py-10" />
 
-            {/* stickers */}
-            <Sticker className="absolute -left-2 top-10" rotate={-8} tone="crema">
-              {persona === "student" ? "₹25/cup" : "20 cups"}
-            </Sticker>
-            <Sticker className="absolute -right-1 top-24" rotate={7}>10-sec brew</Sticker>
-            <Sticker className="absolute bottom-8 right-2" rotate={-5} tone="sage">No sugar</Sticker>
+            <Sticker className="absolute -left-2 top-12" rotate={-8} tone="crema">3-sec stir</Sticker>
+            <Sticker className="absolute -right-1 top-28" rotate={7}>No machine</Sticker>
+            <Sticker className="absolute bottom-10 right-1" rotate={-5} tone="sage">No sugar</Sticker>
           </div>
         </Reveal>
       </div>

@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Products from "@/components/Products";
 import HowItWorks from "@/components/HowItWorks";
-import Comparison from "@/components/Comparison";
+import WhatCanYouMake from "@/components/WhatCanYouMake";
 import WhyInhaus from "@/components/WhyInhaus";
 import RealPours from "@/components/RealPours";
 import Reviews from "@/components/Reviews";
@@ -28,7 +28,7 @@ export default function Home() {
         <Marquee />
         <Products />
         <HowItWorks />
-        <Comparison />
+        <WhatCanYouMake />
         <WhyInhaus />
         <RealPours />
         <Reviews />
