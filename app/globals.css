@@ -12,38 +12,108 @@
   --theme-accent:       #C8761E;
   --theme-accent-soft:  #E3D2B8;
   --theme-accent-2:     #B5654A;
+
+  /* Vibe tokens — each persona overrides these to feel like a different brand */
+  --vibe-radius:        18px;   /* shape language: chunky → sharp */
+  --vibe-head-style:    normal; /* serif posture */
+  --vibe-head-weight:   420;
+  --vibe-head-spacing:  -0.02em;
+  --vibe-head-line:     0.98;
+  --vibe-eyebrow-tr:    0.18em; /* eyebrow letter-spacing */
 }
 
 /* ─── Per-persona overrides (set via JS on <html>) ───────────────── */
-/* Student — warm orange */
+/* Student — warm orange · loud, chunky, sticker-bomb energy */
 [data-persona="student"] {
-  --theme-bg:           #FFF8F2;
-  --theme-surface:      #FFFBF7;
-  --theme-ink:          #1C1009;
-  --theme-accent:       #E8601A;
-  --theme-accent-soft:  #FDE5CC;
-  --theme-accent-2:     #F5A54A;
+  --theme-bg:           #FFF4E6;
+  --theme-surface:      #FFFBF6;
+  --theme-ink:          #20120A;
+  --theme-accent:       #F2560E;
+  --theme-accent-soft:  #FFD9B0;
+  --theme-accent-2:     #FF9D2E;
+
+  --vibe-radius:        26px;
+  --vibe-head-style:    normal;
+  --vibe-head-weight:   560;
+  --vibe-head-spacing:  -0.035em;
+  --vibe-head-line:     0.9;
+  --vibe-eyebrow-tr:    0.22em;
 }
 
-/* Creator — violet purple */
+/* Creator — violet · editorial, airy, italic gallery mood */
 [data-persona="creator"] {
-  --theme-bg:           #F9F4FF;
-  --theme-surface:      #FCF9FF;
-  --theme-ink:          #1A0E2E;
-  --theme-accent:       #8931C4;
-  --theme-accent-soft:  #ECDAF6;
-  --theme-accent-2:     #B566DF;
+  --theme-bg:           #F6F0FF;
+  --theme-surface:      #FCFAFF;
+  --theme-ink:          #190B30;
+  --theme-accent:       #8A2BE2;
+  --theme-accent-soft:  #E6D4FA;
+  --theme-accent-2:     #C159E8;
+
+  --vibe-radius:        7px;
+  --vibe-head-style:    italic;
+  --vibe-head-weight:   340;
+  --vibe-head-spacing:  -0.015em;
+  --vibe-head-line:     0.96;
+  --vibe-eyebrow-tr:    0.42em;
 }
 
-/* Professional — forest green */
+/* Professional — forest green · precise, minimal, structured */
 [data-persona="professional"] {
-  --theme-bg:           #F3FAF5;
-  --theme-surface:      #F7FCF8;
-  --theme-ink:          #0C1F13;
-  --theme-accent:       #177545;
-  --theme-accent-soft:  #D1ECE0;
-  --theme-accent-2:     #3EA46D;
+  --theme-bg:           #EFF6F1;
+  --theme-surface:      #F8FCFA;
+  --theme-ink:          #08160D;
+  --theme-accent:       #0F6B3D;
+  --theme-accent-soft:  #CDE8DA;
+  --theme-accent-2:     #2E9E66;
+
+  --vibe-radius:        3px;
+  --vibe-head-style:    normal;
+  --vibe-head-weight:   460;
+  --vibe-head-spacing:  -0.045em;
+  --vibe-head-line:     0.98;
+  --vibe-eyebrow-tr:    0.30em;
 }
+
+/* ─── Per-persona background textures (whole-site vibe shift) ─────── */
+[data-persona="student"] body {
+  background-image: radial-gradient(color-mix(in srgb, var(--theme-accent) 16%, transparent) 1.6px, transparent 1.6px);
+  background-size: 22px 22px;
+  background-position: 0 0;
+}
+[data-persona="creator"] body {
+  background-image:
+    radial-gradient(38% 34% at 10% 6%,  color-mix(in srgb, var(--theme-accent)   20%, transparent) 0%, transparent 100%),
+    radial-gradient(42% 38% at 92% 18%, color-mix(in srgb, var(--theme-accent-2) 18%, transparent) 0%, transparent 100%),
+    radial-gradient(46% 42% at 78% 96%, color-mix(in srgb, var(--theme-accent)   14%, transparent) 0%, transparent 100%);
+  background-attachment: fixed;
+}
+[data-persona="professional"] body {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 47px,
+    color-mix(in srgb, var(--theme-ink) 5%, transparent) 47px,
+    color-mix(in srgb, var(--theme-ink) 5%, transparent) 48px
+  );
+}
+
+/* ─── Per-persona typography posture ─────────────────────────────── */
+[data-persona] h1,
+[data-persona] h2 {
+  font-style:     var(--vibe-head-style);
+  font-weight:    var(--vibe-head-weight);
+  letter-spacing: var(--vibe-head-spacing);
+}
+[data-persona] .label {
+  letter-spacing: var(--vibe-eyebrow-tr);
+}
+
+/* Creator gets an editorial italic accent on emphasised words */
+[data-persona="creator"] .vibe-accent-word { font-style: italic; }
+
+/* Shape language flows from the vibe radius */
+.card       { border-radius: calc(var(--vibe-radius) + 4px); }
+.vibe-shape { border-radius: var(--vibe-radius); }
 
 @layer base {
   html {
