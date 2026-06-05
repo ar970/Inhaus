@@ -11,8 +11,6 @@ interface PersonaContextValue {
 
 const PersonaContext = createContext<PersonaContextValue | null>(null);
 
-const STORAGE_KEY = "inhaus-persona";
-
 function applyTheme(p: Persona | null) {
   if (typeof document === "undefined") return;
   const root = document.documentElement;
@@ -31,32 +29,27 @@ function applyTheme(p: Persona | null) {
 }
 
 export function PersonaProvider({ children }: { children: ReactNode }) {
+  /*
+   * The gate is shown on EVERY visit by design — persona always starts null,
+   * so the "Who are you?" screen appears each time the site is opened.
+   * The choice lives only in memory for the current session.
+   */
   const [persona, setPersonaState] = useState<Persona | null>(null);
-  const [ready, setReady] = useState(false);
 
+  /* Ensure any previously-applied theme is cleared on a fresh load */
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Persona | null;
-    const valid: Persona[] = ["student", "creator", "professional"];
-    const p = stored && valid.includes(stored) ? stored : null;
-    setPersonaState(p);
-    applyTheme(p);
-    setReady(true);
+    applyTheme(null);
   }, []);
 
   function setPersona(p: Persona) {
-    localStorage.setItem(STORAGE_KEY, p);
     setPersonaState(p);
     applyTheme(p);
   }
 
   function resetPersona() {
-    localStorage.removeItem(STORAGE_KEY);
     setPersonaState(null);
     applyTheme(null);
   }
-
-  /* Suppress flash of wrong theme */
-  if (!ready) return null;
 
   return (
     <PersonaContext.Provider value={{ persona, setPersona, resetPersona }}>
