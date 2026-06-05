@@ -3,8 +3,8 @@
 import Button from "@/components/ui/Button";
 import Sticker from "@/components/Sticker";
 import Reveal from "@/components/Reveal";
-import ProductPlaceholder from "@/components/ProductPlaceholder";
-import { Stars, Steam, Bean, Cup } from "@/components/Doodles";
+import InhausBottle from "@/components/InhausBottle";
+import { Stars, Steam, Bean } from "@/components/Doodles";
 import { usePersona } from "@/context/PersonaContext";
 import { personaContent } from "@/lib/personas";
 
@@ -50,21 +50,16 @@ export default function Hero() {
 
         {/* Visual */}
         <Reveal className="order-1 md:order-2" delay={0.1}>
-          <div className="relative mx-auto flex max-w-md items-center justify-center">
+          <div className="relative mx-auto flex max-w-[360px] items-center justify-center">
             <div
               className="absolute inset-0 -z-10 rounded-[36px] shadow-soft"
-              style={{ background: "radial-gradient(120% 120% at 50% 15%, var(--theme-surface) 0%, var(--theme-accent-soft) 70%, var(--theme-accent-soft) 100%)" }}
+              style={{ background: "radial-gradient(130% 120% at 50% 10%, var(--theme-surface) 0%, var(--theme-accent-soft) 65%, var(--theme-accent-soft) 100%)" }}
             />
 
-            <Steam className="absolute left-[15%] top-6 h-12 w-9 text-clay/60" />
-            <Bean className="absolute right-[13%] top-12 h-9 w-9 -rotate-12 text-espresso/45" />
-            <Cup className="absolute bottom-10 left-7 h-12 w-12 text-espresso/50" />
+            <Steam className="absolute left-[10%] top-4 h-10 w-8 text-clay/50" />
+            <Bean className="absolute right-[8%] top-8 h-8 w-8 -rotate-12 text-espresso/30" />
 
-            <ProductPlaceholder className="relative z-10 py-10" />
-
-            <Sticker className="absolute -left-2 top-12" rotate={-8} tone="crema">3-sec stir</Sticker>
-            <Sticker className="absolute -right-1 top-28" rotate={7}>No machine</Sticker>
-            <Sticker className="absolute bottom-10 right-1" rotate={-5} tone="sage">No sugar</Sticker>
+            <InhausBottle className="relative z-10 px-4 py-8 w-full" />
           </div>
         </Reveal>
       </div>
