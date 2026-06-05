@@ -1,9 +1,16 @@
+"use client";
+
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { Stars } from "@/components/Doodles";
-import { reviews } from "@/lib/data";
+import { reviews as defaultReviews } from "@/lib/data";
+import { usePersona } from "@/context/PersonaContext";
+import { personaContent } from "@/lib/personas";
 
 export default function Reviews() {
+  const { persona } = usePersona();
+  const reviewList = persona ? personaContent[persona].reviews : defaultReviews;
+
   return (
     <section id="reviews" className="section">
       <div className="container-x">
@@ -13,7 +20,7 @@ export default function Reviews() {
         />
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {reviews.map((r, i) => (
+          {reviewList.map((r, i) => (
             <Reveal key={r.name} delay={i * 0.08} className="card flex flex-col p-7">
               <Stars />
               <blockquote className="mt-4 flex-1 font-serif text-xl italic leading-snug text-espresso/90">

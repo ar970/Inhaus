@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { PersonaProvider } from "@/context/PersonaContext";
 
 export const metadata: Metadata = {
   title: "INHAUS — Café in a bottle",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#211712",
+  themeColor: "#0E0B09",
   width: "device-width",
   initialScale: 1,
 };
@@ -22,7 +23,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <PersonaProvider>{children}</PersonaProvider>
+      </body>
     </html>
   );
 }

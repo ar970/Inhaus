@@ -13,9 +13,9 @@ type ButtonProps = {
 };
 
 const variants = {
-  primary: "bg-espresso text-oat hover:bg-crema hover:text-espresso hover:-translate-y-0.5 shadow-soft",
+  primary:   "bg-espresso text-oat hover:bg-crema hover:text-espresso hover:-translate-y-0.5 shadow-soft",
   secondary: "border border-espresso/80 text-espresso hover:bg-espresso hover:text-oat",
-  ghost: "text-espresso hover:text-crema underline-offset-4 hover:underline",
+  ghost:     "text-espresso hover:text-crema underline-offset-4 hover:underline",
 };
 
 const sizes = {
@@ -42,7 +42,9 @@ export default function Button({
       )}
     >
       {children}
-      {withArrow && <Arrow className="h-3.5 w-5 transition-transform duration-150 group-hover:translate-x-1" />}
+      {withArrow && (
+        <Arrow className="h-3.5 w-5 transition-transform duration-150 group-hover:translate-x-1" />
+      )}
     </Link>
   );
 }

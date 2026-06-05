@@ -1,8 +1,12 @@
+"use client";
+
 import Bottle from "@/components/Bottle";
 import Sticker from "@/components/Sticker";
 import Reveal from "@/components/Reveal";
 import { DoodleIcon } from "@/components/Doodles";
 import { benefits } from "@/lib/data";
+import { usePersona } from "@/context/PersonaContext";
+import { personaContent } from "@/lib/personas";
 
 const collage = [
   { text: "No sugar", tone: "crema" as const, className: "left-0 top-6", rotate: -9 },
@@ -13,14 +17,24 @@ const collage = [
   { text: "10-sec brew", tone: "paper" as const, className: "right-4 bottom-8", rotate: 6 },
 ];
 
+const defaultContent = {
+  headline: "Good coffee shouldn't need a machine.",
+  sub: "Just cold-extracted coffee and water, bottled at peak flavour. No sugar, no preservatives, no fuss — only the good part of your café order.",
+};
+
 export default function WhyInhaus() {
+  const { persona } = usePersona();
+  const c = persona ? personaContent[persona].why : defaultContent;
+
   return (
     <section id="why" className="section bg-espresso text-oat">
       <div className="container-x grid items-center gap-12 md:grid-cols-2">
-        {/* collage */}
+        {/* sticker collage */}
         <Reveal className="relative mx-auto flex h-[360px] w-full max-w-sm items-center justify-center md:order-2">
-          <div className="absolute inset-0 -z-0 rounded-[36px] bg-[radial-gradient(120%_120%_at_50%_20%,#3A271C_0%,#2A1C14_60%,#211712_100%)]" />
-          <Bottle className="relative z-10 w-[170px]" accent="#C8761E" variant="INHAUS" />
+          <div className="absolute inset-0 rounded-[36px]"
+            style={{ background: "radial-gradient(120% 120% at 50% 20%, rgba(255,255,255,0.06) 0%, rgba(0,0,0,0.20) 100%)" }}
+          />
+          <Bottle className="relative z-10 w-[170px]" accent="var(--theme-accent)" variant="INHAUS" />
           {collage.map((s) => (
             <Sticker key={s.text} className={`absolute z-20 ${s.className}`} rotate={s.rotate} tone={s.tone}>
               {s.text}
@@ -32,11 +46,9 @@ export default function WhyInhaus() {
         <Reveal className="md:order-1">
           <p className="label text-crema">Why INHAUS</p>
           <h2 className="mt-3 font-serif text-[34px] font-normal leading-[1.02] tracking-tight md:text-[52px]">
-            Good coffee shouldn&apos;t need a machine.
+            {c.headline}
           </h2>
-          <p className="mt-4 max-w-md text-oat/75">
-            Just cold-extracted coffee and water, bottled at peak flavour. No sugar, no preservatives, no fuss — only the good part of your café order.
-          </p>
+          <p className="mt-4 max-w-md text-oat/75">{c.sub}</p>
 
           <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5">
             {benefits.map((b) => (

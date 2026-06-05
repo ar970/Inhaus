@@ -4,19 +4,67 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Default brand tokens (no persona selected) ─────────────────── */
+:root {
+  --theme-bg:           #F6EFE3;
+  --theme-surface:      #FBF7EF;
+  --theme-ink:          #211712;
+  --theme-accent:       #C8761E;
+  --theme-accent-soft:  #E3D2B8;
+  --theme-accent-2:     #B5654A;
+}
+
+/* ─── Per-persona overrides (set via JS on <html>) ───────────────── */
+/* Student — warm orange */
+[data-persona="student"] {
+  --theme-bg:           #FFF8F2;
+  --theme-surface:      #FFFBF7;
+  --theme-ink:          #1C1009;
+  --theme-accent:       #E8601A;
+  --theme-accent-soft:  #FDE5CC;
+  --theme-accent-2:     #F5A54A;
+}
+
+/* Creator — violet purple */
+[data-persona="creator"] {
+  --theme-bg:           #F9F4FF;
+  --theme-surface:      #FCF9FF;
+  --theme-ink:          #1A0E2E;
+  --theme-accent:       #8931C4;
+  --theme-accent-soft:  #ECDAF6;
+  --theme-accent-2:     #B566DF;
+}
+
+/* Professional — forest green */
+[data-persona="professional"] {
+  --theme-bg:           #F3FAF5;
+  --theme-surface:      #F7FCF8;
+  --theme-ink:          #0C1F13;
+  --theme-accent:       #177545;
+  --theme-accent-soft:  #D1ECE0;
+  --theme-accent-2:     #3EA46D;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 96px;
+    /* smooth theme transitions everywhere */
+    transition: background-color 0.5s cubic-bezier(0.22,1,0.36,1),
+                color           0.5s cubic-bezier(0.22,1,0.36,1);
   }
 
   body {
-    @apply bg-oat text-espresso font-sans antialiased;
+    background-color: var(--theme-bg);
+    color: var(--theme-ink);
+    @apply font-sans antialiased;
+    transition: background-color 0.5s cubic-bezier(0.22,1,0.36,1),
+                color           0.5s cubic-bezier(0.22,1,0.36,1);
   }
 
   ::selection {
-    background-color: #C8761E;
-    color: #FBF7EF;
+    background-color: var(--theme-accent);
+    color: var(--theme-bg);
   }
 
   h1, h2, h3 {
@@ -38,20 +86,51 @@
   }
 
   .card {
-    @apply rounded-[20px] border border-espresso/10 bg-paper shadow-soft;
+    border-radius: 20px;
+    border: 1px solid rgba(var(--theme-ink-rgb, 33 23 18) / 0.10);
+    background-color: var(--theme-surface);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    transition: background-color 0.5s cubic-bezier(0.22,1,0.36,1);
   }
 
   .focusable {
-    @apply outline-none focus-visible:ring-2 focus-visible:ring-crema focus-visible:ring-offset-2 focus-visible:ring-offset-oat;
+    @apply outline-none;
+    &:focus-visible {
+      outline: 2px solid var(--theme-accent);
+      outline-offset: 2px;
+    }
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+/* ─── Transitions on all themed elements ─────────────────────────── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 0.45s;
+  transition-timing-function: cubic-bezier(0.22,1,0.36,1);
+}
 
-  .animate-marquee {
-    animation: none !important;
+/* Override for framer-motion & animation elements that shouldn't slow down */
+[data-framer-motion-id],
+.animate-marquee,
+.group,
+button,
+a {
+  transition-duration: 0.2s;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee { animation: none !important; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
   }
 }

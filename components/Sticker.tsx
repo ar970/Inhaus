@@ -9,18 +9,18 @@ type StickerProps = {
 };
 
 const tones: Record<NonNullable<StickerProps["tone"]>, string> = {
-  paper: "bg-paper text-espresso",
-  crema: "bg-crema text-espresso",
-  clay: "bg-clay text-oat",
-  sage: "bg-sage text-espresso",
-  espresso: "bg-espresso text-oat",
+  paper:   "bg-paper text-espresso",
+  crema:   "bg-crema text-espresso",
+  clay:    "bg-clay text-oat",
+  sage:    "bg-[#8A9A7B] text-oat",
+  espresso:"bg-espresso text-oat",
 };
 
 export default function Sticker({ children, className, rotate = -4, tone = "paper" }: StickerProps) {
   return (
     <span
       className={cn(
-        "inline-flex select-none items-center gap-1.5 whitespace-nowrap rounded-pill border border-espresso px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] shadow-sticker",
+        "inline-flex select-none items-center gap-1.5 whitespace-nowrap rounded-pill border border-espresso/20 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] shadow-sticker",
         tones[tone],
         className
       )}
