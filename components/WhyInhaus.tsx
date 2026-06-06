@@ -27,7 +27,7 @@ export default function WhyInhaus() {
   const c = persona ? personaContent[persona].why : defaultContent;
 
   return (
-    <section id="why" className="section bg-espresso text-oat">
+    <section id="why" className="section section-dark">
       <div className="container-x grid items-center gap-12 md:grid-cols-2">
         {/* sticker collage */}
         <Reveal className="relative mx-auto flex h-[360px] w-full max-w-sm items-center justify-center md:order-2">
@@ -44,19 +44,19 @@ export default function WhyInhaus() {
 
         {/* copy + benefits */}
         <Reveal className="md:order-1">
-          <p className="label text-crema">Why INHAUS</p>
+          <p className="label opacity-60" style={{ color: "var(--theme-dark-accent)" }}>Why INHAUS</p>
           <h2 className="mt-3 font-serif text-[34px] font-normal leading-[1.02] tracking-tight md:text-[52px]">
             {c.headline}
           </h2>
-          <p className="mt-4 max-w-md text-oat/75">{c.sub}</p>
+          <p className="mt-4 max-w-md opacity-65">{c.sub}</p>
 
           <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5">
             {benefits.map((b) => (
               <div key={b.title} className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-oat/20 text-crema">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-current/20" style={{ color: "var(--theme-dark-accent)" }}>
                   <DoodleIcon name={b.icon} className="h-6 w-6" />
                 </span>
-                <span className="text-sm text-oat/90">{b.title}</span>
+                <span className="text-sm opacity-85">{b.title}</span>
               </div>
             ))}
           </div>

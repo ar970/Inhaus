@@ -26,6 +26,16 @@ function applyTheme(p: Persona | null) {
   root.style.setProperty("--theme-accent", t.accent);
   root.style.setProperty("--theme-accent-soft", t.accentSoft);
   root.style.setProperty("--theme-accent-2", t.accentSecondary);
+  /* dark-section tokens */
+  const darkBgs: Record<string, [string, string]> = {
+    student:      ["#1E0C04", "#FFF2DC"],
+    creator:      ["#060210", "#EDE8FF"],
+    professional: ["#061008", "#EEF3EF"],
+  };
+  const [dbg, dink] = darkBgs[p] ?? ["#1C0E06", "#F5EBD8"];
+  root.style.setProperty("--theme-dark-bg", dbg);
+  root.style.setProperty("--theme-dark-ink", dink);
+  root.style.setProperty("--theme-dark-accent", t.accent);
 }
 
 export function PersonaProvider({ children }: { children: ReactNode }) {

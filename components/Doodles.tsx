@@ -1,6 +1,7 @@
+import React from "react";
 import { cn } from "@/lib/cn";
 
-type DoodleProps = { className?: string };
+type DoodleProps = { className?: string; style?: React.CSSProperties };
 
 const base = "stroke-current";
 
@@ -67,9 +68,9 @@ export function Squiggle({ className }: DoodleProps) {
   );
 }
 
-export function Sparkle({ className }: DoodleProps) {
+export function Sparkle({ className, style }: DoodleProps) {
   return (
-    <svg viewBox="0 0 24 24" className={cn("fill-current", className)} aria-hidden="true">
+    <svg viewBox="0 0 24 24" className={cn("fill-current", className)} style={style} aria-hidden="true">
       <path d="M12 1c.9 6.3 3.7 9.1 10 10-6.3.9-9.1 3.7-10 10-.9-6.3-3.7-9.1-10-10C8.3 10.1 11.1 7.3 12 1z" />
     </svg>
   );

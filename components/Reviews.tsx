@@ -1,7 +1,6 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
 import { Stars } from "@/components/Doodles";
 import { reviews as defaultReviews } from "@/lib/data";
 import { usePersona } from "@/context/PersonaContext";
@@ -12,24 +11,47 @@ export default function Reviews() {
   const reviewList = persona ? personaContent[persona].reviews : defaultReviews;
 
   return (
-    <section id="reviews" className="section">
+    <section id="reviews" className="section overflow-hidden bg-oat">
       <div className="container-x">
-        <SectionHeading
-          eyebrow="The verdict"
-          title="4.9 / 5 from 2,000+ pours"
-        />
+        <Reveal>
+          <p className="label text-crema">The verdict</p>
+          <h2 className="mt-3 font-serif text-[38px] font-normal leading-none tracking-tight md:text-[58px]">
+            4.9&thinsp;/&thinsp;5 from<br className="hidden md:block" /> 2,000+ pours
+          </h2>
+        </Reveal>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-5 md:grid-cols-3">
           {reviewList.map((r, i) => (
-            <Reveal key={r.name} delay={i * 0.08} className="card flex flex-col p-7">
-              <Stars />
-              <blockquote className="mt-4 flex-1 font-serif text-xl italic leading-snug text-espresso/90">
-                &ldquo;{r.quote}&rdquo;
-              </blockquote>
-              <figcaption className="mt-6">
-                <div className="font-medium">{r.name}</div>
-                <div className="label mt-1 text-espresso/50">{r.role}</div>
-              </figcaption>
+            <Reveal key={r.name} delay={i * 0.1}>
+              <div className="card relative flex h-full flex-col overflow-hidden p-7">
+                {/* Giant quote mark */}
+                <span
+                  className="pointer-events-none absolute -top-3 right-5 select-none font-serif text-[110px] leading-none opacity-[0.05]"
+                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                  aria-hidden="true"
+                >
+                  &ldquo;
+                </span>
+
+                <Stars />
+
+                <blockquote className="relative z-10 mt-5 flex-1 font-serif text-[20px] italic leading-[1.45] tracking-tight text-espresso/90">
+                  &ldquo;{r.quote}&rdquo;
+                </blockquote>
+
+                <div className="mt-7 flex items-center gap-3 border-t border-espresso/8 pt-5">
+                  <div
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[13px] font-semibold text-oat"
+                    style={{ background: "var(--theme-accent)" }}
+                  >
+                    {r.name[0]}
+                  </div>
+                  <div>
+                    <div className="text-[13px] font-semibold">{r.name}</div>
+                    <div className="label mt-0.5 text-espresso/45">{r.role}</div>
+                  </div>
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>

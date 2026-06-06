@@ -35,7 +35,7 @@ export default function Button({
     <Link
       href={href}
       className={cn(
-        "group inline-flex items-center justify-center gap-2 rounded-pill font-medium transition-all duration-150 focusable",
+        "group inline-flex items-center justify-center gap-2 rounded-pill text-[13px] font-semibold tracking-wide transition-all duration-200 focusable",
         variants[variant],
         sizes[size],
         className

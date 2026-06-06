@@ -35,26 +35,34 @@ export default function Nav() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-colors duration-300",
-        scrolled ? "border-b border-espresso/10 bg-oat/85 backdrop-blur-md" : "border-b border-transparent bg-oat"
+        "sticky top-0 z-50 transition-all duration-500",
+        scrolled
+          ? "border-b border-espresso/8 bg-oat/80 shadow-[0_1px_20px_rgba(0,0,0,0.06)] backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
       )}
     >
-      <nav className="container-x flex items-center justify-between py-4">
-        <Link href="#top" className="font-serif text-2xl tracking-tight focusable">INHAUS</Link>
+      <nav className="container-x flex items-center justify-between py-[14px]">
+        <Link href="#top" className="font-serif text-[22px] tracking-[-0.03em] focusable">
+          INHAUS
+        </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-9 md:flex">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="text-sm transition-colors hover:text-crema focusable">
+            <Link
+              key={l.href}
+              href={l.href}
+              className="text-[13px] font-medium text-espresso/60 transition-colors hover:text-espresso focusable"
+            >
               {l.label}
             </Link>
           ))}
         </div>
 
         <div className="flex items-center gap-2">
-          <Button href="#products" size="sm" className="hidden sm:inline-flex">Shop the pour</Button>
-          <Link href="#products" aria-label="Cart" className="relative rounded-pill p-2 text-espresso transition-colors hover:text-crema focusable">
-            <BagIcon className="h-6 w-6" />
-            <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-crema" />
+          <Button href="#products" size="sm" className="hidden sm:inline-flex">Shop now</Button>
+          <Link href="#products" aria-label="Cart" className="relative rounded-pill p-2 text-espresso/65 transition-colors hover:text-espresso focusable">
+            <BagIcon className="h-5 w-5" />
+            <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-crema" />
           </Link>
           <button
             type="button"
@@ -63,7 +71,7 @@ export default function Nav() {
             onClick={() => setOpen((v) => !v)}
             className="rounded-pill p-2 md:hidden focusable"
           >
-            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round">
               {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 8h16M4 16h16" />}
             </svg>
           </button>
@@ -71,14 +79,14 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="border-t border-espresso/10 bg-oat md:hidden">
-          <div className="container-x flex flex-col py-2">
+        <div className="border-t border-espresso/8 bg-oat/95 backdrop-blur-xl md:hidden">
+          <div className="container-x flex flex-col py-3">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-espresso/5 py-3 font-serif text-lg focusable"
+                className="border-b border-espresso/6 py-3.5 font-serif text-lg focusable"
               >
                 {l.label}
               </Link>

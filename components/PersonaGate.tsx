@@ -4,22 +4,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePersona } from "@/context/PersonaContext";
 import { personaContent, personaThemes, gateCards, type Persona } from "@/lib/personas";
-import { Cup, House, Sparkle } from "@/components/Doodles";
 
-const icons = { cup: Cup, star: Sparkle, house: House } as const;
-
-function GateCard({
-  id,
-  onSelect,
-}: {
-  id: Persona;
-  onSelect: (p: Persona) => void;
-}) {
+function GatePanel({ id, onSelect }: { id: Persona; onSelect: (p: Persona) => void }) {
   const [hovered, setHovered] = useState(false);
   const theme = personaThemes[id];
   const content = personaContent[id];
-  const cardDef = gateCards.find((c) => c.id === id)!;
-  const Icon = icons[cardDef.Icon as keyof typeof icons];
 
   return (
     <motion.button
@@ -27,69 +16,70 @@ function GateCard({
       onClick={() => onSelect(id)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      initial={{ opacity: 0, y: 28 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -6 }}
+      whileHover={{ flex: 1.8 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex flex-col items-center justify-between overflow-hidden rounded-[24px] border border-white/10 p-8 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 md:h-[400px]"
+      className="group relative flex flex-1 flex-col items-start justify-end overflow-hidden border-r px-7 pb-12 pt-24 md:px-10 md:pb-16 last:border-r-0 focusable"
       style={{
+        borderColor: "rgba(255,255,255,0.06)",
         background: hovered
-          ? theme.gateHover
-          : "rgba(255,255,255,0.04)",
-        transition: "background 0.38s cubic-bezier(0.22,1,0.36,1)",
+          ? `linear-gradient(160deg, color-mix(in srgb, ${theme.gateHover} 28%, #080510) 0%, ${theme.gateHover} 100%)`
+          : "rgba(255,255,255,0.02)",
+        transition: "background 0.5s cubic-bezier(0.22,1,0.36,1)",
       }}
     >
-      {/* Glow blob */}
+      {/* Big faint number */}
       <div
-        className="pointer-events-none absolute inset-0 -z-0 rounded-[24px] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-30"
-        style={{ background: theme.gateHover }}
+        className="pointer-events-none absolute right-6 top-6 select-none font-serif text-[120px] font-light leading-none opacity-[0.06] md:text-[180px]"
+        style={{ fontFamily: "'Cormorant Garamond', serif", color: theme.gateHover }}
+        aria-hidden="true"
+      >
+        {id === "student" ? "01" : id === "creator" ? "02" : "03"}
+      </div>
+
+      {/* Accent dot */}
+      <div
+        className="mb-6 h-3 w-3 rounded-full transition-all duration-500"
+        style={{
+          background: theme.gateHover,
+          opacity: hovered ? 1 : 0.35,
+          boxShadow: hovered ? `0 0 20px ${theme.gateHover}` : "none",
+        }}
       />
 
-      {/* Icon */}
-      <div
-        className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border transition-colors duration-300"
+      {/* I AM A label */}
+      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/30">I am a</p>
+
+      {/* Persona name */}
+      <h2
+        className="mt-2 font-serif text-[40px] leading-none tracking-tight text-white/90 transition-all duration-300 md:text-[52px]"
         style={{
-          borderColor: hovered ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.15)",
-          color: hovered ? theme.gateText : "rgba(255,255,255,0.6)",
+          fontFamily: "'Cormorant Garamond', serif",
+          fontStyle: "italic",
+          fontWeight: 300,
+          color: hovered ? "#FFFFFF" : "rgba(255,255,255,0.85)",
         }}
       >
-        <Icon className="h-10 w-10" />
-      </div>
+        {content.label}
+      </h2>
 
-      {/* Content */}
-      <div className="relative z-10 mt-auto">
-        <p
-          className="font-mono text-[11px] uppercase tracking-[0.2em] transition-colors duration-300"
-          style={{ color: hovered ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.35)" }}
-        >
-          I AM A
-        </p>
-        <h3
-          className="mt-2 font-serif text-[34px] font-normal leading-none md:text-[40px]"
-          style={{ color: hovered ? theme.gateText : "rgba(255,255,255,0.90)" }}
-        >
-          {content.label}
-        </h3>
-        <p
-          className="mt-3 text-sm leading-snug transition-all duration-300"
-          style={{ color: hovered ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.40)" }}
-        >
-          {content.tagline}
-          <br />
-          <span className="text-xs">{content.gateDescription}</span>
-        </p>
-      </div>
-
-      {/* Bottom arrow */}
-      <div
-        className="relative z-10 mt-8 flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300"
-        style={{
-          borderColor: hovered ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.12)",
-          color: hovered ? theme.gateText : "rgba(255,255,255,0.3)",
-        }}
+      {/* Tagline */}
+      <p
+        className="mt-3 max-w-[200px] text-sm leading-snug transition-all duration-400"
+        style={{ color: hovered ? "rgba(255,255,255,0.75)" : "rgba(255,255,255,0.28)" }}
       >
-        <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 8h10M9 4l4 4-4 4" />
+        {content.gateDescription}
+      </p>
+
+      {/* Arrow */}
+      <div
+        className="mt-6 flex items-center gap-2 transition-all duration-300"
+        style={{ opacity: hovered ? 1 : 0, transform: hovered ? "translateX(0)" : "translateX(-8px)" }}
+      >
+        <span className="font-mono text-[11px] uppercase tracking-widest" style={{ color: theme.gateHover }}>
+          Enter
+        </span>
+        <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ color: theme.gateHover }}>
+          <path d="M4 10h12M12 6l4 4-4 4" />
         </svg>
       </div>
     </motion.button>
@@ -98,15 +88,15 @@ function GateCard({
 
 export default function PersonaGate() {
   const { persona, setPersona } = usePersona();
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [exiting, setExiting] = useState(false);
-  const [selectedAccent, setSelectedAccent] = useState<string | null>(null);
 
   if (persona) return null;
 
   function handleSelect(p: Persona) {
-    setSelectedAccent(personaThemes[p].gateHover);
+    setSelectedColor(personaThemes[p].gateHover);
     setExiting(true);
-    setTimeout(() => setPersona(p), 700);
+    setTimeout(() => setPersona(p), 750);
   }
 
   return (
@@ -114,61 +104,62 @@ export default function PersonaGate() {
       {!exiting ? (
         <motion.div
           key="gate"
-          className="fixed inset-0 z-[9999] flex flex-col overflow-y-auto bg-[#0E0B09]"
-          exit={{ y: "-100%", transition: { duration: 0.7, ease: [0.65, 0, 0.35, 1] } }}
+          className="fixed inset-0 z-[9999] flex flex-col overflow-hidden"
+          style={{ background: "#080510" }}
+          exit={{ y: "-100%", transition: { duration: 0.75, ease: [0.65, 0, 0.35, 1] } }}
         >
-          {/* Flash overlay on exit */}
-          {selectedAccent && (
-            <div
-              className="pointer-events-none fixed inset-0 z-50 opacity-0 animate-[fadeOut_0.6s_ease_forwards]"
-              style={{ background: selectedAccent }}
-            />
-          )}
-
-          {/* Logo */}
-          <div className="flex items-center justify-center pt-8">
-            <span className="font-serif text-2xl text-white/80 tracking-tight">INHAUS</span>
+          {/* Top bar */}
+          <div className="flex shrink-0 items-center justify-between px-8 py-6 md:px-12">
+            <span
+              className="font-serif text-[20px] tracking-tight text-white/70"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            >
+              INHAUS
+            </span>
+            <p className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-white/25 md:block">
+              Choose your world
+            </p>
           </div>
 
           {/* Headline */}
           <motion.div
-            className="mt-12 px-5 text-center"
-            initial={{ opacity: 0, y: 16 }}
+            className="shrink-0 px-8 pb-8 pt-2 md:px-12"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="font-serif text-[48px] font-normal leading-none tracking-tight text-white md:text-[80px]">
+            <h1
+              className="font-serif text-[52px] font-light italic leading-none tracking-tight text-white/90 md:text-[80px]"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            >
               Who are you?
             </h1>
-            <p className="mx-auto mt-4 max-w-sm text-white/40">
-              INHAUS brews differently for each of us. Choose your world.
+            <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.25em] text-white/30">
+              INHAUS brews differently for each of us
             </p>
           </motion.div>
 
-          {/* Cards */}
-          <div className="mx-auto mt-10 grid w-full max-w-5xl grid-cols-1 gap-4 px-5 pb-12 md:grid-cols-3 md:mt-14">
-            {gateCards.map(({ id }, i) => (
-              <motion.div
-                key={id}
-                initial={{ opacity: 0, y: 32 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.25 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <GateCard id={id} onSelect={handleSelect} />
-              </motion.div>
+          {/* Three panels */}
+          <motion.div
+            className="flex min-h-0 flex-1 border-t"
+            style={{ borderColor: "rgba(255,255,255,0.06)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            {gateCards.map(({ id }) => (
+              <GatePanel key={id} id={id} onSelect={handleSelect} />
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       ) : (
-        /* Exiting flash */
         <motion.div
           key="exit-flash"
           className="fixed inset-0 z-[9999]"
-          style={{ background: selectedAccent ?? "#0E0B09" }}
-          initial={{ opacity: 1 }}
+          style={{ background: selectedColor ?? "#080510" }}
+          initial={{ opacity: 0.8 }}
           animate={{ opacity: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          onAnimationComplete={() => setExiting(false)}
+          transition={{ duration: 0.7, delay: 0.15 }}
         />
       )}
     </AnimatePresence>

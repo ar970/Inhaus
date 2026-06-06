@@ -9,10 +9,10 @@ export default function AnnouncementBar() {
   const text = persona ? personaContent[persona].announcement : "Free shipping over ₹999 · Welcome gift: 10% off your first pour";
 
   return (
-    <div className="bg-espresso text-oat">
-      <div className="container-x flex items-center justify-center gap-3 py-2 text-center">
-        <span className="label">{text}</span>
-        <Sparkle className="h-3 w-3 text-crema" />
+    <div className="section-dark">
+      <div className="container-x flex items-center justify-center gap-3 py-2.5 text-center">
+        <span className="label opacity-70">{text}</span>
+        <Sparkle className="h-2.5 w-2.5 opacity-50" style={{ color: "var(--theme-dark-accent)" }} />
       </div>
     </div>
   );

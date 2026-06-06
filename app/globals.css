@@ -1,135 +1,171 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Default brand tokens (no persona selected) ─────────────────── */
+/* ─── Brand tokens (default / no persona) ────────────────────────── */
 :root {
-  --theme-bg:           #F6EFE3;
-  --theme-surface:      #FBF7EF;
-  --theme-ink:          #211712;
-  --theme-accent:       #C8761E;
-  --theme-accent-soft:  #E3D2B8;
-  --theme-accent-2:     #B5654A;
+  --theme-bg:            #F5EBD8;
+  --theme-surface:       #FBF5EA;
+  --theme-ink:           #1C0E06;
+  --theme-accent:        #C8761E;
+  --theme-accent-soft:   #E8D4B0;
+  --theme-accent-2:      #A85A2C;
 
-  /* Vibe tokens — each persona overrides these to feel like a different brand */
-  --vibe-radius:        18px;   /* shape language: chunky → sharp */
-  --vibe-head-style:    normal; /* serif posture */
-  --vibe-head-weight:   420;
-  --vibe-head-spacing:  -0.02em;
-  --vibe-head-line:     0.98;
-  --vibe-eyebrow-tr:    0.18em; /* eyebrow letter-spacing */
+  /* Dark-section tokens — sections that are always "flipped" */
+  --theme-dark-bg:       #1C0E06;
+  --theme-dark-ink:      #F5EBD8;
+  --theme-dark-accent:   #D48A36;
+
+  --vibe-radius:         16px;
+  --vibe-head-font:      'Cormorant Garamond', Georgia, serif;
+  --vibe-head-weight:    400;
+  --vibe-head-style:     normal;
+  --vibe-head-spacing:   -0.02em;
+  --vibe-head-line:      0.96;
+  --vibe-eyebrow-tr:     0.18em;
+  --vibe-section-pad:    80px;
 }
 
-/* ─── Per-persona overrides (set via JS on <html>) ───────────────── */
-/* Student — warm orange · loud, chunky, sticker-bomb energy */
+/* ─── Student — Punchy street-café energy ────────────────────────── */
 [data-persona="student"] {
-  --theme-bg:           #FFF4E6;
-  --theme-surface:      #FFFBF6;
-  --theme-ink:          #20120A;
-  --theme-accent:       #F2560E;
-  --theme-accent-soft:  #FFD9B0;
-  --theme-accent-2:     #FF9D2E;
-
-  --vibe-radius:        26px;
-  --vibe-head-style:    normal;
-  --vibe-head-weight:   560;
-  --vibe-head-spacing:  -0.035em;
-  --vibe-head-line:     0.9;
-  --vibe-eyebrow-tr:    0.22em;
+  --theme-bg:            #FFF2DC;
+  --theme-surface:       #FFFBF2;
+  --theme-ink:           #1E0C04;
+  --theme-accent:        #F04E12;
+  --theme-accent-soft:   #FFDDB3;
+  --theme-accent-2:      #FF9328;
+  --theme-dark-bg:       #1E0C04;
+  --theme-dark-ink:      #FFF2DC;
+  --theme-dark-accent:   #F04E12;
+  --vibe-radius:         28px;
+  --vibe-head-font:      'Fraunces', Georgia, serif;
+  --vibe-head-weight:    600;
+  --vibe-head-style:     normal;
+  --vibe-head-spacing:   -0.04em;
+  --vibe-head-line:      0.88;
+  --vibe-eyebrow-tr:     0.24em;
 }
 
-/* Creator — violet · editorial, airy, italic gallery mood */
+/* ─── Creator — Full dark studio mode ───────────────────────────── */
 [data-persona="creator"] {
-  --theme-bg:           #F6F0FF;
-  --theme-surface:      #FCFAFF;
-  --theme-ink:          #190B30;
-  --theme-accent:       #8A2BE2;
-  --theme-accent-soft:  #E6D4FA;
-  --theme-accent-2:     #C159E8;
-
-  --vibe-radius:        7px;
-  --vibe-head-style:    italic;
-  --vibe-head-weight:   340;
-  --vibe-head-spacing:  -0.015em;
-  --vibe-head-line:     0.96;
-  --vibe-eyebrow-tr:    0.42em;
+  --theme-bg:            #0C0520;
+  --theme-surface:       #150A30;
+  --theme-ink:           #EDE8FF;
+  --theme-accent:        #9B30FF;
+  --theme-accent-soft:   rgba(155,48,255,0.20);
+  --theme-accent-2:      #C66BFF;
+  --theme-dark-bg:       #060210;
+  --theme-dark-ink:      #EDE8FF;
+  --theme-dark-accent:   #9B30FF;
+  --vibe-radius:         6px;
+  --vibe-head-font:      'Cormorant Garamond', Georgia, serif;
+  --vibe-head-weight:    300;
+  --vibe-head-style:     italic;
+  --vibe-head-spacing:   -0.01em;
+  --vibe-head-line:      0.92;
+  --vibe-eyebrow-tr:     0.44em;
 }
 
-/* Professional — forest green · precise, minimal, structured */
+/* ─── Professional — Refined precision ──────────────────────────── */
 [data-persona="professional"] {
-  --theme-bg:           #EFF6F1;
-  --theme-surface:      #F8FCFA;
-  --theme-ink:          #08160D;
-  --theme-accent:       #0F6B3D;
-  --theme-accent-soft:  #CDE8DA;
-  --theme-accent-2:     #2E9E66;
-
-  --vibe-radius:        3px;
-  --vibe-head-style:    normal;
-  --vibe-head-weight:   460;
-  --vibe-head-spacing:  -0.045em;
-  --vibe-head-line:     0.98;
-  --vibe-eyebrow-tr:    0.30em;
+  --theme-bg:            #EEF3EF;
+  --theme-surface:       #FAFCFA;
+  --theme-ink:           #061008;
+  --theme-accent:        #085C2E;
+  --theme-accent-soft:   #C4DDD0;
+  --theme-accent-2:      #1E8A50;
+  --theme-dark-bg:       #061008;
+  --theme-dark-ink:      #EEF3EF;
+  --theme-dark-accent:   #1E8A50;
+  --vibe-radius:         2px;
+  --vibe-head-font:      'Cormorant Garamond', Georgia, serif;
+  --vibe-head-weight:    500;
+  --vibe-head-style:     normal;
+  --vibe-head-spacing:   -0.05em;
+  --vibe-head-line:      0.97;
+  --vibe-eyebrow-tr:     0.32em;
 }
 
-/* ─── Per-persona background textures (whole-site vibe shift) ─────── */
+/* ─── Per-persona background textures ───────────────────────────── */
 [data-persona="student"] body {
-  background-image: radial-gradient(color-mix(in srgb, var(--theme-accent) 16%, transparent) 1.6px, transparent 1.6px);
-  background-size: 22px 22px;
-  background-position: 0 0;
+  background-image: radial-gradient(
+    color-mix(in srgb, #F04E12 18%, transparent) 1.5px,
+    transparent 1.5px
+  );
+  background-size: 20px 20px;
 }
 [data-persona="creator"] body {
   background-image:
-    radial-gradient(38% 34% at 10% 6%,  color-mix(in srgb, var(--theme-accent)   20%, transparent) 0%, transparent 100%),
-    radial-gradient(42% 38% at 92% 18%, color-mix(in srgb, var(--theme-accent-2) 18%, transparent) 0%, transparent 100%),
-    radial-gradient(46% 42% at 78% 96%, color-mix(in srgb, var(--theme-accent)   14%, transparent) 0%, transparent 100%);
+    radial-gradient(ellipse 60% 50% at 5% 5%,  rgba(155,48,255,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 45% at 95% 20%, rgba(198,107,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 75% 90%, rgba(155,48,255,0.10) 0%, transparent 70%);
   background-attachment: fixed;
 }
 [data-persona="professional"] body {
   background-image: repeating-linear-gradient(
     to bottom,
     transparent 0,
-    transparent 47px,
-    color-mix(in srgb, var(--theme-ink) 5%, transparent) 47px,
-    color-mix(in srgb, var(--theme-ink) 5%, transparent) 48px
+    transparent 39px,
+    color-mix(in srgb, #061008 6%, transparent) 39px,
+    color-mix(in srgb, #061008 6%, transparent) 40px
   );
 }
 
-/* ─── Per-persona typography posture ─────────────────────────────── */
-[data-persona] h1,
-[data-persona] h2 {
+/* ─── Typography posture driven by vibe tokens ──────────────────── */
+[data-persona] h1 {
+  font-family:    var(--vibe-head-font);
   font-style:     var(--vibe-head-style);
   font-weight:    var(--vibe-head-weight);
+  letter-spacing: var(--vibe-head-spacing);
+  line-height:    var(--vibe-head-line);
+}
+[data-persona] h2 {
+  font-style:     var(--vibe-head-style);
   letter-spacing: var(--vibe-head-spacing);
 }
 [data-persona] .label {
   letter-spacing: var(--vibe-eyebrow-tr);
 }
 
-/* Creator gets an editorial italic accent on emphasised words */
-[data-persona="creator"] .vibe-accent-word { font-style: italic; }
-
-/* Shape language flows from the vibe radius */
+/* Shape language */
 .card       { border-radius: calc(var(--vibe-radius) + 4px); }
 .vibe-shape { border-radius: var(--vibe-radius); }
+
+/* Creator: italic emphasis */
+[data-persona="creator"] em,
+[data-persona="creator"] .vibe-accent-word { font-style: italic; }
+
+/* ─── Grain overlay ──────────────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+[data-persona="creator"] body::after { opacity: 0.04; }
+[data-persona="student"] body::after { opacity: 0.022; }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 96px;
-    /* smooth theme transitions everywhere */
-    transition: background-color 0.5s cubic-bezier(0.22,1,0.36,1),
-                color           0.5s cubic-bezier(0.22,1,0.36,1);
+    scroll-padding-top: 80px;
+    transition: background-color 0.55s cubic-bezier(0.22,1,0.36,1),
+                color 0.55s cubic-bezier(0.22,1,0.36,1);
   }
 
   body {
     background-color: var(--theme-bg);
     color: var(--theme-ink);
-    @apply font-sans antialiased;
-    transition: background-color 0.5s cubic-bezier(0.22,1,0.36,1),
-                color           0.5s cubic-bezier(0.22,1,0.36,1);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.55s cubic-bezier(0.22,1,0.36,1),
+                color 0.55s cubic-bezier(0.22,1,0.36,1);
   }
 
   ::selection {
@@ -137,70 +173,80 @@
     color: var(--theme-bg);
   }
 
-  h1, h2, h3 {
-    text-wrap: balance;
-  }
+  h1, h2, h3 { text-wrap: balance; }
 }
 
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-content px-5 md:px-6;
+    @apply mx-auto w-full max-w-content px-5 md:px-8;
   }
 
   .section {
-    @apply py-[72px] md:py-[120px];
+    @apply py-[64px] md:py-[108px];
+  }
+
+  /* "Dark" sections that flip the palette */
+  .section-dark {
+    background-color: var(--theme-dark-bg);
+    color: var(--theme-dark-ink);
   }
 
   .label {
-    @apply font-mono text-[11px] uppercase tracking-[0.18em];
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--vibe-eyebrow-tr, 0.18em);
+    line-height: 1.4;
+  }
+
+  .display-serif {
+    font-family: var(--vibe-head-font);
+    font-weight: var(--vibe-head-weight);
+    font-style: var(--vibe-head-style);
+    letter-spacing: var(--vibe-head-spacing);
+    line-height: var(--vibe-head-line);
   }
 
   .card {
-    border-radius: 20px;
-    border: 1px solid rgba(var(--theme-ink-rgb, 33 23 18) / 0.10);
+    border-radius: calc(var(--vibe-radius) + 4px);
+    border: 1px solid color-mix(in srgb, var(--theme-ink) 10%, transparent);
     background-color: var(--theme-surface);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-    transition: background-color 0.5s cubic-bezier(0.22,1,0.36,1);
+    box-shadow: 0 8px 32px color-mix(in srgb, var(--theme-ink) 6%, transparent);
+    transition: background-color 0.55s cubic-bezier(0.22,1,0.36,1),
+                border-color 0.55s cubic-bezier(0.22,1,0.36,1);
   }
 
   .focusable {
     @apply outline-none;
     &:focus-visible {
       outline: 2px solid var(--theme-accent);
-      outline-offset: 2px;
+      outline-offset: 3px;
     }
   }
 }
 
-/* ─── Transitions on all themed elements ─────────────────────────── */
+/* ─── Global transitions ─────────────────────────────────────────── */
 *, *::before, *::after {
-  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-property: background-color, border-color, color, fill, stroke;
   transition-duration: 0.45s;
   transition-timing-function: cubic-bezier(0.22,1,0.36,1);
 }
-
-/* Override for framer-motion & animation elements that shouldn't slow down */
-[data-framer-motion-id],
-.animate-marquee,
-.group,
-button,
-a {
-  transition-duration: 0.2s;
+[data-framer-motion-id], .animate-marquee, button, a {
+  transition-duration: 0.18s;
 }
 
-/* Marquee animation */
+/* ─── Marquee ────────────────────────────────────────────────────── */
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
+.animate-marquee { animation: marquee 38s linear infinite; }
+
+/* Creator: slow marquee */
+[data-persona="creator"] .animate-marquee { animation-duration: 52s; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .animate-marquee { animation: none !important; }
-  *, *::before, *::after {
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
 }

@@ -1,11 +1,12 @@
 "use client";
 
-import Button from "@/components/ui/Button";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import InhausBottle from "@/components/InhausBottle";
-import { Stars, Steam, Bean } from "@/components/Doodles";
+import { Stars } from "@/components/Doodles";
 import { usePersona } from "@/context/PersonaContext";
 import { personaContent } from "@/lib/personas";
+import { Arrow } from "@/components/Doodles";
 
 const defaultContent = {
   eyebrow: "Speciality coffee concentrate",
@@ -15,75 +16,80 @@ const defaultContent = {
   ctaSecondary: "How it works",
 };
 
-const chips = ["₹22 / cup", "20+ drinks", "60-sec brew", "No machine"];
-
 export default function Hero() {
   const { persona } = usePersona();
   const c = persona ? personaContent[persona].hero : defaultContent;
-  const label = persona ? personaContent[persona].label : null;
-  const tagline = persona ? personaContent[persona].tagline : "Café coffee, in seconds.";
   const headlineLines = c.headline.split("\n");
 
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="container-x grid items-center gap-8 py-10 md:grid-cols-[1.04fr_0.96fr] md:gap-4 md:py-14">
-        {/* Copy */}
-        <Reveal className="order-2 md:order-1">
-          {label && (
-            <div className="mb-5 inline-flex items-center gap-2 rounded-pill border border-espresso/15 bg-paper px-3.5 py-1.5 shadow-sm">
-              <span className="h-2 w-2 rounded-full" style={{ background: "var(--theme-accent)" }} />
-              <span className="label text-espresso/65">{label} · {tagline}</span>
-            </div>
-          )}
+      {/* Background glow — adapts per persona */}
+      <div
+        className="pointer-events-none absolute right-0 top-0 h-[70%] w-[55%] -translate-y-[10%] translate-x-[10%]"
+        style={{
+          background: "radial-gradient(ellipse 80% 80% at 60% 40%, var(--theme-accent-soft) 0%, transparent 70%)",
+          opacity: 0.6,
+        }}
+      />
 
-          <p className="label text-clay">{c.eyebrow}</p>
-          <h1
-            className="mt-3 font-serif text-[46px] tracking-tight md:text-[84px]"
-            style={{ lineHeight: "var(--vibe-head-line)" }}
-          >
+      <div className="container-x grid min-h-[88vh] items-center gap-6 py-12 md:grid-cols-[1fr_0.9fr] md:gap-0 md:py-0">
+
+        {/* ── Copy ─────────────────────────────────────────────── */}
+        <Reveal className="order-2 md:order-1 md:py-20">
+          <p className="label text-crema">{c.eyebrow}</p>
+
+          <h1 className="display-serif mt-4 text-[52px] md:text-[88px] lg:text-[104px]">
             {headlineLines.map((line, i) => (
-              <span key={i} className={i === headlineLines.length - 1 ? "vibe-accent-word" : undefined}>
-                {line}
-                {i < headlineLines.length - 1 && <br />}
-              </span>
+              <span key={i} className="block vibe-accent-word">{line}</span>
             ))}
           </h1>
 
-          <p className="mt-5 max-w-md text-lg leading-relaxed text-espresso/80">{c.sub}</p>
+          <p className="mt-6 max-w-[440px] text-[17px] leading-[1.65] text-espresso/72">{c.sub}</p>
 
-          {/* Quick-fact chips — fills the dead space, adds substance */}
-          <div className="mt-6 flex flex-wrap gap-2">
-            {chips.map((chip) => (
-              <span
-                key={chip}
-                className="vibe-shape border border-espresso/12 bg-paper px-3.5 py-1.5 text-sm font-medium text-espresso/75"
-              >
-                {chip}
-              </span>
-            ))}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link
+              href="#products"
+              className="group inline-flex items-center gap-2 rounded-pill bg-espresso px-7 py-3.5 text-[13px] font-semibold text-oat transition-all hover:-translate-y-0.5 hover:shadow-lift focusable"
+            >
+              {c.cta}
+              <Arrow className="h-3.5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="#how"
+              className="inline-flex items-center gap-2 rounded-pill border border-espresso/20 px-7 py-3.5 text-[13px] font-semibold text-espresso/80 transition-all hover:border-espresso/50 hover:text-espresso focusable"
+            >
+              {c.ctaSecondary}
+            </Link>
           </div>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Button href="#products" withArrow>{c.cta}</Button>
-            <Button href="#how" variant="secondary">{c.ctaSecondary}</Button>
-          </div>
-
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-8 flex items-center gap-3">
             <Stars />
-            <span className="text-sm text-espresso/65">Loved by 2,000+ home baristas</span>
+            <span className="text-sm text-espresso/55">Loved by 2,000+ home baristas</span>
+          </div>
+
+          {/* Quick facts — subtle, horizontal */}
+          <div className="mt-8 flex flex-wrap gap-5 border-t border-espresso/10 pt-7">
+            {["₹22 / cup", "20+ drinks", "60-sec brew", "No machine needed"].map((f) => (
+              <div key={f} className="flex items-center gap-2">
+                <span className="h-1 w-1 rounded-full bg-crema" />
+                <span className="label text-espresso/50">{f}</span>
+              </div>
+            ))}
           </div>
         </Reveal>
 
-        {/* Visual */}
-        <Reveal className="order-1 md:order-2" delay={0.1}>
-          <div className="relative mx-auto flex max-w-[380px] items-center justify-center">
+        {/* ── Bottle visual ──────────────────────────────────── */}
+        <Reveal className="order-1 md:order-2" delay={0.12}>
+          <div className="relative mx-auto flex max-w-[440px] items-center justify-center md:max-w-full md:py-12">
+            {/* Warm glow behind bottle */}
             <div
-              className="absolute inset-0 -z-10 vibe-shape shadow-soft"
-              style={{ background: "radial-gradient(130% 120% at 50% 8%, var(--theme-surface) 0%, var(--theme-accent-soft) 60%, var(--theme-accent-soft) 100%)" }}
+              className="absolute inset-[10%] -z-10 blur-[60px]"
+              style={{
+                background: "radial-gradient(ellipse at 50% 55%, var(--theme-accent-soft) 0%, transparent 70%)",
+                opacity: 0.9,
+              }}
             />
-            <Steam className="absolute left-[9%] top-3 h-10 w-8 text-clay/50" />
-            <Bean className="absolute right-[7%] top-7 h-8 w-8 -rotate-12 text-espresso/30" />
-            <InhausBottle className="relative z-10 w-full px-3 py-6" />
+            <InhausBottle className="relative z-10 w-full max-h-[600px]" />
           </div>
         </Reveal>
       </div>

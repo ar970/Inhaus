@@ -9,41 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        /* Semantic design tokens — all resolve to CSS vars so persona swaps re-theme everything */
-        oat:     "var(--theme-bg)",
-        paper:   "var(--theme-surface)",
-        espresso:"var(--theme-ink)",
-        crema:   "var(--theme-accent)",
-        latte:   "var(--theme-accent-soft)",
-        clay:    "var(--theme-accent-2)",
-        /* Keep literal values for permanent surfaces (e.g. dark gate) */
-        gate:    "#0E0B09",
-        /* Convenience aliases */
-        "theme-bg":     "var(--theme-bg)",
-        "theme-surface":"var(--theme-surface)",
-        "theme-ink":    "var(--theme-ink)",
-        "theme-accent": "var(--theme-accent)",
-        "theme-soft":   "var(--theme-accent-soft)",
-        "theme-2":      "var(--theme-accent-2)",
-        /* Legacy colour names for components that haven't been updated */
-        sage: "#8A9A7B",
+        oat:      "var(--theme-bg)",
+        paper:    "var(--theme-surface)",
+        espresso: "var(--theme-ink)",
+        crema:    "var(--theme-accent)",
+        latte:    "var(--theme-accent-soft)",
+        clay:     "var(--theme-accent-2)",
+        /* Always-dark surface tokens */
+        "ink-bg":  "var(--theme-dark-bg)",
+        "ink-fg":  "var(--theme-dark-ink)",
+        /* Permanent gate */
+        gate:      "#0A0608",
+        sage:      "#8A9A7B",
       },
       fontFamily: {
-        serif: ["Fraunces", "Georgia", "serif"],
-        sans:  ["Inter", "system-ui", "sans-serif"],
-        mono:  ["'Space Mono'", "ui-monospace", "monospace"],
+        display: ["'Cormorant Garamond'", "Georgia", "serif"],
+        serif:   ["Fraunces", "Georgia", "serif"],
+        sans:    ["'DM Sans'", "system-ui", "sans-serif"],
+        mono:    ["'Space Mono'", "ui-monospace", "monospace"],
       },
-      maxWidth: {
-        content: "1200px",
-      },
+      maxWidth:      { content: "1240px" },
       boxShadow: {
-        soft:    "0 12px 40px rgba(0,0,0,0.09)",
-        sticker: "2px 3px 0 rgba(0,0,0,0.18)",
-        lift:    "0 18px 50px rgba(0,0,0,0.15)",
+        soft:    "0 8px 32px rgba(0,0,0,0.08)",
+        sticker: "2px 3px 0 rgba(0,0,0,0.20)",
+        lift:    "0 20px 60px rgba(0,0,0,0.18)",
+        glow:    "0 0 80px rgba(var(--glow-rgb,200,118,30),0.35)",
       },
-      borderRadius: {
-        pill: "999px",
-      },
+      borderRadius: { pill: "999px" },
     },
   },
   plugins: [],
