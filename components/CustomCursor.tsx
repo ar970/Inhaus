@@ -11,13 +11,9 @@ export default function CustomCursor() {
   const mx = useMotionValue(-100);
   const my = useMotionValue(-100);
 
-  // Blob lags behind — feels like liquid
-  const rx = useSpring(mx, { stiffness: 160, damping: 20, mass: 1.1 });
-  const ry = useSpring(my, { stiffness: 160, damping: 20, mass: 1.1 });
-
-  // Slow halo even further behind
-  const hx = useSpring(mx, { stiffness: 55, damping: 16, mass: 1.5 });
-  const hy = useSpring(my, { stiffness: 55, damping: 16, mass: 1.5 });
+  // Very stiff spring — barely any lag, just enough to feel smooth not robotic
+  const rx = useSpring(mx, { stiffness: 700, damping: 38, mass: 0.3 });
+  const ry = useSpring(my, { stiffness: 700, damping: 38, mass: 0.3 });
 
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) { setTouch(true); return; }
@@ -27,8 +23,8 @@ export default function CustomCursor() {
       setHovered(!!(t.closest("a") || t.closest("button") || t.closest("[data-cursor-expand]")));
     };
     const leave = () => setVisible(false);
-    document.addEventListener("mousemove", move);
-    document.addEventListener("mouseover", over);
+    document.addEventListener("mousemove", move, { passive: true });
+    document.addEventListener("mouseover", over, { passive: true });
     document.addEventListener("mouseleave", leave);
     return () => {
       document.removeEventListener("mousemove", move);
@@ -41,54 +37,43 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Outer liquid spread — very slow, blurs into page like a spill */}
-      <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[99996]"
-        style={{ x: hx, y: hy, translateX: "-50%", translateY: "-50%" }}
-        animate={{ opacity: visible ? 0.14 : 0, scale: hovered ? 3.5 : 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div style={{
-          width: 80, height: 80, borderRadius: "50%",
-          background: "radial-gradient(circle, #A0521A 0%, transparent 72%)",
-          filter: "blur(18px)",
-        }} />
-      </motion.div>
-
-      {/* Main liquid drop — smooth circle, mix-blend tints whatever's beneath */}
+      {/* Outer ring — follows with minimal lag */}
       <motion.div
         className="pointer-events-none fixed left-0 top-0 z-[99998]"
         style={{
           x: rx, y: ry,
           translateX: "-50%", translateY: "-50%",
-          mixBlendMode: "multiply",
+          willChange: "transform",
         }}
         animate={{
-          opacity: visible ? 0.82 : 0,
-          scale: hovered ? 2.6 : 1,
-          width: 22, height: 22,
+          opacity: visible ? 1 : 0,
+          scale: hovered ? 1.6 : 1,
+          width: hovered ? 44 : 32,
+          height: hovered ? 44 : 32,
         }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
         <div style={{
-          width: 22, height: 22,
+          width: "100%", height: "100%",
           borderRadius: "50%",
-          background: "radial-gradient(circle at 38% 32%, #D4854A, #7B3410)",
+          border: "1.5px solid #C8761E",
+          opacity: 0.75,
+          background: hovered ? "rgba(200,118,30,0.12)" : "transparent",
         }} />
       </motion.div>
 
-      {/* Tiny sharp center dot — exact mouse position */}
+      {/* Center dot — exact position, no spring */}
       <motion.div
         className="pointer-events-none fixed left-0 top-0 z-[99999]"
-        style={{ x: mx, y: my, translateX: "-50%", translateY: "-50%" }}
-        animate={{ opacity: visible && !hovered ? 0.9 : 0 }}
-        transition={{ duration: 0.12 }}
+        style={{
+          x: mx, y: my,
+          translateX: "-50%", translateY: "-50%",
+          willChange: "transform",
+        }}
+        animate={{ opacity: visible ? 1 : 0, scale: hovered ? 0 : 1 }}
+        transition={{ duration: 0.15 }}
       >
-        <div style={{
-          width: 5, height: 5,
-          borderRadius: "50%",
-          background: "#5C2008",
-        }} />
+        <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#C8761E" }} />
       </motion.div>
     </>
   );
