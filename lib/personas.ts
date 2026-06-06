@@ -84,7 +84,7 @@ export const personaContent: Record<Persona, PersonaContent> = {
       eyebrow: "Built for late nights",
       headline: "Fuel for the\n2:17 AM grind.",
       sub: "Café-grade coffee in 60 seconds. Built for late nights, big deadlines, and bigger goals.",
-      cta: "Grab yours",
+      cta: "Start Studying",
       ctaSecondary: "How it works",
     },
     products: {
@@ -117,7 +117,7 @@ export const personaContent: Record<Persona, PersonaContent> = {
       eyebrow: "Your creative fuel",
       headline: "Make.\nEdit.\nRepeat.",
       sub: "Built for creators, designers, editors and storytellers. Pour, stay in the zone, keep making.",
-      cta: "Enter the flow",
+      cta: "Enter The Flow",
       ctaSecondary: "What you can make",
     },
     products: {
@@ -150,7 +150,7 @@ export const personaContent: Record<Persona, PersonaContent> = {
       eyebrow: "Built for momentum",
       headline: "Skip the coffee\nrun. Keep going.",
       sub: "Premium coffee concentrate for people who ship, build and execute. Café-grade. No machine. No excuses.",
-      cta: "Start sharp",
+      cta: "Stay Focused",
       ctaSecondary: "See the difference",
     },
     products: {

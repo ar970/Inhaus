@@ -23,6 +23,7 @@ const products = {
     color: "#FF2D78",
     colorSoft: "rgba(255,45,120,0.18)",
     image: "/product-creator.jpeg",
+    heroStat: { value: "20", unit: "sessions", label: "per pack" },
     stats: [
       { label: "Pour & create", value: "60 sec" },
       { label: "Sessions per pack", value: "~20" },
@@ -38,6 +39,7 @@ const products = {
     color: "#00A896",
     colorSoft: "rgba(0,168,150,0.18)",
     image: "/product-workflow.jpeg",
+    heroStat: { value: "60", unit: "seconds", label: "to brew" },
     stats: [
       { label: "Brew time", value: "60 sec" },
       { label: "Cups per pack", value: "20" },
@@ -53,6 +55,7 @@ const products = {
     color: "#F56B00",
     colorSoft: "rgba(245,107,0,0.18)",
     image: "/product-study.jpeg",
+    heroStat: { value: "₹22", unit: "per cup", label: "always" },
     stats: [
       { label: "Ready in", value: "60 sec" },
       { label: "Makes", value: "~20 cups" },
@@ -405,12 +408,25 @@ function ProductShowcase({
           {persona === "professional" && <ProfessionalDecorations color={product.color} />}
           {persona === "creator"      && <CreatorDecorations      color={product.color} />}
 
-          {/* Wide ambient glow at base */}
-          <div className="pointer-events-none absolute bottom-0 left-1/2 h-[65%] w-[90%] -translate-x-1/2 blur-[90px]"
-            style={{ background: `${product.color}40` }} />
-          {/* Tight glow directly behind pouch */}
-          <div className="pointer-events-none absolute bottom-[8%] left-1/2 h-[52%] w-[58%] -translate-x-1/2 blur-[56px]"
-            style={{ background: `${product.color}58` }} />
+          {/* Wide ambient glow */}
+          <div className="pointer-events-none absolute bottom-0 left-1/2 h-[70%] w-[95%] -translate-x-1/2 blur-[100px]"
+            style={{ background: `${product.color}48` }} />
+          {/* Tight glow behind pouch */}
+          <div className="pointer-events-none absolute bottom-[6%] left-1/2 h-[55%] w-[62%] -translate-x-1/2 blur-[60px]"
+            style={{ background: `${product.color}68` }} />
+          {/* Animated accent ring behind pouch */}
+          <motion.div
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{ width: 220, height: 220, border: `1px solid ${product.color}30` }}
+            animate={{ scale: [1, 1.18, 1], opacity: [0.5, 0.15, 0.5] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{ width: 320, height: 320, border: `1px solid ${product.color}18` }}
+            animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0.1, 0.4] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+          />
 
           {/* Mouse-tracked glow */}
           <motion.div
@@ -421,6 +437,31 @@ function ProductShowcase({
           {/* Inset accent ring */}
           <div className="pointer-events-none absolute inset-0 rounded-[28px]"
             style={{ boxShadow: `inset 0 0 0 1px ${product.color}30` }} />
+
+          {/* Hero stat badge — key selling point */}
+          <motion.div
+            className="absolute bottom-5 left-5 z-20 flex flex-col"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              background: "rgba(0,0,0,0.58)",
+              backdropFilter: "blur(12px)",
+              border: `1px solid ${product.color}35`,
+              borderRadius: 14,
+              padding: "10px 16px",
+            }}
+          >
+            <span style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontSize: 32, fontWeight: 700, lineHeight: 1, color: product.color }}>
+              {product.heroStat.value}
+            </span>
+            <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.65)", letterSpacing: "0.06em", marginTop: 2 }}>
+              {product.heroStat.unit}
+            </span>
+            <span style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: 1 }}>
+              {product.heroStat.label}
+            </span>
+          </motion.div>
 
           {/* Pouch image — ~13% bigger than before */}
           <motion.div
@@ -481,11 +522,16 @@ function ProductShowcase({
           className="mt-8 grid grid-cols-2 gap-x-8 gap-y-5 border-t pt-8"
           style={{ borderColor: "color-mix(in srgb, var(--theme-ink) 10%, transparent)" }}
         >
-          {product.stats.map((s) => (
-            <div key={s.label}>
-              <p className="label" style={{ color: "var(--theme-ink)", opacity: 0.36 }}>{s.label}</p>
-              <p className="mt-1 text-[18px] font-semibold tracking-tight"
-                style={{ color: "var(--theme-ink)" }}>{s.value}</p>
+          {product.stats.map((s, i) => (
+            <div key={s.label} style={i === 0 ? {
+              background: `${product.color}10`,
+              border: `1px solid ${product.color}28`,
+              borderRadius: 12,
+              padding: "10px 14px",
+            } : {}}>
+              <p className="label" style={{ color: i === 0 ? product.color : "var(--theme-ink)", opacity: i === 0 ? 0.7 : 0.36 }}>{s.label}</p>
+              <p className="mt-1 tracking-tight font-semibold"
+                style={{ color: i === 0 ? product.color : "var(--theme-ink)", fontSize: i === 0 ? 26 : 18 }}>{s.value}</p>
             </div>
           ))}
         </motion.div>

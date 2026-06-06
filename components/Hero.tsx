@@ -544,34 +544,55 @@ export default function Hero() {
       onMouseMove={onMove}
       onMouseLeave={onLeave}
     >
-      {/* Per-persona glow */}
+      {/* Per-persona ambient glow — wide, strong, immersive */}
       <AnimatePresence>
         {scene && (
-          <motion.div key={persona} className="pointer-events-none absolute inset-0"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            transition={{ duration: 1.3 }}
-            style={{ background: `radial-gradient(ellipse 62% 58% at 70% 50%, ${scene.glow} 0%, transparent 68%)` }}
-          />
+          <>
+            {/* Wide soft halo */}
+            <motion.div key={`${persona}-wide`} className="pointer-events-none absolute inset-0"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              transition={{ duration: 1.5 }}
+              style={{ background: `radial-gradient(ellipse 80% 70% at 72% 52%, ${scene.glow} 0%, transparent 72%)` }}
+            />
+            {/* Tight concentrated glow at product position */}
+            <motion.div key={`${persona}-tight`} className="pointer-events-none absolute inset-0"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              transition={{ duration: 1.0 }}
+              style={{ background: `radial-gradient(ellipse 42% 52% at 72% 52%, ${scene.accent}28 0%, transparent 62%)` }}
+            />
+          </>
         )}
       </AnimatePresence>
 
-      {/* Persona splash transition */}
+      {/* Persona splash — cinematic ink-burst transition */}
       <AnimatePresence>
         {splash && (
-          <motion.div
-            key={splash.key}
-            className="pointer-events-none fixed rounded-full"
-            style={{
-              width: "200vmax", height: "200vmax",
-              top: "50%", left: "50%",
-              x: "-50%", y: "-50%",
-              background: splash.color,
-              zIndex: 99999,
-            }}
-            initial={{ scale: 0, opacity: 0.88 }}
-            animate={{ scale: 1, opacity: [0.88, 0.88, 0] }}
-            transition={{ duration: 0.75, ease: [0.15, 0.85, 0.3, 1] }}
-          />
+          <>
+            {/* Leading white flash */}
+            <motion.div
+              key={`${splash.key}-flash`}
+              className="pointer-events-none fixed inset-0"
+              style={{ background: "white", zIndex: 99998 }}
+              initial={{ opacity: 0.55 }}
+              animate={{ opacity: 0 }}
+              transition={{ duration: 0.32, ease: "easeOut" }}
+            />
+            {/* Expanding colour burst */}
+            <motion.div
+              key={splash.key}
+              className="pointer-events-none fixed rounded-full"
+              style={{
+                width: "220vmax", height: "220vmax",
+                top: "50%", left: "50%",
+                x: "-50%", y: "-50%",
+                background: `radial-gradient(circle, ${splash.color}ee 0%, ${splash.color} 55%, transparent 100%)`,
+                zIndex: 99999,
+              }}
+              initial={{ scale: 0, opacity: 1 }}
+              animate={{ scale: 1, opacity: [1, 0.9, 0] }}
+              transition={{ duration: 0.85, ease: [0.12, 0.88, 0.28, 1] }}
+            />
+          </>
         )}
       </AnimatePresence>
 
@@ -634,7 +655,7 @@ export default function Hero() {
         {/* ── 3D Scene ── */}
         <div className="order-1 md:order-2">
           <div
-            className="relative mx-auto flex h-[520px] max-w-[520px] items-center justify-center md:h-[680px]"
+            className="relative mx-auto flex h-[560px] max-w-[560px] items-center justify-center md:h-[780px]"
             style={scene ? {
               backgroundImage: scene.texture,
               backgroundSize: persona === "professional" ? "32px 32px" : persona === "creator" ? "22px 22px" : "auto",
@@ -669,14 +690,23 @@ export default function Hero() {
             <motion.div className="relative z-[10]"
               style={isMobile ? {} : { rotateY: pouchRotY, rotateX: pouchRotX, transformPerspective: 900 }}
             >
-              {/* Colored glow */}
-              <motion.div className="absolute inset-[-30%] -z-10 blur-[80px]"
+              {/* Deep glow — slow pulse */}
+              <motion.div className="absolute inset-[-55%] -z-10 blur-[100px]"
                 style={{ background: scene
-                  ? `radial-gradient(ellipse at 50% 62%, ${scene.accent}52 0%, transparent 68%)`
-                  : "radial-gradient(ellipse at 50% 62%, var(--theme-accent-soft) 0%, transparent 68%)" }}
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: [1, 1.1, 1] }}
-                transition={{ opacity: { duration: 1.0 }, scale: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 } }}
+                  ? `radial-gradient(ellipse at 50% 65%, ${scene.accent}45 0%, transparent 65%)`
+                  : "radial-gradient(ellipse at 50% 65%, var(--theme-accent-soft) 0%, transparent 65%)" }}
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: 1, scale: [1, 1.15, 1] }}
+                transition={{ opacity: { duration: 1.2 }, scale: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.3 } }}
+              />
+              {/* Tight accent glow right behind pouch */}
+              <motion.div className="absolute inset-[-20%] -z-10 blur-[48px]"
+                style={{ background: scene
+                  ? `radial-gradient(ellipse at 50% 68%, ${scene.accent}70 0%, transparent 55%)`
+                  : "radial-gradient(ellipse at 50% 68%, var(--theme-accent)55 0%, transparent 55%)" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               />
 
               <AnimatePresence mode="wait">
@@ -692,7 +722,7 @@ export default function Hero() {
                       filter:  { duration: 0.8 },
                       y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 },
                     }}
-                    className="relative h-[370px] w-[248px] md:h-[520px] md:w-[350px]"
+                    className="relative h-[470px] w-[316px] md:h-[660px] md:w-[445px]"
                   >
                     <Image src={scene.image} alt="INHAUS product" fill priority
                       className="object-contain"
