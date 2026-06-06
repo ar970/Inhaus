@@ -78,27 +78,46 @@ const CardParticles = memo(function CardParticles({ color }: { color: string }) 
 });
 
 /* ─── Floating persona SVGs ─────────────────────────────────────────── */
-/* Icons: opacity +40% vs previous values */
 const StudentSVGs = memo(function StudentSVGs({ color }: { color: string }) {
   return (
     <>
-      {/* Book */}
+      {/* Book — top-left primary */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 34, top: "15%", left: "18%", opacity: 0.38 }}
+        className="absolute pointer-events-none" style={{ width: 34, top: "14%", left: "16%", opacity: 0.38 }}
         animate={{ y: [0, -7, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
       </motion.svg>
-      {/* Notebook */}
+      {/* Notebook — right-center */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 28, top: "40%", right: "14%", opacity: 0.30 }}
+        className="absolute pointer-events-none" style={{ width: 28, top: "42%", right: "16%", opacity: 0.30 }}
         animate={{ y: [0, 6, 0], rotate: [0, 4, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}>
         <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/>
       </motion.svg>
-      {/* Calculator */}
+      {/* Calculator — bottom-left */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 24, bottom: "24%", left: "12%", opacity: 0.28 }}
+        className="absolute pointer-events-none" style={{ width: 24, bottom: "22%", left: "14%", opacity: 0.28 }}
         animate={{ y: [0, -5, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}>
-        <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="8" y2="12" strokeLinecap="round"/><line x1="12" y1="12" x2="12" y2="12" strokeLinecap="round"/><line x1="16" y1="12" x2="16" y2="12" strokeLinecap="round"/><line x1="8" y1="16" x2="8" y2="16" strokeLinecap="round"/><line x1="12" y1="16" x2="12" y2="16" strokeLinecap="round"/><line x1="16" y1="16" x2="16" y2="16" strokeLinecap="round"/>
+        <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/>
+        <circle cx="8" cy="13" r="0.8" fill={color}/><circle cx="12" cy="13" r="0.8" fill={color}/><circle cx="16" cy="13" r="0.8" fill={color}/>
+        <circle cx="8" cy="17" r="0.8" fill={color}/><circle cx="12" cy="17" r="0.8" fill={color}/><circle cx="16" cy="17" r="0.8" fill={color}/>
+      </motion.svg>
+      {/* Clock — top-center-right, away from ghost number */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 22, top: "22%", left: "52%", opacity: 0.24 }}
+        animate={{ y: [0, -5, 0], rotate: [0, -3, 0] }} transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 2 }}>
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </motion.svg>
+      {/* Pencil — bottom-center */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 20, bottom: "32%", left: "42%", opacity: 0.22 }}
+        animate={{ y: [0, 6, 0], rotate: [-8, -4, -8] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}>
+        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+      </motion.svg>
+      {/* Graduation cap — bottom-right */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 26, bottom: "18%", right: "14%", opacity: 0.22 }}
+        animate={{ y: [0, -4, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}>
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
       </motion.svg>
     </>
   );
@@ -107,29 +126,47 @@ const StudentSVGs = memo(function StudentSVGs({ color }: { color: string }) {
 const CreatorSVGs = memo(function CreatorSVGs({ color }: { color: string }) {
   return (
     <>
-      {/* Camera */}
+      {/* Camera — top-left primary */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 36, top: "14%", left: "16%", opacity: 0.38 }}
+        className="absolute pointer-events-none" style={{ width: 36, top: "13%", left: "14%", opacity: 0.38 }}
         animate={{ y: [0, -7, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
       </motion.svg>
-      {/* Headphones */}
+      {/* Headphones — right-center */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 30, top: "44%", right: "12%", opacity: 0.30 }}
+        className="absolute pointer-events-none" style={{ width: 30, top: "43%", right: "14%", opacity: 0.30 }}
         animate={{ y: [0, 6, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}>
         <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
       </motion.svg>
-      {/* Music notes */}
+      {/* Music notes — bottom-left */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 26, bottom: "26%", left: "14%", opacity: 0.28 }}
+        className="absolute pointer-events-none" style={{ width: 26, bottom: "24%", left: "12%", opacity: 0.28 }}
         animate={{ y: [0, -5, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}>
         <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
       </motion.svg>
-      {/* Microphone */}
+      {/* Microphone — right-lower */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 22, top: "65%", right: "22%", opacity: 0.24 }}
+        className="absolute pointer-events-none" style={{ width: 22, top: "64%", right: "24%", opacity: 0.24 }}
         animate={{ y: [0, 5, 0] }} transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}>
         <rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+      </motion.svg>
+      {/* Film / video — top-center */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 22, top: "24%", left: "50%", opacity: 0.22 }}
+        animate={{ y: [0, -4, 0] }} transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 2.2 }}>
+        <rect x="2" y="2" width="20" height="20" rx="2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/>
+      </motion.svg>
+      {/* Lightbulb — bottom-center-right */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 20, bottom: "28%", right: "16%", opacity: 0.20 }}
+        animate={{ y: [0, 5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}>
+        <path d="M9 21h6M12 3a6 6 0 0 1 6 6 6 6 0 0 1-3 5.2V17H9v-2.8A6 6 0 0 1 6 9a6 6 0 0 1 6-6z"/>
+      </motion.svg>
+      {/* Edit/brush — center-left */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 20, top: "52%", left: "28%", opacity: 0.20 }}
+        animate={{ y: [0, -4, 0], rotate: [5, 10, 5] }} transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 3 }}>
+        <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
       </motion.svg>
     </>
   );
@@ -138,30 +175,48 @@ const CreatorSVGs = memo(function CreatorSVGs({ color }: { color: string }) {
 const ProfessionalSVGs = memo(function ProfessionalSVGs({ color }: { color: string }) {
   return (
     <>
-      {/* Analytics / bar chart */}
+      {/* Bar chart / analytics — top-left primary */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 32, top: "16%", left: "18%", opacity: 0.38 }}
+        className="absolute pointer-events-none" style={{ width: 32, top: "14%", left: "16%", opacity: 0.38 }}
         animate={{ y: [0, -7, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
         <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
       </motion.svg>
-      {/* Calendar */}
+      {/* Calendar — right-center */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 30, top: "38%", right: "13%", opacity: 0.30 }}
+        className="absolute pointer-events-none" style={{ width: 30, top: "40%", right: "15%", opacity: 0.30 }}
         animate={{ y: [0, 6, 0] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}>
         <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
       </motion.svg>
-      {/* Checklist */}
+      {/* Checklist — bottom-left */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 26, bottom: "25%", left: "12%", opacity: 0.28 }}
+        className="absolute pointer-events-none" style={{ width: 26, bottom: "23%", left: "12%", opacity: 0.28 }}
         animate={{ y: [0, -5, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}>
         <line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/>
         <polyline points="3 6 4 7 6 5"/><polyline points="3 12 4 13 6 11"/><polyline points="3 18 4 19 6 17"/>
       </motion.svg>
-      {/* Dashboard / trending */}
+      {/* Trending up — right-lower */}
       <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
-        className="absolute pointer-events-none" style={{ width: 22, top: "62%", right: "20%", opacity: 0.24 }}
+        className="absolute pointer-events-none" style={{ width: 22, top: "62%", right: "22%", opacity: 0.24 }}
         animate={{ y: [0, 5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.7 }}>
         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+      </motion.svg>
+      {/* Briefcase — top-center */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 24, top: "23%", left: "50%", opacity: 0.22 }}
+        animate={{ y: [0, -4, 0] }} transition={{ duration: 6.3, repeat: Infinity, ease: "easeInOut", delay: 2.1 }}>
+        <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/>
+      </motion.svg>
+      {/* Target / goal — center */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 20, bottom: "35%", left: "40%", opacity: 0.20 }}
+        animate={{ y: [0, 5, 0] }} transition={{ duration: 7.2, repeat: Infinity, ease: "easeInOut", delay: 1.3 }}>
+        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+      </motion.svg>
+      {/* Layers / stack — bottom-right */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 22, bottom: "18%", right: "18%", opacity: 0.20 }}
+        animate={{ y: [0, -4, 0] }} transition={{ duration: 5.9, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}>
+        <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
       </motion.svg>
     </>
   );
@@ -316,13 +371,13 @@ const GatePanel = memo(function GatePanel({
         <CardParticles color={accent} />
       </div>
 
-      {/* Large ghost number — much more visible */}
+      {/* Large ghost number — white watermark, not accent-on-dark */}
       <div className="pointer-events-none absolute right-4 top-3 select-none font-serif font-light leading-none
                       text-[80px] md:text-[170px] md:right-5 md:top-5 transition-opacity duration-500"
         style={{
           fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
-          color: accent,
-          opacity: isHot ? 0.22 : 0.11,
+          color: isHot ? accent : "rgba(255,255,255,0.90)",
+          opacity: isHot ? 0.20 : 0.09,
           zIndex: 5,
         }}
         aria-hidden>
