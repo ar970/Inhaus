@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { cn } from "@/lib/cn";
 
 type Props = {
@@ -8,11 +9,34 @@ type Props = {
 };
 
 /**
- * Illustrated INHAUS bottle — apothecary amber glass, cream label, lowercase
- * "inhaus" wordmark, espresso-machine doodle and surrounding sticker callouts.
- * Recreated to match the real product art. Swap for photography when ready.
+ * INHAUS bottle visual.
+ *
+ * Primary source is the real product artwork at /public/inhaus-bottle.png.
+ * Drop that file into the `public/` folder and it shows automatically.
+ * Until then (or if the file is missing) we fall back to the inline SVG
+ * recreation below so the page never renders a broken image.
  */
 export default function InhausBottle({ className }: Props) {
+  const [useFallback, setUseFallback] = useState(false);
+
+  if (!useFallback) {
+    return (
+      <div className={cn("relative flex items-center justify-center select-none", className)}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/inhaus-bottle.png"
+          alt="INHAUS speciality coffee concentrate bottle"
+          className="h-full w-full max-h-[520px] object-contain drop-shadow-2xl"
+          onError={() => setUseFallback(true)}
+        />
+      </div>
+    );
+  }
+
+  return <BottleArtFallback className={className} />;
+}
+
+function BottleArtFallback({ className }: Props) {
   return (
     <div className={cn("relative flex items-center justify-center select-none", className)}>
       <svg
