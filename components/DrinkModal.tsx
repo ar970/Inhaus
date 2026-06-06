@@ -86,7 +86,7 @@ export default function DrinkModal({ drink, onClose }: Props) {
               {/* Name + mood */}
               <p className="label" style={{ color: accent }}>{drink.mood} · {drink.time}</p>
               <h2 className="mt-1 text-[32px] font-bold leading-tight tracking-tight md:text-[38px]"
-                style={{ fontFamily: "'Fraunces', Georgia, serif", color: "var(--theme-ink)" }}>
+                style={{ fontFamily: "var(--font-fraunces), Georgia, serif", color: "var(--theme-ink)" }}>
                 {drink.name}
               </h2>
               <p className="mt-3 text-[15px] leading-relaxed"

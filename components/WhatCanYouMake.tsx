@@ -141,7 +141,7 @@ export default function WhatCanYouMake() {
                   <div className="flex flex-1 flex-col p-4">
                     <span className="label" style={{ color: accent }}>{d.mood}</span>
                     <h3 className="mt-2 text-[18px] font-semibold leading-tight tracking-tight"
-                      style={{ color: "var(--theme-ink)", fontFamily: "'Fraunces', Georgia, serif" }}>
+                      style={{ color: "var(--theme-ink)", fontFamily: "var(--font-fraunces), Georgia, serif" }}>
                       {d.name}
                     </h3>
                     <div className="mt-auto flex items-center gap-1.5 pt-4"

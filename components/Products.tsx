@@ -456,7 +456,7 @@ function ProductShowcase({
           transition={{ duration: 0.6, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
           className="mt-3 whitespace-pre-line leading-none tracking-[-0.03em]"
           style={{
-            fontFamily: "'Fraunces', Georgia, serif",
+            fontFamily: "var(--font-fraunces), Georgia, serif",
             fontWeight: 700,
             fontSize: "clamp(48px, 7vw, 80px)",
             color: "var(--theme-ink)",
