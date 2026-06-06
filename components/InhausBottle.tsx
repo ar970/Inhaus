@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
 
 type Props = {
@@ -8,26 +8,35 @@ type Props = {
   variant?: "light" | "dark";
 };
 
+const PHOTO_SRC = "/inhaus-bottle.png";
+
 /**
  * INHAUS bottle visual.
  *
  * Primary source is the real product artwork at /public/inhaus-bottle.png.
  * Drop that file into the `public/` folder and it shows automatically.
- * Until then (or if the file is missing) we fall back to the inline SVG
- * recreation below so the page never renders a broken image.
+ *
+ * We render the inline SVG recreation by default and quietly preload the
+ * photo in the background — only swapping to it once the browser confirms
+ * the file actually loaded. That way there is never a broken-image state.
  */
 export default function InhausBottle({ className }: Props) {
-  const [useFallback, setUseFallback] = useState(false);
+  const [photoOk, setPhotoOk] = useState(false);
 
-  if (!useFallback) {
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setPhotoOk(true);
+    img.src = PHOTO_SRC;
+  }, []);
+
+  if (photoOk) {
     return (
       <div className={cn("relative flex items-center justify-center select-none", className)}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/inhaus-bottle.png"
+          src={PHOTO_SRC}
           alt="INHAUS speciality coffee concentrate bottle"
           className="h-full w-full max-h-[520px] object-contain drop-shadow-2xl"
-          onError={() => setUseFallback(true)}
         />
       </div>
     );
