@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 import Button from "@/components/ui/Button";
+import { useCart } from "@/context/CartContext";
 
 const links = [
   { href: "#products", label: "Shop" },
@@ -25,6 +26,7 @@ function BagIcon({ className }: { className?: string }) {
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { count, dispatch: cartDispatch } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -68,10 +70,18 @@ export default function Nav() {
 
         <div className="flex items-center gap-2">
           <Button href="#products" size="sm" className="hidden sm:inline-flex">Shop now</Button>
-          <Link href="#products" aria-label="Cart" className="relative rounded-pill p-2 text-espresso/65 transition-colors hover:text-espresso focusable">
+          <button
+            onClick={() => cartDispatch({ type: "OPEN" })}
+            aria-label={`Cart (${count} items)`}
+            className="relative rounded-pill p-2 text-espresso/65 transition-colors hover:text-espresso focusable"
+          >
             <BagIcon className="h-5 w-5" />
-            <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-crema" />
-          </Link>
+            {count > 0 && (
+              <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--accent-p,#F04E12)] text-[9px] font-bold text-white">
+                {count}
+              </span>
+            )}
+          </button>
           <button
             type="button"
             aria-label="Toggle menu"

@@ -7,6 +7,8 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { PersonaProvider } from "@/context/PersonaContext";
+import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -64,7 +66,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${cormorant.variable} ${fraunces.variable} ${dmSans.variable} ${spaceMono.variable}`}>
       <body>
-        <PersonaProvider>{children}</PersonaProvider>
+        <PersonaProvider>
+          <CartProvider>
+            {children}
+            <CartDrawer />
+          </CartProvider>
+        </PersonaProvider>
       </body>
     </html>
   );
