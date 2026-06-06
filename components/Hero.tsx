@@ -15,6 +15,7 @@ import { Arrow } from "@/components/Doodles";
 import { usePersona } from "@/context/PersonaContext";
 import { personaContent } from "@/lib/personas";
 import InhausBottle from "@/components/InhausBottle";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 // ─── Types ─────────────────────────────────────────────────────────────
 type Layer = "back" | "front";
@@ -500,6 +501,7 @@ export default function Hero() {
   const scene = persona ? SCENES[persona] : null;
   const lines = copy.headline.split("\n");
 
+  const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLDivElement>(null);
   const rawX = useMotionValue(0.5);
   const rawY = useMotionValue(0.5);
@@ -510,12 +512,13 @@ export default function Hero() {
   const pouchRotX = useTransform(smoothY, [0, 1], [6, -6]);
 
   const onMove  = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return;
     const r = sectionRef.current?.getBoundingClientRect();
     if (!r) return;
     rawX.set((e.clientX - r.left) / r.width);
     rawY.set((e.clientY - r.top)  / r.height);
   };
-  const onLeave = () => { rawX.set(0.5); rawY.set(0.5); };
+  const onLeave = () => { if (!isMobile) { rawX.set(0.5); rawY.set(0.5); } };
 
   // ── Persona splash transition ─────────────────────────────────────────
   const prevPersona = useRef<string | null>(null);
@@ -637,8 +640,8 @@ export default function Hero() {
               backgroundSize: persona === "professional" ? "32px 32px" : persona === "creator" ? "22px 22px" : "auto",
             } : undefined}
           >
-            {/* Coffee particles */}
-            {PARTICLES.map(p => (
+            {/* Coffee particles — skip on mobile */}
+            {!isMobile && PARTICLES.map(p => (
               <motion.div key={p.id} className="pointer-events-none absolute"
                 style={{
                   left: `${p.x}%`, top: `${p.y}%`,
@@ -654,9 +657,9 @@ export default function Hero() {
               />
             ))}
 
-            {/* Back-layer objects */}
+            {/* Back-layer objects — skip on mobile */}
             <AnimatePresence>
-              {scene && scene.objects.filter(o => o.layer === "back").map((obj, i) => (
+              {!isMobile && scene && scene.objects.filter(o => o.layer === "back").map((obj, i) => (
                 <FloatObj key={`${persona}-${obj.id}`} obj={obj} accent={scene.accent}
                   smoothX={smoothX} smoothY={smoothY} index={i} />
               ))}
@@ -664,7 +667,7 @@ export default function Hero() {
 
             {/* ── Central pouch at z-[10] ── */}
             <motion.div className="relative z-[10]"
-              style={{ rotateY: pouchRotY, rotateX: pouchRotX, transformPerspective: 900 }}
+              style={isMobile ? {} : { rotateY: pouchRotY, rotateX: pouchRotX, transformPerspective: 900 }}
             >
               {/* Colored glow */}
               <motion.div className="absolute inset-[-30%] -z-10 blur-[80px]"
@@ -714,9 +717,9 @@ export default function Hero() {
               </AnimatePresence>
             </motion.div>
 
-            {/* Front-layer objects */}
+            {/* Front-layer objects — skip on mobile */}
             <AnimatePresence>
-              {scene && scene.objects.filter(o => o.layer === "front").map((obj, i) => (
+              {!isMobile && scene && scene.objects.filter(o => o.layer === "front").map((obj, i) => (
                 <FloatObj key={`${persona}-${obj.id}`} obj={obj} accent={scene.accent}
                   smoothX={smoothX} smoothY={smoothY} index={i + 3} />
               ))}

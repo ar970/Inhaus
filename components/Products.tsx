@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import { usePersona } from "@/context/PersonaContext";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 // ─── Product data ──────────────────────────────────────────────────────────
 const products = {
@@ -221,8 +222,9 @@ function ProfessionalDecorations({ color }: { color: string }) {
 
 // ─── Creator stage deco: particles + audio waves + creative sparks ─────────
 function CreatorDecorations({ color }: { color: string }) {
+  const isMobile = useIsMobile();
   const waveHeights = [8, 18, 12, 24, 10, 22, 14, 20, 8, 16];
-  const particles = Array.from({ length: 20 }, (_, i) => ({
+  const particles = Array.from({ length: isMobile ? 6 : 20 }, (_, i) => ({
     x: (i * 37 + 11) % 90,
     y: (i * 53 + 7)  % 88,
     s: 1.5 + (i % 4) * 1.1,
@@ -355,6 +357,7 @@ function ProductShowcase({
   product: (typeof products)[keyof typeof products];
   persona: string;
 }) {
+  const isMobile = useIsMobile();
   const cardRef = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -364,6 +367,7 @@ function ProductShowcase({
   const glowY = useSpring(useTransform(my, [-0.5, 0.5], [28, 72]),  { stiffness: 180, damping: 24 });
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return;
     const r = cardRef.current?.getBoundingClientRect();
     if (!r) return;
     mx.set((e.clientX - r.left) / r.width - 0.5);
@@ -388,8 +392,8 @@ function ProductShowcase({
       <motion.div
         ref={cardRef}
         onMouseMove={onMove}
-        onMouseLeave={() => { mx.set(0); my.set(0); }}
-        style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 900 }}
+        onMouseLeave={() => { if (!isMobile) { mx.set(0); my.set(0); } }}
+        style={isMobile ? {} : { rotateX: rotX, rotateY: rotY, transformPerspective: 900 }}
         className="group relative flex items-center justify-center"
       >
         <div
