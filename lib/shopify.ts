@@ -1,22 +1,11 @@
-const DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
-const TOKEN  = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!;
-const API_URL = `https://${DOMAIN}/api/2024-01/graphql.json`;
+import { createStorefrontApiClient } from "@shopify/storefront-api-client";
 
-async function storefrontFetch<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
-  const res = await fetch(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Shopify-Storefront-Access-Token": TOKEN,
-    },
-    body: JSON.stringify({ query, variables }),
-    next: { revalidate: 60 },
-  });
-  if (!res.ok) throw new Error(`Shopify fetch failed: ${res.status}`);
-  const { data, errors } = await res.json();
-  if (errors?.length) throw new Error(errors[0].message);
-  return data;
-}
+const client = createStorefrontApiClient({
+  storeDomain: process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!,
+  apiVersion: "2024-01",
+  privateAccessToken: process.env.SHOPIFY_STOREFRONT_PRIVATE_TOKEN,
+  publicAccessToken: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN,
+});
 
 export interface ShopifyProduct {
   id: string;
@@ -29,7 +18,7 @@ export interface ShopifyProduct {
 }
 
 export async function getProducts(): Promise<ShopifyProduct[]> {
-  const data = await storefrontFetch<{ products: { edges: { node: ShopifyProduct }[] } }>(`
+  const { data, errors } = await client.request(`
     query {
       products(first: 20) {
         edges {
@@ -43,11 +32,12 @@ export async function getProducts(): Promise<ShopifyProduct[]> {
       }
     }
   `);
-  return data.products.edges.map(e => e.node);
+  if (errors) throw new Error(errors.message);
+  return data!.products.edges.map((e: { node: ShopifyProduct }) => e.node);
 }
 
 export async function getProduct(handle: string): Promise<ShopifyProduct | null> {
-  const data = await storefrontFetch<{ product: ShopifyProduct | null }>(`
+  const { data, errors } = await client.request(`
     query($handle: String!) {
       product(handle: $handle) {
         id title handle description
@@ -56,24 +46,27 @@ export async function getProduct(handle: string): Promise<ShopifyProduct | null>
         variants(first: 10) { edges { node { id title availableForSale } } }
       }
     }
-  `, { handle });
-  return data.product;
+  `, { variables: { handle } });
+  if (errors) throw new Error(errors.message);
+  return data!.product;
 }
 
-export async function createCart(): Promise<string> {
-  const data = await storefrontFetch<{ cartCreate: { cart: { id: string; checkoutUrl: string } } }>(`
+export async function createCart(): Promise<{ id: string; checkoutUrl: string }> {
+  const { data, errors } = await client.request(`
     mutation { cartCreate { cart { id checkoutUrl } } }
   `);
-  return data.cartCreate.cart.id;
+  if (errors) throw new Error(errors.message);
+  return data!.cartCreate.cart;
 }
 
 export async function addToCart(cartId: string, variantId: string, quantity = 1): Promise<string> {
-  const data = await storefrontFetch<{ cartLinesAdd: { cart: { checkoutUrl: string } } }>(`
+  const { data, errors } = await client.request(`
     mutation($cartId: ID!, $lines: [CartLineInput!]!) {
       cartLinesAdd(cartId: $cartId, lines: $lines) {
         cart { checkoutUrl }
       }
     }
-  `, { cartId, lines: [{ merchandiseId: variantId, quantity }] });
-  return data.cartLinesAdd.cart.checkoutUrl;
+  `, { variables: { cartId, lines: [{ merchandiseId: variantId, quantity }] } });
+  if (errors) throw new Error(errors.message);
+  return data!.cartLinesAdd.cart.checkoutUrl;
 }
