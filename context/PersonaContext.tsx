@@ -30,7 +30,7 @@ function applyTheme(p: Persona | null) {
   const darkBgs: Record<string, [string, string]> = {
     student:      ["#1E0C04", "#FFF2DC"],
     creator:      ["#0E0208", "#FFE8F2"],
-    professional: ["#050D1F", "#EEF2F8"],
+    professional: ["#031412", "#EEF2F8"],
   };
   const [dbg, dink] = darkBgs[p] ?? ["#1C0E06", "#F5EBD8"];
   root.style.setProperty("--theme-dark-bg", dbg);

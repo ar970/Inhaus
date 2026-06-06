@@ -68,17 +68,17 @@
   --vibe-eyebrow-tr:     0.44em;
 }
 
-/* ─── Professional — Navy blue precision ────────────────────────── */
+/* ─── Professional — Teal precision ─────────────────────────────── */
 [data-persona="professional"] {
   --theme-bg:            #EEF2F8;
   --theme-surface:       #F8FAFD;
   --theme-ink:           #050D1F;
-  --theme-accent:        #1545A8;
-  --theme-accent-soft:   #C4D0EC;
-  --theme-accent-2:      #2E65D4;
-  --theme-dark-bg:       #050D1F;
+  --theme-accent:        #00A896;
+  --theme-accent-soft:   rgba(0,168,150,0.20);
+  --theme-accent-2:      #00C4AE;
+  --theme-dark-bg:       #031412;
   --theme-dark-ink:      #EEF2F8;
-  --theme-dark-accent:   #2E65D4;
+  --theme-dark-accent:   #00C4AE;
   --vibe-radius:         2px;
   --vibe-head-font:      'Cormorant Garamond', Georgia, serif;
   --vibe-head-weight:    500;
