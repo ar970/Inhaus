@@ -19,7 +19,7 @@ const ACCENT: Record<Persona, string> = {
   professional: "#00A896",
 };
 
-/* ─── Ambient energy ripple — replaces droplet, stays dark ────────── */
+/* ─── Ambient energy ripple — size -30%, opacity more elegant ─────── */
 const RippleRing = memo(function RippleRing({
   color, delay, size,
 }: { color: string; delay: number; size: number }) {
@@ -33,20 +33,20 @@ const RippleRing = memo(function RippleRing({
         border: `1px solid ${color}`,
         opacity: 0,
       }}
-      animate={{ scale: [0.6, 1.8], opacity: [0.18, 0] }}
-      transition={{ duration: 2.4, repeat: Infinity, delay, ease: "easeOut" }}
+      animate={{ scale: [0.6, 1.6], opacity: [0.12, 0] }}
+      transition={{ duration: 2.6, repeat: Infinity, delay, ease: "easeOut" }}
     />
   );
 });
 
-/* Ripple cluster — 3 rings staggered, very subtle */
+/* Ripple cluster — sizes reduced 30% */
 const EnergyRipple = memo(function EnergyRipple({ persona }: { persona: Persona }) {
   const c = ACCENT[persona];
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <RippleRing color={c} delay={0}    size={160} />
-      <RippleRing color={c} delay={0.8}  size={220} />
-      <RippleRing color={c} delay={1.6}  size={290} />
+      <RippleRing color={c} delay={0}    size={112} />
+      <RippleRing color={c} delay={0.85} size={154} />
+      <RippleRing color={c} delay={1.7}  size={203} />
     </div>
   );
 });
@@ -78,23 +78,27 @@ const CardParticles = memo(function CardParticles({ color }: { color: string }) 
 });
 
 /* ─── Floating persona SVGs ─────────────────────────────────────────── */
+/* Icons: opacity +40% vs previous values */
 const StudentSVGs = memo(function StudentSVGs({ color }: { color: string }) {
   return (
     <>
-      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1}
-        className="absolute pointer-events-none" style={{ width: 30, top: "15%", left: "18%", opacity: 0.18 }}
+      {/* Book */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 34, top: "15%", left: "18%", opacity: 0.38 }}
         animate={{ y: [0, -7, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
       </motion.svg>
-      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1}
-        className="absolute pointer-events-none" style={{ width: 24, top: "40%", right: "14%", opacity: 0.14 }}
+      {/* Notebook */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 28, top: "40%", right: "14%", opacity: 0.30 }}
         animate={{ y: [0, 6, 0], rotate: [0, 4, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}>
         <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/>
       </motion.svg>
-      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1}
-        className="absolute pointer-events-none" style={{ width: 20, bottom: "24%", left: "12%", opacity: 0.14 }}
-        animate={{ y: [0, -5, 0], rotate: [10, 15, 10] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}>
-        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+      {/* Calculator */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 24, bottom: "24%", left: "12%", opacity: 0.28 }}
+        animate={{ y: [0, -5, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}>
+        <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="8" y2="12" strokeLinecap="round"/><line x1="12" y1="12" x2="12" y2="12" strokeLinecap="round"/><line x1="16" y1="12" x2="16" y2="12" strokeLinecap="round"/><line x1="8" y1="16" x2="8" y2="16" strokeLinecap="round"/><line x1="12" y1="16" x2="12" y2="16" strokeLinecap="round"/><line x1="16" y1="16" x2="16" y2="16" strokeLinecap="round"/>
       </motion.svg>
     </>
   );
@@ -103,20 +107,29 @@ const StudentSVGs = memo(function StudentSVGs({ color }: { color: string }) {
 const CreatorSVGs = memo(function CreatorSVGs({ color }: { color: string }) {
   return (
     <>
-      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1}
-        className="absolute pointer-events-none" style={{ width: 32, top: "14%", left: "16%", opacity: 0.18 }}
+      {/* Camera */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 36, top: "14%", left: "16%", opacity: 0.38 }}
         animate={{ y: [0, -7, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
       </motion.svg>
-      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1}
-        className="absolute pointer-events-none" style={{ width: 26, top: "44%", right: "12%", opacity: 0.14 }}
+      {/* Headphones */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 30, top: "44%", right: "12%", opacity: 0.30 }}
         animate={{ y: [0, 6, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}>
         <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
       </motion.svg>
-      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1}
-        className="absolute pointer-events-none" style={{ width: 22, bottom: "26%", left: "14%", opacity: 0.14 }}
+      {/* Music notes */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 26, bottom: "26%", left: "14%", opacity: 0.28 }}
         animate={{ y: [0, -5, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}>
         <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+      </motion.svg>
+      {/* Microphone */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 22, top: "65%", right: "22%", opacity: 0.24 }}
+        animate={{ y: [0, 5, 0] }} transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}>
+        <rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
       </motion.svg>
     </>
   );
@@ -125,19 +138,29 @@ const CreatorSVGs = memo(function CreatorSVGs({ color }: { color: string }) {
 const ProfessionalSVGs = memo(function ProfessionalSVGs({ color }: { color: string }) {
   return (
     <>
-      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1}
-        className="absolute pointer-events-none" style={{ width: 28, top: "16%", left: "18%", opacity: 0.18 }}
+      {/* Analytics / bar chart */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 32, top: "16%", left: "18%", opacity: 0.38 }}
         animate={{ y: [0, -7, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
         <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
       </motion.svg>
-      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1}
-        className="absolute pointer-events-none" style={{ width: 26, top: "38%", right: "13%", opacity: 0.14 }}
+      {/* Calendar */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 30, top: "38%", right: "13%", opacity: 0.30 }}
         animate={{ y: [0, 6, 0] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}>
         <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
       </motion.svg>
-      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1}
-        className="absolute pointer-events-none" style={{ width: 22, bottom: "25%", left: "12%", opacity: 0.14 }}
+      {/* Checklist */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 26, bottom: "25%", left: "12%", opacity: 0.28 }}
         animate={{ y: [0, -5, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}>
+        <line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/>
+        <polyline points="3 6 4 7 6 5"/><polyline points="3 12 4 13 6 11"/><polyline points="3 18 4 19 6 17"/>
+      </motion.svg>
+      {/* Dashboard / trending */}
+      <motion.svg viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.2}
+        className="absolute pointer-events-none" style={{ width: 22, top: "62%", right: "20%", opacity: 0.24 }}
+        animate={{ y: [0, 5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.7 }}>
         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
       </motion.svg>
     </>
@@ -235,36 +258,43 @@ const GatePanel = memo(function GatePanel({
                  border-b last:border-b-0 px-6 py-7
                  md:border-b-0 md:border-r md:last:border-r-0 md:px-10 md:pb-16 md:pt-24"
       style={{
-        borderColor: "rgba(255,255,255,0.06)",
+        borderColor: "rgba(255,255,255,0.10)",
         minHeight: 0,
-        /* flex-grow only — far cheaper than animating width */
         flex: isHot ? 1.75 : isDimmed ? 0.75 : 1,
         transition: "flex 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.35s ease, transform 0.35s ease",
-        opacity: isDimmed ? 0.42 : 1,
+        opacity: isDimmed ? 0.52 : 1,
         transform: isDimmed ? "scale(0.985)" : "scale(1)",
         willChange: "flex, opacity, transform",
       }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: isDimmed ? 0.42 : 1, y: 0, transition: { duration: 0.5, delay: 0.12 + index * 0.09, ease: [0.22, 1, 0.36, 1] } }}
     >
-      {/* Base dark surface — opacity layer, no background animation */}
+      {/* Base dark surface */}
       <div className="pointer-events-none absolute inset-0"
         style={{ background: "#080510", zIndex: 0 }} />
 
-      {/* Accent tint overlay — opacity only (GPU safe) */}
+      {/* Spotlight — radial from top-center, persona-colored, appears on hover */}
       <div className="pointer-events-none absolute inset-0 transition-opacity duration-500"
         style={{
-          background: `radial-gradient(ellipse at 50% 100%, ${accent}18 0%, transparent 70%)`,
+          background: `radial-gradient(ellipse 80% 55% at 50% -10%, ${accent}22 0%, transparent 65%)`,
           opacity: isHot ? 1 : 0,
           zIndex: 1,
         }} />
 
-      {/* Edge glow via box-shadow — no repaint */}
+      {/* Accent bottom-up bloom */}
+      <div className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+        style={{
+          background: `radial-gradient(ellipse at 50% 110%, ${accent}28 0%, transparent 60%)`,
+          opacity: isHot ? 1 : 0,
+          zIndex: 1,
+        }} />
+
+      {/* Edge glow — stronger on hover */}
       <div className="pointer-events-none absolute inset-0 transition-all duration-500"
         style={{
           boxShadow: isHot
-            ? `inset 0 0 0 1px ${accent}22, inset 0 -60px 80px ${accent}14`
-            : "inset 0 0 0 1px transparent",
+            ? `inset 0 0 0 1px ${accent}35, inset 0 -80px 100px ${accent}22`
+            : `inset 0 0 0 1px rgba(255,255,255,0.07)`,
           zIndex: 2,
         }} />
 
@@ -286,13 +316,13 @@ const GatePanel = memo(function GatePanel({
         <CardParticles color={accent} />
       </div>
 
-      {/* Large ghost number */}
+      {/* Large ghost number — much more visible */}
       <div className="pointer-events-none absolute right-4 top-3 select-none font-serif font-light leading-none
                       text-[80px] md:text-[170px] md:right-5 md:top-5 transition-opacity duration-500"
         style={{
           fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
           color: accent,
-          opacity: isHot ? 0.1 : 0.04,
+          opacity: isHot ? 0.22 : 0.11,
           zIndex: 5,
         }}
         aria-hidden>
@@ -306,13 +336,14 @@ const GatePanel = memo(function GatePanel({
         <div className="h-2.5 w-2.5 shrink-0 rounded-full md:mb-5 transition-all duration-400"
           style={{
             background: accent,
-            opacity: isHot ? 1 : 0.35,
-            boxShadow: isHot ? `0 0 12px ${accent}CC, 0 0 30px ${accent}55` : "none",
+            opacity: isHot ? 1 : 0.55,
+            boxShadow: isHot ? `0 0 16px ${accent}EE, 0 0 40px ${accent}77` : `0 0 6px ${accent}44`,
             transform: isHot ? "scale(1.4)" : "scale(1)",
           }} />
 
         <div className="flex-1 md:block">
-          <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-white/25 md:text-[10px]">
+          <p className="font-mono text-[9px] uppercase tracking-[0.28em] md:text-[10px]"
+            style={{ color: isHot ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.42)" }}>
             I am a
           </p>
           <h2 className="mt-1 font-serif leading-none tracking-tight md:mt-2 transition-colors duration-300"
@@ -321,7 +352,7 @@ const GatePanel = memo(function GatePanel({
               fontStyle: "italic",
               fontWeight: 300,
               fontSize: "clamp(30px, 3.8vw, 50px)",
-              color: isHot ? "#FFFFFF" : "rgba(255,255,255,0.85)",
+              color: isHot ? "#FFFFFF" : "rgba(255,255,255,0.92)",
             }}>
             {content.label}
           </h2>
@@ -329,12 +360,12 @@ const GatePanel = memo(function GatePanel({
 
         {/* Description — desktop */}
         <p className="hidden text-sm leading-snug md:block md:mt-3 md:max-w-[190px] transition-colors duration-300"
-          style={{ color: isHot ? "rgba(255,255,255,0.72)" : "rgba(255,255,255,0.26)" }}>
+          style={{ color: isHot ? "rgba(255,255,255,0.78)" : "rgba(255,255,255,0.45)" }}>
           {content.desc}
         </p>
 
         {/* Description — mobile */}
-        <p className="text-[11px] leading-snug text-white/35 md:hidden" style={{ maxWidth: 110 }}>
+        <p className="text-[11px] leading-snug md:hidden" style={{ maxWidth: 110, color: "rgba(255,255,255,0.52)" }}>
           {content.desc}
         </p>
 
@@ -410,11 +441,12 @@ export default function PersonaGate() {
           >
             {/* ── Top bar ── */}
             <div className="flex shrink-0 items-center justify-between px-6 py-5 md:px-12 md:py-6">
-              <span className="font-serif text-[18px] tracking-tight text-white/60 md:text-[20px]"
-                style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif" }}>
+              <span className="font-serif text-[18px] tracking-tight md:text-[20px]"
+                style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", color: "rgba(255,255,255,0.75)" }}>
                 INHAUS
               </span>
-              <p className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-white/20 md:block">
+              <p className="hidden font-mono text-[10px] uppercase tracking-[0.3em] md:block"
+                style={{ color: "rgba(255,255,255,0.35)" }}>
                 Specialty instant coffee
               </p>
             </div>
@@ -426,12 +458,12 @@ export default function PersonaGate() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h1 className="font-serif font-light italic leading-none tracking-tight text-white/88
-                             text-[40px] md:text-[76px]"
-                style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif" }}>
+              <h1 className="font-serif font-light italic leading-none tracking-tight text-[40px] md:text-[76px]"
+                style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", color: "#F8F8F8" }}>
                 Choose Your Fuel.
               </h1>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] text-white/22 md:mt-3 md:text-[11px] md:tracking-[0.25em]">
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] md:mt-3 md:text-[11px] md:tracking-[0.25em]"
+                style={{ color: "rgba(255,255,255,0.48)" }}>
                 Every ambition deserves a different brew.
               </p>
             </motion.div>
@@ -439,7 +471,7 @@ export default function PersonaGate() {
             {/* ── Panels ── */}
             <motion.div
               className="flex min-h-0 flex-1 flex-col border-t md:flex-row"
-              style={{ borderColor: "rgba(255,255,255,0.05)" }}
+              style={{ borderColor: "rgba(255,255,255,0.10)" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.35, delay: 0.22 }}
