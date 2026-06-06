@@ -107,12 +107,6 @@ export default function Hero() {
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
             </Link>
 
-            <Link
-              href="#how"
-              className="inline-flex items-center gap-2 rounded-pill border border-espresso/20 px-7 py-3.5 text-[13px] font-semibold text-espresso/80 transition-all duration-300 hover:border-espresso/50 hover:bg-espresso/4 hover:text-espresso focusable"
-            >
-              {c.ctaSecondary}
-            </Link>
           </motion.div>
 
           <motion.div variants={itemFast} className="mt-7 flex items-center gap-3">
@@ -150,14 +144,18 @@ export default function Hero() {
 
             <AnimatePresence mode="wait">
               {videoSrc ? (
-                /* ── Persona video ── */
+                /* ── Persona video — no container, edge-faded to blend ── */
                 <motion.div
                   key={videoSrc}
-                  className="relative z-10 w-full overflow-hidden rounded-[24px]"
+                  className="relative z-10 w-full"
                   initial={{ opacity: 0, scale: 0.92, filter: "blur(14px)" }}
                   animate={{ opacity: 1, scale: 1,    filter: "blur(0px)" }}
                   exit={{    opacity: 0, scale: 0.95,  filter: "blur(8px)"  }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  style={{
+                    maskImage: "radial-gradient(ellipse 88% 88% at 50% 50%, black 45%, transparent 100%)",
+                    WebkitMaskImage: "radial-gradient(ellipse 88% 88% at 50% 50%, black 45%, transparent 100%)",
+                  }}
                 >
                   <video
                     key={videoSrc}
