@@ -48,17 +48,17 @@
   --vibe-eyebrow-tr:     0.24em;
 }
 
-/* ─── Creator — Full dark studio mode ───────────────────────────── */
+/* ─── Creator — Warm pink editorial ─────────────────────────────── */
 [data-persona="creator"] {
-  --theme-bg:            #0C0520;
-  --theme-surface:       #150A30;
-  --theme-ink:           #EDE8FF;
-  --theme-accent:        #9B30FF;
-  --theme-accent-soft:   rgba(155,48,255,0.20);
-  --theme-accent-2:      #C66BFF;
-  --theme-dark-bg:       #060210;
-  --theme-dark-ink:      #EDE8FF;
-  --theme-dark-accent:   #9B30FF;
+  --theme-bg:            #1A0510;
+  --theme-surface:       #26081A;
+  --theme-ink:           #FFE8F2;
+  --theme-accent:        #FF2D78;
+  --theme-accent-soft:   rgba(255,45,120,0.20);
+  --theme-accent-2:      #FF7AAE;
+  --theme-dark-bg:       #0E0208;
+  --theme-dark-ink:      #FFE8F2;
+  --theme-dark-accent:   #FF2D78;
   --vibe-radius:         6px;
   --vibe-head-font:      'Cormorant Garamond', Georgia, serif;
   --vibe-head-weight:    300;
@@ -68,17 +68,17 @@
   --vibe-eyebrow-tr:     0.44em;
 }
 
-/* ─── Professional — Refined precision ──────────────────────────── */
+/* ─── Professional — Navy blue precision ────────────────────────── */
 [data-persona="professional"] {
-  --theme-bg:            #EEF3EF;
-  --theme-surface:       #FAFCFA;
-  --theme-ink:           #061008;
-  --theme-accent:        #085C2E;
-  --theme-accent-soft:   #C4DDD0;
-  --theme-accent-2:      #1E8A50;
-  --theme-dark-bg:       #061008;
-  --theme-dark-ink:      #EEF3EF;
-  --theme-dark-accent:   #1E8A50;
+  --theme-bg:            #EEF2F8;
+  --theme-surface:       #F8FAFD;
+  --theme-ink:           #050D1F;
+  --theme-accent:        #1545A8;
+  --theme-accent-soft:   #C4D0EC;
+  --theme-accent-2:      #2E65D4;
+  --theme-dark-bg:       #050D1F;
+  --theme-dark-ink:      #EEF2F8;
+  --theme-dark-accent:   #2E65D4;
   --vibe-radius:         2px;
   --vibe-head-font:      'Cormorant Garamond', Georgia, serif;
   --vibe-head-weight:    500;
@@ -98,9 +98,9 @@
 }
 [data-persona="creator"] body {
   background-image:
-    radial-gradient(ellipse 60% 50% at 5% 5%,  rgba(155,48,255,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 55% 45% at 95% 20%, rgba(198,107,255,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 60% at 75% 90%, rgba(155,48,255,0.10) 0%, transparent 70%);
+    radial-gradient(ellipse 60% 50% at 5% 5%,  rgba(255,45,120,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 45% at 95% 20%, rgba(255,122,174,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 75% 90%, rgba(255,45,120,0.10) 0%, transparent 70%);
   background-attachment: fixed;
 }
 [data-persona="professional"] body {
