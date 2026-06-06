@@ -13,6 +13,7 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import PersonaGate from "@/components/PersonaGate";
 import PersonaSwitcher from "@/components/PersonaSwitcher";
+import CustomCursor from "@/components/CustomCursor";
 
 export default function Home() {
   return (
@@ -39,6 +40,9 @@ export default function Home() {
 
       {/* Floating persona switcher — always accessible once persona is set */}
       <PersonaSwitcher />
+
+      {/* Custom cursor — desktop only, hidden on touch */}
+      <CustomCursor />
     </>
   );
 }

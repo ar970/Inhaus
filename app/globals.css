@@ -137,6 +137,11 @@
 [data-persona="creator"] em,
 [data-persona="creator"] .vibe-accent-word { font-style: italic; }
 
+/* ─── Custom cursor — hide default ──────────────────────────────── */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+
 /* ─── Grain overlay ──────────────────────────────────────────────── */
 body::after {
   content: '';
