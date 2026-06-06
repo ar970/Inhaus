@@ -5,7 +5,6 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import { DoodleIcon } from "@/components/Doodles";
 import { drinks } from "@/lib/data";
 import { usePersona } from "@/context/PersonaContext";
 
@@ -129,21 +128,10 @@ export default function WhatCanYouMake() {
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 72vw, (max-width: 1024px) 44vw, 25vw"
-                      onError={(e) => {
-                        /* fallback to icon if image missing */
-                        (e.currentTarget as HTMLImageElement).style.display = "none";
-                      }}
                     />
                     {/* Gradient overlay for text legibility */}
                     <div className="absolute inset-0"
                       style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 55%)" }} />
-                    {/* Fallback icon (shown if image fails) */}
-                    <div className="absolute inset-0 flex items-center justify-center"
-                      style={{ background: `radial-gradient(130% 130% at 50% 10%, var(--theme-surface) 0%, ${accent}22 100%)` }}>
-                      <span style={{ color: accent }}>
-                        <DoodleIcon name={d.icon} className="h-14 w-14 opacity-40" />
-                      </span>
-                    </div>
                   </div>
 
                   {/* Copy */}
