@@ -118,7 +118,7 @@ export default function HowItWorks() {
               />
 
               <video
-                src="/how-it-works.mp4"
+                src="/how-it-works2.mp4"
                 autoPlay
                 loop
                 muted
