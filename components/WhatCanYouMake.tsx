@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import DrinkModal from "@/components/DrinkModal";
 import { drinks } from "@/lib/data";
 import { usePersona } from "@/context/PersonaContext";
 
@@ -57,6 +58,7 @@ export default function WhatCanYouMake() {
   const { persona } = usePersona();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
+  const [selected, setSelected] = useState<(typeof drinks)[number] | null>(null);
 
   const maxPage = Math.ceil(drinks.length / VISIBLE) - 1;
 
@@ -112,6 +114,7 @@ export default function WhatCanYouMake() {
                 className="group shrink-0 snap-start basis-[72%] sm:basis-[44%] md:basis-[calc(25%-12px)]"
               >
                 <motion.div
+                  onClick={() => setSelected(d)}
                   className="flex h-full cursor-pointer flex-col overflow-hidden rounded-[20px] border"
                   style={{
                     borderColor: "color-mix(in srgb, var(--theme-ink) 9%, transparent)",
@@ -196,6 +199,8 @@ export default function WhatCanYouMake() {
         </div>
 
       </div>
+
+      <DrinkModal drink={selected} onClose={() => setSelected(null)} />
     </section>
   );
 }
