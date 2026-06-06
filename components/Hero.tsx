@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import InhausBottle from "@/components/InhausBottle";
 import { Stars, Arrow } from "@/components/Doodles";
@@ -14,12 +14,6 @@ const defaultContent = {
   sub: "Pour, add milk or water, and sip. Café-grade coffee at home — no machine, no mess.",
   cta: "Explore",
   ctaSecondary: "How it works",
-};
-
-const personaVideos: Record<string, string> = {
-  creator:      "/animation-creator.mp4",
-  student:      "/animation-student.mp4",
-  professional: "/animation-proffesional.mp4",
 };
 
 const container = {
@@ -53,11 +47,9 @@ export default function Hero() {
   const bottleY     = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const bottleScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.94]);
 
-  const videoSrc = persona ? personaVideos[persona] : null;
-
   return (
     <section ref={sectionRef} id="top" className="relative overflow-hidden">
-      {/* Ambient glow */}
+      {/* Ambient glow behind bottle */}
       <motion.div
         className="pointer-events-none absolute right-0 top-0 h-[80%] w-[55%]"
         style={{
@@ -133,62 +125,26 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* ── Visual — video or bottle ── */}
+        {/* ── Bottle — scroll parallax ── */}
         <motion.div
           className="order-1 md:order-2"
-          style={{ y: reduce ? 0 : bottleY, scale: reduce ? 1 : bottleScale }}
+          initial={{ opacity: 0, scale: 0.9, filter: "blur(12px)" }}
+          animate={{ opacity: 1, scale: 1,   filter: "blur(0px)" }}
+          transition={{ duration: 1.1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="relative mx-auto flex max-w-[440px] items-center justify-center md:max-w-full md:py-12">
-
-            {/* Glow halo */}
+          <motion.div
+            className="relative mx-auto flex max-w-[440px] items-center justify-center md:max-w-full md:py-12"
+            style={{ y: reduce ? 0 : bottleY, scale: reduce ? 1 : bottleScale }}
+          >
+            {/* Warm glow halo */}
             <motion.div
               className="absolute inset-[15%] -z-10 blur-[70px]"
               style={{ background: "radial-gradient(ellipse at 50% 60%, var(--theme-accent-soft) 0%, transparent 70%)" }}
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
-
-            <AnimatePresence mode="wait">
-              {videoSrc ? (
-                /* ── Persona video — no container, edge-faded to blend ── */
-                <motion.div
-                  key={videoSrc}
-                  className="relative z-10 w-full"
-                  initial={{ opacity: 0, scale: 0.92, filter: "blur(14px)" }}
-                  animate={{ opacity: 1, scale: 1,    filter: "blur(0px)" }}
-                  exit={{    opacity: 0, scale: 0.95,  filter: "blur(8px)"  }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  style={{
-                    maskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 50%, transparent 100%)",
-                    WebkitMaskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 50%, transparent 100%)",
-                  }}
-                >
-                  <video
-                    key={videoSrc}
-                    src={videoSrc}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full max-h-[620px] object-contain"
-                    style={{ mixBlendMode: "screen" }}
-                  />
-                </motion.div>
-              ) : (
-                /* ── Default bottle ── */
-                <motion.div
-                  key="bottle"
-                  className="relative z-10 w-full"
-                  initial={{ opacity: 0, scale: 0.9, filter: "blur(12px)" }}
-                  animate={{ opacity: 1, scale: 1,   filter: "blur(0px)" }}
-                  exit={{    opacity: 0, scale: 0.95, filter: "blur(8px)"  }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <InhausBottle className="w-full max-h-[620px]" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+            <InhausBottle className="relative z-10 w-full max-h-[620px]" />
+          </motion.div>
         </motion.div>
 
       </div>
