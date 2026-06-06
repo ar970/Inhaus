@@ -8,7 +8,7 @@ type Props = {
   variant?: "light" | "dark";
 };
 
-const PHOTO_SRC = "/inhaus-bottle.jpg";
+const PHOTO_SRC = "/inhaus-bottle.png";
 
 /**
  * INHAUS bottle visual.
