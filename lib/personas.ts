@@ -115,7 +115,7 @@ export const personaContent: Record<Persona, PersonaContent> = {
     announcement: "Free shipping across India · 10% off your first order with POUR10",
     hero: {
       eyebrow: "Your creative fuel",
-      headline: "Ideas\nneed fuel.",
+      headline: "Make.\nEdit.\nRepeat.",
       sub: "Built for creators, designers, editors and storytellers. Pour, stay in the zone, keep making.",
       cta: "Enter the flow",
       ctaSecondary: "What you can make",
