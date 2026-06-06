@@ -29,8 +29,8 @@ export default function Home() {
         <Marquee />
         <Products />
         <HowItWorks />
-        <WhatCanYouMake />
         <WhyInhaus />
+        <WhatCanYouMake />
         <RealPours />
         <Reviews />
         <FAQ />
