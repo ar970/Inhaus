@@ -1,15 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import { Cup, Bean, Steam, Drop } from "@/components/Doodles";
 
 const scenes = [
-  { caption: "morning pour",        grad: "from-[#EFE2CC] to-[#E3D2B8]", Icon: Steam, rotate: 0  },
-  { caption: "iced black, no rules", grad: "from-[#E7D6BE] to-[#D9C3A0]", Icon: Cup,   rotate: -2 },
-  { caption: "latte at the counter", grad: "from-[#F0E3CD] to-[#E3D2B8]", Icon: Drop,  rotate: 2  },
-  { caption: "beans, always whole",  grad: "from-[#E9D8C0] to-[#DDC8A6]", Icon: Bean,  rotate: -1 },
+  { caption: "morning pour",         image: "/morning pour.png",          rotate: 0  },
+  { caption: "iced black, no rules", image: "/iced balck.png",            rotate: -2 },
+  { caption: "latte at the counter", image: "/latte at the counter.png",  rotate: 2  },
+  { caption: "beans, always whole",  image: "/beans.always whole.png",    rotate: -1 },
 ];
 
 export default function RealPours() {
@@ -29,15 +29,16 @@ export default function RealPours() {
                 style={{ rotate: s.rotate }}
               >
                 <motion.div
-                  className={`relative flex aspect-[4/5] cursor-pointer items-center justify-center overflow-hidden rounded-[20px] border border-espresso/10 bg-gradient-to-b ${s.grad} shadow-soft`}
-                  whileHover={{ boxShadow: "0 24px 60px rgba(0,0,0,0.14)" }}
+                  className="relative aspect-[4/5] cursor-pointer overflow-hidden rounded-[20px] border border-espresso/10 shadow-soft"
+                  whileHover={{ boxShadow: "0 24px 60px rgba(0,0,0,0.18)" }}
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.1, y: -8 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <s.Icon className="h-20 w-20 text-espresso/40" />
-                  </motion.div>
+                  <Image
+                    src={s.image}
+                    alt={s.caption}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 78vw, (max-width: 1024px) 45vw, 25vw"
+                  />
                 </motion.div>
                 <figcaption className="label mt-3 text-center text-espresso/50">
                   [ {s.caption} ]
