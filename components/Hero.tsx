@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence } from "framer-motion";
 import { useRef } from "react";
 import InhausBottle from "@/components/InhausBottle";
 import { Stars, Arrow } from "@/components/Doodles";
@@ -16,7 +16,12 @@ const defaultContent = {
   ctaSecondary: "How it works",
 };
 
-/* Stagger container — orchestrates children on page load */
+const personaVideos: Record<string, string> = {
+  creator:      "/animation-creator.mp4",
+  student:      "/animation-student.mp4",
+  professional: "/animation-proffesional.mp4",
+};
+
 const container = {
   hidden: {},
   show: { transition: { staggerChildren: 0.11, delayChildren: 0.15 } },
@@ -45,12 +50,14 @@ export default function Hero() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const bottleY  = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const bottleY     = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const bottleScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.94]);
+
+  const videoSrc = persona ? personaVideos[persona] : null;
 
   return (
     <section ref={sectionRef} id="top" className="relative overflow-hidden">
-      {/* Ambient glow behind bottle */}
+      {/* Ambient glow */}
       <motion.div
         className="pointer-events-none absolute right-0 top-0 h-[80%] w-[55%]"
         style={{
@@ -62,7 +69,7 @@ export default function Hero() {
 
       <div className="container-x grid min-h-[90vh] items-center gap-6 py-12 md:grid-cols-[1fr_0.88fr] md:gap-0 md:py-0">
 
-        {/* ── Copy — orchestrated stagger ────────────────────── */}
+        {/* ── Copy ── */}
         <motion.div
           className="order-2 md:order-1 md:py-20"
           variants={container}
@@ -73,14 +80,12 @@ export default function Hero() {
             {c.eyebrow}
           </motion.p>
 
-          <h1 className="mt-4 font-serif text-[52px] leading-none tracking-tight md:text-[88px] lg:text-[104px]"
-              style={{ fontFamily: "var(--vibe-head-font)", fontStyle: "var(--vibe-head-style)", fontWeight: "var(--vibe-head-weight)" }}>
+          <h1
+            className="mt-4 font-serif text-[52px] leading-none tracking-tight md:text-[88px] lg:text-[104px]"
+            style={{ fontFamily: "var(--vibe-head-font)", fontStyle: "var(--vibe-head-style)", fontWeight: "var(--vibe-head-weight)" }}
+          >
             {headlineLines.map((line, i) => (
-              <motion.span
-                key={i}
-                variants={item}
-                className="block vibe-accent-word overflow-hidden"
-              >
+              <motion.span key={i} variants={item} className="block vibe-accent-word overflow-hidden">
                 {line}
               </motion.span>
             ))}
@@ -99,7 +104,6 @@ export default function Hero() {
                 {c.cta}
                 <Arrow className="h-3.5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
-              {/* Shine sweep on hover */}
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
             </Link>
 
@@ -116,11 +120,7 @@ export default function Hero() {
             <span className="text-sm text-espresso/50">Loved by 2,000+ home baristas</span>
           </motion.div>
 
-          {/* Horizontal fact pills */}
-          <motion.div
-            variants={itemFast}
-            className="mt-7 flex flex-wrap gap-2 border-t border-espresso/10 pt-6"
-          >
+          <motion.div variants={itemFast} className="mt-7 flex flex-wrap gap-2 border-t border-espresso/10 pt-6">
             {["₹22 / cup", "20+ drinks", "60-sec brew", "No machine"].map((f) => (
               <span
                 key={f}
@@ -133,28 +133,57 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* ── Bottle — scroll parallax ────────────────────────── */}
+        {/* ── Visual — video or bottle ── */}
         <motion.div
           className="order-1 md:order-2"
-          initial={{ opacity: 0, scale: 0.9, filter: "blur(12px)" }}
-          animate={{ opacity: 1, scale: 1,   filter: "blur(0px)" }}
-          transition={{ duration: 1.1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          style={{ y: reduce ? 0 : bottleY, scale: reduce ? 1 : bottleScale }}
         >
-          <motion.div
-            className="relative mx-auto flex max-w-[440px] items-center justify-center md:max-w-full md:py-12"
-            style={{ y: reduce ? 0 : bottleY, scale: reduce ? 1 : bottleScale }}
-          >
-            {/* Warm glow halo */}
+          <div className="relative mx-auto flex max-w-[440px] items-center justify-center md:max-w-full md:py-12">
+
+            {/* Glow halo */}
             <motion.div
               className="absolute inset-[15%] -z-10 blur-[70px]"
-              style={{
-                background: "radial-gradient(ellipse at 50% 60%, var(--theme-accent-soft) 0%, transparent 70%)",
-              }}
+              style={{ background: "radial-gradient(ellipse at 50% 60%, var(--theme-accent-soft) 0%, transparent 70%)" }}
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
-            <InhausBottle className="relative z-10 w-full max-h-[620px]" />
-          </motion.div>
+
+            <AnimatePresence mode="wait">
+              {videoSrc ? (
+                /* ── Persona video ── */
+                <motion.div
+                  key={videoSrc}
+                  className="relative z-10 w-full overflow-hidden rounded-[24px]"
+                  initial={{ opacity: 0, scale: 0.92, filter: "blur(14px)" }}
+                  animate={{ opacity: 1, scale: 1,    filter: "blur(0px)" }}
+                  exit={{    opacity: 0, scale: 0.95,  filter: "blur(8px)"  }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <video
+                    key={videoSrc}
+                    src={videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full max-h-[620px] object-contain"
+                  />
+                </motion.div>
+              ) : (
+                /* ── Default bottle ── */
+                <motion.div
+                  key="bottle"
+                  className="relative z-10 w-full"
+                  initial={{ opacity: 0, scale: 0.9, filter: "blur(12px)" }}
+                  animate={{ opacity: 1, scale: 1,   filter: "blur(0px)" }}
+                  exit={{    opacity: 0, scale: 0.95, filter: "blur(8px)"  }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <InhausBottle className="w-full max-h-[620px]" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </motion.div>
 
       </div>
