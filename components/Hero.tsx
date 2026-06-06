@@ -11,7 +11,7 @@ import {
   AnimatePresence,
   type MotionValue,
 } from "framer-motion";
-import { Arrow, Stars } from "@/components/Doodles";
+import { Arrow } from "@/components/Doodles";
 import { usePersona } from "@/context/PersonaContext";
 import { personaContent } from "@/lib/personas";
 import InhausBottle from "@/components/InhausBottle";
@@ -27,6 +27,7 @@ type Obj = {
   floatOffset: number;
   floatAmp: number;
   layer: Layer;
+  wobble?: boolean;
 };
 
 // ─── Scene configurations ───────────────────────────────────────────────
@@ -37,10 +38,10 @@ const SCENES = {
     image:   "/product-study.jpeg",
     texture: `repeating-linear-gradient(transparent 0,transparent 27px,rgba(245,107,0,0.05) 27px,rgba(245,107,0,0.05) 28px)`,
     objects: [
-      { id:"books",      x:11, y:14, depth:0.42, size:108, rotateZ:-12, floatOffset:0.0, floatAmp:12, layer:"back"  },
-      { id:"calculator", x:78, y:11, depth:0.58, size:86,  rotateZ: 9,  floatOffset:0.7, floatAmp:10, layer:"back"  },
+      { id:"books",      x:11, y:14, depth:0.42, size:130, rotateZ:-12, floatOffset:0.0, floatAmp:12, layer:"back"  },
+      { id:"calculator", x:78, y:11, depth:0.58, size:99,  rotateZ: 9,  floatOffset:0.7, floatAmp:10, layer:"back"  },
       { id:"notebook",   x:8,  y:63, depth:0.80, size:90,  rotateZ: 15, floatOffset:1.4, floatAmp:14, layer:"front" },
-      { id:"pencil",     x:85, y:66, depth:0.72, size:66,  rotateZ:-20, floatOffset:1.0, floatAmp: 9, layer:"front" },
+      { id:"pencil",     x:85, y:66, depth:0.72, size:66,  rotateZ:-20, floatOffset:1.0, floatAmp: 9, layer:"front", wobble:true },
       { id:"clock",      x:50, y:5,  depth:0.36, size:74,  rotateZ:  5, floatOffset:2.0, floatAmp:13, layer:"back"  },
     ] as Obj[],
   },
@@ -50,9 +51,9 @@ const SCENES = {
     image:   "/product-workflow.jpeg",
     texture: `linear-gradient(rgba(0,168,150,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,168,150,0.05) 1px,transparent 1px)`,
     objects: [
-      { id:"laptop",    x:9,  y:12, depth:0.60, size:114, rotateZ: -7, floatOffset:0.0, floatAmp:10, layer:"back"  },
+      { id:"laptop",    x:9,  y:12, depth:0.60, size:148, rotateZ: -7, floatOffset:0.0, floatAmp:10, layer:"back"  },
       { id:"calendar",  x:78, y:14, depth:0.52, size:78,  rotateZ:  7, floatOffset:0.8, floatAmp:12, layer:"back"  },
-      { id:"checklist", x:7,  y:66, depth:0.78, size:76,  rotateZ: 13, floatOffset:1.2, floatAmp: 9, layer:"front" },
+      { id:"checklist", x:7,  y:66, depth:0.82, size:82,  rotateZ: 13, floatOffset:1.2, floatAmp: 9, layer:"front" },
       { id:"chart",     x:82, y:65, depth:0.76, size:72,  rotateZ: -4, floatOffset:1.5, floatAmp:11, layer:"front" },
       { id:"watch",     x:50, y:5,  depth:0.38, size:66,  rotateZ: -2, floatOffset:2.2, floatAmp:14, layer:"back"  },
     ] as Obj[],
@@ -63,8 +64,8 @@ const SCENES = {
     image:   "/product-creator.jpeg",
     texture: `radial-gradient(circle,rgba(255,45,120,0.09) 1px,transparent 1px)`,
     objects: [
-      { id:"camera",     x:8,  y:13, depth:0.68, size:118, rotateZ:-9,  floatOffset:0.0, floatAmp:11, layer:"back"  },
-      { id:"headphones", x:74, y:10, depth:0.50, size:86,  rotateZ: 8,  floatOffset:0.8, floatAmp:13, layer:"back"  },
+      { id:"camera",     x:8,  y:13, depth:0.68, size:153, rotateZ:-9,  floatOffset:0.0, floatAmp:11, layer:"back"  },
+      { id:"headphones", x:74, y:10, depth:0.50, size:86,  rotateZ: 8,  floatOffset:0.8, floatAmp:13, layer:"back",  wobble:true },
       { id:"lightbulb",  x:81, y:63, depth:0.70, size:70,  rotateZ:-5,  floatOffset:1.3, floatAmp:10, layer:"front" },
       { id:"mic",        x:6,  y:67, depth:0.82, size:64,  rotateZ:16,  floatOffset:1.1, floatAmp: 9, layer:"front" },
       { id:"music",      x:50, y:4,  depth:0.35, size:62,  rotateZ:-4,  floatOffset:1.9, floatAmp:14, layer:"back"  },
@@ -417,11 +418,15 @@ function FloatObj({
   smoothX: MotionValue<number>; smoothY: MotionValue<number>;
   index: number;
 }) {
-  const px = useTransform(smoothX, [0, 1], [-24 * obj.depth, 24 * obj.depth]);
-  const py = useTransform(smoothY, [0, 1], [-16 * obj.depth, 16 * obj.depth]);
+  const px  = useTransform(smoothX, [0, 1], [-24 * obj.depth, 24 * obj.depth]);
+  const py  = useTransform(smoothY, [0, 1], [-16 * obj.depth, 16 * obj.depth]);
   const Svg = OBJ_MAP[obj.id];
   if (!Svg) return null;
-  const zClass = obj.layer === "back" ? "z-[5]" : "z-[15]";
+  const zClass   = obj.layer === "back" ? "z-[5]" : "z-[15]";
+  const floatY   = [obj.floatAmp * 0.5, -obj.floatAmp * 0.5, obj.floatAmp * 0.5];
+  const wobbleRZ = obj.wobble
+    ? [obj.rotateZ - 4, obj.rotateZ + 4, obj.rotateZ - 4]
+    : obj.rotateZ;
   return (
     <motion.div
       className={`absolute ${zClass}`}
@@ -433,21 +438,24 @@ function FloatObj({
         translateX: "-50%",
         translateY: "-50%",
         x: px,
-        filter: `drop-shadow(0 12px 28px ${accent}52) blur(${(1 - obj.depth) * 0.7}px)`,
+        filter: `drop-shadow(0 16px 36px ${accent}55) drop-shadow(0 4px 12px rgba(0,0,0,0.4)) blur(${(1 - obj.depth) * 0.65}px)`,
         opacity: 0.55 + obj.depth * 0.4,
       }}
-      initial={{ opacity: 0, scale: 0.45, y: 40, rotate: obj.rotateZ - 8 }}
+      initial={{ opacity: 0, scale: 0.4, y: 48, rotate: obj.rotateZ - 10 }}
       animate={{
         opacity: 0.55 + obj.depth * 0.4,
         scale: 1,
-        rotate: obj.rotateZ,
-        y: [obj.floatAmp * 0.5, -obj.floatAmp * 0.5, obj.floatAmp * 0.5],
+        rotate: wobbleRZ,
+        y: floatY,
       }}
       transition={{
-        opacity: { duration: 0.55, delay: 0.3 + index * 0.08 },
-        scale:   { duration: 0.7,  delay: 0.3 + index * 0.08, ease: [0.22, 1, 0.36, 1] },
-        rotate:  { duration: 0.7,  delay: 0.3 + index * 0.08, ease: [0.22, 1, 0.36, 1] },
-        y: { duration: 3.6 + obj.floatOffset, repeat: Infinity, ease: "easeInOut", delay: obj.floatOffset },
+        opacity: { duration: 0.6,  delay: 0.28 + index * 0.09 },
+        scale:   { duration: 0.75, delay: 0.28 + index * 0.09, ease: [0.22, 1, 0.36, 1] },
+        rotate:  { duration: obj.wobble ? 3.8 + obj.floatOffset : 0.75,
+                   repeat: obj.wobble ? Infinity : 0,
+                   ease: obj.wobble ? "easeInOut" : [0.22, 1, 0.36, 1],
+                   delay: obj.wobble ? obj.floatOffset * 0.5 : 0.28 + index * 0.09 },
+        y: { duration: 3.8 + obj.floatOffset, repeat: Infinity, ease: "easeInOut", delay: obj.floatOffset },
       }}
     >
       <Svg c={accent} />
@@ -509,6 +517,22 @@ export default function Hero() {
   };
   const onLeave = () => { rawX.set(0.5); rawY.set(0.5); };
 
+  // ── Persona splash transition ─────────────────────────────────────────
+  const prevPersona = useRef<string | null>(null);
+  const [splash, setSplash] = useState<{ color: string; key: number } | null>(null);
+  useEffect(() => {
+    if (persona && persona !== prevPersona.current && prevPersona.current !== null) {
+      const colors: Record<string, string> = {
+        student: "#F56B00", professional: "#00A896", creator: "#FF2D78",
+      };
+      setSplash({ color: colors[persona] ?? "#F56B00", key: Date.now() });
+      const t = setTimeout(() => setSplash(null), 900);
+      prevPersona.current = persona;
+      return () => clearTimeout(t);
+    }
+    prevPersona.current = persona;
+  }, [persona]);
+
   return (
     <section
       id="top"
@@ -524,6 +548,26 @@ export default function Hero() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 1.3 }}
             style={{ background: `radial-gradient(ellipse 62% 58% at 70% 50%, ${scene.glow} 0%, transparent 68%)` }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Persona splash transition */}
+      <AnimatePresence>
+        {splash && (
+          <motion.div
+            key={splash.key}
+            className="pointer-events-none fixed rounded-full"
+            style={{
+              width: "200vmax", height: "200vmax",
+              top: "50%", left: "50%",
+              x: "-50%", y: "-50%",
+              background: splash.color,
+              zIndex: 99999,
+            }}
+            initial={{ scale: 0, opacity: 0.88 }}
+            animate={{ scale: 1, opacity: [0.88, 0.88, 0] }}
+            transition={{ duration: 0.75, ease: [0.15, 0.85, 0.3, 1] }}
           />
         )}
       </AnimatePresence>
@@ -564,9 +608,13 @@ export default function Hero() {
             </Link>
           </motion.div>
 
-          <motion.div variants={ITEM_F} className="mt-7 flex items-center gap-3">
-            <Stars />
-            <span className="text-sm opacity-50">Loved by 2,000+ home baristas</span>
+          <motion.div variants={ITEM_F} className="mt-7 flex items-center gap-2">
+            {["~20 Cups", "₹22 per Cup", "Ready in 60 Seconds"].map((stat, i) => (
+              <span key={stat} className="flex items-center gap-2">
+                {i > 0 && <span className="opacity-25">·</span>}
+                <span className="text-[13px] font-medium opacity-55">{stat}</span>
+              </span>
+            ))}
           </motion.div>
 
           <motion.div variants={ITEM_F} className="mt-7 flex flex-wrap gap-2 border-t pt-6"
@@ -645,6 +693,10 @@ export default function Hero() {
                     <Image src={scene.image} alt="INHAUS product" fill priority
                       className="object-contain"
                       style={{ filter:`contrast(1.1) saturate(1.2) drop-shadow(0 32px 64px rgba(0,0,0,0.7)) drop-shadow(0 0 40px ${scene.accent}48)` }}
+                    />
+                    {/* Gloss highlight */}
+                    <div className="pointer-events-none absolute inset-0"
+                      style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 30%, transparent 60%)", borderRadius: "inherit" }}
                     />
                   </motion.div>
                 ) : (
