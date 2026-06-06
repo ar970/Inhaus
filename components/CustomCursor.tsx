@@ -11,9 +11,9 @@ export default function CustomCursor() {
   const mx = useMotionValue(-100);
   const my = useMotionValue(-100);
 
-  // Very stiff spring — barely any lag, just enough to feel smooth not robotic
-  const rx = useSpring(mx, { stiffness: 700, damping: 38, mass: 0.3 });
-  const ry = useSpring(my, { stiffness: 700, damping: 38, mass: 0.3 });
+  // No spring on the ring — follows cursor exactly, zero lag
+  const rx = mx;
+  const ry = my;
 
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) { setTouch(true); return; }
