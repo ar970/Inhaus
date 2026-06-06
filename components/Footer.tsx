@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const columns = [
   {
@@ -23,9 +24,14 @@ export default function Footer() {
         <div className="grid gap-10 border-b pb-14 md:grid-cols-[1.6fr_1fr_1fr_1fr]"
           style={{ borderColor: "color-mix(in srgb, var(--theme-dark-ink) 12%, transparent)" }}>
           <div>
-            <p className="font-serif text-[28px] tracking-tight" style={{ color: "var(--theme-dark-ink)" }}>
-              INHAUS
-            </p>
+            <Image
+              src="/inhaus-logo.jpeg"
+              alt="inhaus"
+              width={100}
+              height={75}
+              className="h-12 w-auto object-contain"
+              style={{ filter: "invert(1) brightness(1.15)" }}
+            />
             <p className="mt-3 max-w-[220px] text-sm leading-relaxed"
               style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 55%, transparent)" }}>
               Café-style coffee concentrate. Brewed with care, poured at home.
