@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+/* Fonts loaded via next/font in layout.tsx — no @import needed */
 
 @tailwind base;
 @tailwind components;
@@ -19,7 +19,7 @@
   --theme-dark-accent:   #D48A36;
 
   --vibe-radius:         16px;
-  --vibe-head-font:      'Cormorant Garamond', Georgia, serif;
+  --vibe-head-font:      var(--font-cormorant), Georgia, serif;
   --vibe-head-weight:    400;
   --vibe-head-style:     normal;
   --vibe-head-spacing:   -0.02em;
@@ -60,7 +60,7 @@
   --theme-dark-ink:      #FFE8F2;
   --theme-dark-accent:   #FF2D78;
   --vibe-radius:         6px;
-  --vibe-head-font:      'Cormorant Garamond', Georgia, serif;
+  --vibe-head-font:      var(--font-cormorant), Georgia, serif;
   --vibe-head-weight:    300;
   --vibe-head-style:     italic;
   --vibe-head-spacing:   -0.01em;
@@ -80,7 +80,7 @@
   --theme-dark-ink:      #EEF2F8;
   --theme-dark-accent:   #00C4AE;
   --vibe-radius:         2px;
-  --vibe-head-font:      'Cormorant Garamond', Georgia, serif;
+  --vibe-head-font:      var(--font-cormorant), Georgia, serif;
   --vibe-head-weight:    500;
   --vibe-head-style:     normal;
   --vibe-head-spacing:   -0.05em;
@@ -167,7 +167,7 @@ body::after {
   body {
     background-color: var(--theme-bg);
     color: var(--theme-ink);
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.55s cubic-bezier(0.22,1,0.36,1),
                 color 0.55s cubic-bezier(0.22,1,0.36,1);
@@ -197,7 +197,7 @@ body::after {
   }
 
   .label {
-    font-family: 'Space Mono', ui-monospace, monospace;
+    font-family: var(--font-space-mono), ui-monospace, monospace;
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: var(--vibe-eyebrow-tr, 0.18em);
@@ -230,13 +230,16 @@ body::after {
   }
 }
 
-/* ─── Global transitions ─────────────────────────────────────────── */
-*, *::before, *::after {
+/* ─── Scoped transitions (removed from * selector for performance) ── */
+html, body,
+.card, .vibe-shape,
+button, a,
+[data-theme-transition] {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-duration: 0.45s;
   transition-timing-function: cubic-bezier(0.22,1,0.36,1);
 }
-[data-framer-motion-id], .animate-marquee, button, a {
+button, a, .animate-marquee {
   transition-duration: 0.18s;
 }
 

@@ -61,6 +61,7 @@ export default function WhyInhaus() {
                   loop
                   muted
                   playsInline
+                  preload="none"
                   className="h-full w-full object-contain"
                   style={{ mixBlendMode: "screen" }}
                 />

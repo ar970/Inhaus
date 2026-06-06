@@ -464,7 +464,7 @@ function FloatObj({
 }
 
 // ─── Coffee particles ────────────────────────────────────────────────────
-const PARTICLES = Array.from({ length: 26 }, (_, i) => ({
+const PARTICLES = Array.from({ length: 14 }, (_, i) => ({
   id: i,
   x:   (i * 41 + 7)  % 100,
   y:   (i * 59 + 19) % 100,
@@ -647,6 +647,7 @@ export default function Hero() {
                   borderRadius: p.drop ? "50% 50% 50% 0" : "50%",
                   opacity: 0.22,
                   zIndex: 2,
+                  willChange: "transform, opacity",
                 }}
                 animate={{ y:[-10, 10, -10], opacity:[0.1, 0.32, 0.1] }}
                 transition={{ duration:p.dur, delay:p.del, repeat:Infinity, ease:"easeInOut" }}
