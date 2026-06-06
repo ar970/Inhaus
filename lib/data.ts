@@ -68,33 +68,33 @@ export const drinks: { name: string; mood: string; time: string; icon: "cup" | "
   {
     name: "Iced Caramel Latte", mood: "Iced · Indulgent", time: "1 min", icon: "drop", image: "/iced-caramel-latte.jpeg",
     recipe: {
-      description: "Silky coffee concentrate over ice with a drizzle of golden caramel. Sweet, bold, irresistible.",
-      ingredients: ["15 ml INHAUS concentrate", "100 ml cold milk", "2 tsp caramel sauce", "50 g ice cubes"],
-      steps: ["Fill a glass with ice.", "Pour INHAUS concentrate over the ice.", "Add cold milk.", "Drizzle caramel sauce on top and stir lightly."],
+      description: "Smooth coffee with cold milk and caramel over ice. Sweet, silky, seriously good.",
+      ingredients: ["15 ml INHAUS concentrate", "100 ml cold milk", "2 tsp (10 ml) caramel syrup", "50 g ice cubes"],
+      steps: ["Fill a glass with ice.", "Pour concentrate over ice.", "Add caramel syrup.", "Top with cold milk and stir.", "(opt) Garnish with a drizzle of caramel sauce."],
     },
   },
   {
     name: "Classic Americano", mood: "Hot or Iced", time: "1 min", icon: "bean", image: "/classic-americano.jpeg",
     recipe: {
-      description: "Pure coffee concentrate with hot or cold water. Strong, clean, no-nonsense.",
-      ingredients: ["15 ml INHAUS concentrate", "150 ml hot or cold water"],
-      steps: ["Add INHAUS concentrate to your cup.", "Top up with hot water for hot, or pour over ice with cold water.", "Stir and sip."],
+      description: "Concentrate diluted with water — hot or over ice. Simple, bold, timeless.",
+      ingredients: ["10 ml INHAUS concentrate", "90 ml hot or cold water", "50 g ice (if iced)"],
+      steps: ["For iced: fill glass with ice, add INHAUS concentrate, top with cold water.", "For hot: add concentrate to cup, pour hot water over it.", "Stir and enjoy!"],
     },
   },
   {
     name: "Iced Hazelnut Latte", mood: "Iced · 60 sec", time: "1 min", icon: "cup", image: "/iced-hazelnut-latte.jpeg",
     recipe: {
-      description: "Coffee and cold milk with a warm hazelnut twist, served over ice. Nutty, smooth, café-worthy.",
-      ingredients: ["15 ml INHAUS concentrate", "100 ml cold milk", "2 tsp hazelnut syrup", "50 g ice cubes"],
-      steps: ["Fill a glass with ice.", "Add INHAUS concentrate and hazelnut syrup.", "Pour cold milk over the top.", "Stir well and enjoy."],
+      description: "INHAUS concentrate with cold milk and hazelnut over ice. Nutty, creamy, dangerously drinkable.",
+      ingredients: ["15 ml INHAUS concentrate", "100 ml cold milk", "2 tsp (10 ml) hazelnut syrup", "50 g ice cubes"],
+      steps: ["Fill a glass with ice.", "Add INHAUS concentrate and hazelnut syrup.", "Pour cold milk over the top.", "Stir and serve."],
     },
   },
   {
     name: "Classic Latte", mood: "Hot · Smooth", time: "2 min", icon: "drop", image: "/classic-latte.jpeg",
     recipe: {
-      description: "The everyday cup — concentrate with steamed milk. Smooth, balanced, perfectly simple.",
-      ingredients: ["15 ml INHAUS concentrate", "150 ml hot milk"],
-      steps: ["Add INHAUS concentrate to your cup.", "Heat milk until steaming (do not boil).", "Pour hot milk over the concentrate.", "Stir gently and serve."],
+      description: "INHAUS concentrate with warm milk. Creamy, comforting, classic.",
+      ingredients: ["10 ml INHAUS concentrate", "100 ml hot milk"],
+      steps: ["Pour INHAUS concentrate into your cup.", "Heat milk to about 70°C (do not boil).", "Pour hot milk over the concentrate.", "Stir and enjoy."],
     },
   },
 ];
