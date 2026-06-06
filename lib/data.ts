@@ -18,16 +18,16 @@ export const benefits: { title: string; icon: "bean" | "drop" | "house" | "cup" 
 /* ─── What can you make (from the real drink line-up) ────────────────── */
 export const drinks: { name: string; mood: string; time: string; icon: "cup" | "drop" | "bean"; image: string }[] = [
   /* ── New flavours first ── */
-  { name: "Iced Strawberry Latte", mood: "Iced · Fruity",   time: "1 min", icon: "drop", image: "/drinks/iced-strawberry-latte.jpg" },
-  { name: "Pistachio Latte",       mood: "Hot · Nutty",     time: "2 min", icon: "cup",  image: "/drinks/pistachio-latte.jpg" },
-  { name: "Spanish Latte",         mood: "Iced · Bold",     time: "1 min", icon: "bean", image: "/drinks/spanish-latte.jpg" },
-  { name: "Iced Vanilla Latte",    mood: "Hot · Sweet",     time: "2 min", icon: "drop", image: "/drinks/iced-vanilla-latte.jpg" },
+  { name: "Iced Strawberry Latte", mood: "Iced · Fruity",   time: "1 min", icon: "drop", image: "/iced-strawberry-latte.jpeg" },
+  { name: "Pistachio Latte",       mood: "Hot · Nutty",     time: "2 min", icon: "cup",  image: "/pistachio-latte.jpeg" },
+  { name: "Spanish Latte",         mood: "Iced · Bold",     time: "1 min", icon: "bean", image: "/spanish-latte.jpeg" },
+  { name: "Iced Vanilla Latte",    mood: "Hot · Sweet",     time: "2 min", icon: "drop", image: "/iced-vanilla-latte.jpeg" },
   /* ── Original five ── */
-  { name: "Mocha",                 mood: "Hot · Comfort",   time: "2 min", icon: "cup",  image: "/drinks/mocha.jpg" },
-  { name: "Iced Caramel Latte",    mood: "Iced · Indulgent",time: "1 min", icon: "drop", image: "/drinks/iced-caramel-latte.jpg" },
-  { name: "Classic Americano",     mood: "Hot or Iced",     time: "1 min", icon: "bean", image: "/drinks/classic-americano.jpg" },
-  { name: "Iced Hazelnut Latte",   mood: "Iced · 60 sec",  time: "1 min", icon: "cup",  image: "/drinks/iced-hazelnut-latte.jpg" },
-  { name: "Classic Latte",         mood: "Hot · Smooth",    time: "2 min", icon: "drop", image: "/drinks/classic-latte.jpg" },
+  { name: "Mocha",                 mood: "Hot · Comfort",   time: "2 min", icon: "cup",  image: "/mocha.jpeg" },
+  { name: "Iced Caramel Latte",    mood: "Iced · Indulgent",time: "1 min", icon: "drop", image: "/iced-caramel-latte.jpeg" },
+  { name: "Classic Americano",     mood: "Hot or Iced",     time: "1 min", icon: "bean", image: "/classic-americano.jpeg" },
+  { name: "Iced Hazelnut Latte",   mood: "Iced · 60 sec",  time: "1 min", icon: "cup",  image: "/iced-hazelnut-latte.jpeg" },
+  { name: "Classic Latte",         mood: "Hot · Smooth",    time: "2 min", icon: "drop", image: "/classic-latte.jpeg" },
 ];
 
 /* ─── Default reviews (used pre-persona; personas override these) ─────── */
