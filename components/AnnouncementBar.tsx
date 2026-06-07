@@ -6,7 +6,7 @@ import { personaContent } from "@/lib/personas";
 
 export default function AnnouncementBar() {
   const { persona } = usePersona();
-  const text = persona ? personaContent[persona].announcement : "Free shipping over ₹999 · Welcome gift: 10% off your first pour";
+  const text = persona ? personaContent[persona].announcement : "Free shipping across India · Use code WELCOME10 for 10% off your first order";
 
   return (
     <div className="section-dark">

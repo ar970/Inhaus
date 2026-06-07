@@ -12,9 +12,9 @@ function formatPrice(n: number) {
 }
 
 const RECOMMENDED = [
-  { name: "Study Fuel",   handle: "study-fuel",   image: "/product-study.jpeg",   price: 299, color: "#F04E12", persona: "Student" },
-  { name: "Creator Fuel", handle: "creator-fuel", image: "/product-creator.jpeg", price: 299, color: "#FF2D78", persona: "Creator" },
-  { name: "WorkFlow",     handle: "workflow",     image: "/product-workflow.jpeg", price: 299, color: "#00A896", persona: "Professional" },
+  { name: "Study Fuel",   handle: "study-fuel",   image: "/product-study.jpeg",   price: 499, color: "#F04E12", persona: "Student" },
+  { name: "Creator Fuel", handle: "creator-fuel", image: "/product-creator.jpeg", price: 499, color: "#FF2D78", persona: "Creator" },
+  { name: "WorkFlow",     handle: "workflow",     image: "/product-workflow.jpeg", price: 499, color: "#00A896", persona: "Professional" },
 ];
 
 export default function CartDrawer() {

@@ -38,6 +38,14 @@ export default function Newsletter() {
           </h2>
           <p className="mx-auto mt-3 max-w-md opacity-80">{c.sub}</p>
 
+          {/* Coupon callout */}
+          <div className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5"
+            style={{ background: "rgba(0,0,0,0.15)" }}>
+            <span className="font-mono text-[11px] uppercase tracking-widest opacity-90">
+              Use coupon <strong className="font-bold tracking-widest">WELCOME10</strong> to get 10% off
+            </span>
+          </div>
+
           {submitted ? (
             <p className="mx-auto mt-8 max-w-md font-serif text-xl italic">
               You&apos;re in — check your inbox for the code. ☕
@@ -49,7 +57,7 @@ export default function Newsletter() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@email.com"
+                placeholder="your@email.com"
                 aria-label="Email address"
                 className="focusable h-12 w-full rounded-pill border border-current/25 bg-current/10 px-5 placeholder:opacity-50 focus-visible:ring-offset-2"
                 style={{ color: "var(--theme-bg)" }}

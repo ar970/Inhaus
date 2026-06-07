@@ -37,7 +37,7 @@ export const products: Product[] = [
     longDescription: "Study Fuel is INHAUS's answer to the café run you never have time for. Made from 100% Arabica speciality coffee, cold-brewed and concentrated into a bottle that fits your hostel fridge. Pour over milk or water, hot or iced, and you're sorted in 60 seconds.",
     variants: [
       { id: "study-100", name: "100ml (10 cups)", price: 0, cups: 10, ml: 100, comingSoon: true },
-      { id: "study-200", name: "200ml (20 cups)", price: 449, cups: 20, ml: 200 },
+      { id: "study-200", name: "200ml (20 cups)", price: 499, cups: 20, ml: 200 },
     ],
     benefits: ["100% Arabica speciality coffee", "No added sugar", "No preservatives", "Ready in 60 seconds", "No machine needed", "Hot or iced"],
     howTo: ["Pour 15ml concentrate into your cup", "Add 100ml hot or cold milk (or water)", "Stir once", "Done — that's it"],
@@ -60,7 +60,7 @@ export const products: Product[] = [
     longDescription: "Creator Fuel is for the people who can't afford a break in their flow. No café run, no machine setup, no waiting. INHAUS concentrate on your desk — stir into milk or water whenever the session calls for it. The same quality you'd get at a good café, made in seconds.",
     variants: [
       { id: "creator-100", name: "100ml (10 cups)", price: 0, cups: 10, ml: 100, comingSoon: true },
-      { id: "creator-200", name: "200ml (20 cups)", price: 449, cups: 20, ml: 200 },
+      { id: "creator-200", name: "200ml (20 cups)", price: 499, cups: 20, ml: 200 },
     ],
     benefits: ["100% Arabica speciality coffee", "No added sugar", "No preservatives", "Ready in 60 seconds", "No machine needed", "20 sessions per 200ml"],
     howTo: ["Pour 15ml concentrate into your cup", "Add 100ml milk or water — hot or over ice", "Stir", "Stay in the zone"],
@@ -83,7 +83,7 @@ export const products: Product[] = [
     longDescription: "WorkFlow is precision in a bottle. Built for professionals who won't compromise on quality or time. The same great cup every single morning — no inconsistency, no café queue, no machine. INHAUS replaces the ritual without losing the result.",
     variants: [
       { id: "workflow-100", name: "100ml (10 cups)", price: 0, cups: 10, ml: 100, comingSoon: true },
-      { id: "workflow-200", name: "200ml (20 cups)", price: 449, cups: 20, ml: 200 },
+      { id: "workflow-200", name: "200ml (20 cups)", price: 499, cups: 20, ml: 200 },
     ],
     benefits: ["100% Arabica speciality coffee", "No added sugar", "No preservatives", "60 seconds to brew", "No machine needed", "Consistent every cup"],
     howTo: ["Pour 15ml concentrate into your cup", "Add 100ml hot or cold milk (or water)", "Quick stir", "Consistent result, every time"],
