@@ -12,9 +12,9 @@ function formatPrice(n: number) {
 }
 
 const RECOMMENDED = [
-  { name: "Study Fuel",    handle: "study-fuel",    image: "/product-study.jpeg",    price: 299, color: "#F04E12" },
-  { name: "Creator Fuel",  handle: "creator-fuel",  image: "/product-creator.jpeg",  price: 299, color: "#FF2D78" },
-  { name: "WorkFlow",      handle: "workflow",       image: "/product-workflow.jpeg", price: 299, color: "#00A896" },
+  { name: "Study Fuel",   handle: "study-fuel",   image: "/product-study.jpeg",   price: 299, color: "#F04E12", persona: "Student" },
+  { name: "Creator Fuel", handle: "creator-fuel", image: "/product-creator.jpeg", price: 299, color: "#FF2D78", persona: "Creator" },
+  { name: "WorkFlow",     handle: "workflow",     image: "/product-workflow.jpeg", price: 299, color: "#00A896", persona: "Professional" },
 ];
 
 export default function CartDrawer() {
@@ -121,24 +121,30 @@ export default function CartDrawer() {
                       style={{ color: `${ink}50` }}>
                       Recommended for you
                     </p>
-                    <div className="flex flex-col gap-2.5">
+                    <div className="flex flex-col gap-2">
                       {RECOMMENDED.map(p => (
                         <Link
                           key={p.handle}
                           href={`/products/${p.handle}`}
                           onClick={() => dispatch({ type: "CLOSE" })}
-                          className="flex items-center gap-3.5 rounded-2xl p-3 transition-opacity hover:opacity-80"
+                          className="flex items-center gap-3 rounded-2xl p-2.5 transition-opacity hover:opacity-80"
                           style={{ background: `${p.color}0C`, border: `1px solid ${p.color}18` }}
                         >
-                          <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl"
+                          <div className="relative h-11 w-11 flex-shrink-0 overflow-hidden rounded-xl"
                             style={{ background: `${p.color}18` }}>
                             <Image src={p.image} alt={p.name} fill className="object-cover" />
                           </div>
-                          <div className="flex flex-1 flex-col gap-0.5">
-                            <span className="font-serif text-[15px] font-medium leading-tight"
-                              style={{ color: ink }}>
-                              {p.name}
-                            </span>
+                          <div className="flex flex-1 flex-col gap-1">
+                            <div className="flex items-center gap-2">
+                              <span className="font-serif text-[14px] font-medium leading-tight"
+                                style={{ color: ink }}>
+                                {p.name}
+                              </span>
+                              <span className="rounded-full px-1.5 py-px font-mono text-[9px] font-semibold uppercase tracking-wide"
+                                style={{ background: `${p.color}18`, color: p.color }}>
+                                {p.persona}
+                              </span>
+                            </div>
                             <span className="text-[11px]" style={{ color: `${ink}55` }}>
                               From {formatPrice(p.price)}
                             </span>
@@ -270,7 +276,7 @@ export default function CartDrawer() {
                   className="flex w-full items-center justify-center rounded-full py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   style={{ background: accent }}
                 >
-                  Shop now
+                  Find Your Fuel →
                 </Link>
               )}
             </div>
