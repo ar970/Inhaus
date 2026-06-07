@@ -1,26 +1,27 @@
+import dynamic from "next/dynamic";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Products from "@/components/Products";
-import HowItWorks from "@/components/HowItWorks";
-import WhatCanYouMake from "@/components/WhatCanYouMake";
-import WhyInhaus from "@/components/WhyInhaus";
-import RealPours from "@/components/RealPours";
-import Reviews from "@/components/Reviews";
-import FAQ from "@/components/FAQ";
-import Newsletter from "@/components/Newsletter";
-import Footer from "@/components/Footer";
 import PersonaGate from "@/components/PersonaGate";
 import PersonaSwitcher from "@/components/PersonaSwitcher";
+
+// Lazy-load everything below the fold — keeps the gate→site transition fast
+const HowItWorks    = dynamic(() => import("@/components/HowItWorks"));
+const WhyInhaus     = dynamic(() => import("@/components/WhyInhaus"));
+const WhatCanYouMake = dynamic(() => import("@/components/WhatCanYouMake"));
+const RealPours     = dynamic(() => import("@/components/RealPours"));
+const Reviews       = dynamic(() => import("@/components/Reviews"));
+const FAQ           = dynamic(() => import("@/components/FAQ"));
+const Newsletter    = dynamic(() => import("@/components/Newsletter"));
+const Footer        = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
   return (
     <>
-      {/* Persona selection gate — hides behind persona once selected */}
       <PersonaGate />
 
-      {/* Main site — renders beneath gate, transitions in after persona selection */}
       <AnnouncementBar />
       <Nav />
       <main>
@@ -37,9 +38,7 @@ export default function Home() {
       </main>
       <Footer />
 
-      {/* Floating persona switcher — always accessible once persona is set */}
       <PersonaSwitcher />
-
     </>
   );
 }

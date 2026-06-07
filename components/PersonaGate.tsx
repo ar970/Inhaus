@@ -209,40 +209,16 @@ function BurstParticles({ accent, origin }: { accent: string; origin: { x: numbe
   );
 }
 
-/* ─── Exit overlays ──────────────────────────────────────────────── */
-function StudentExit({ color }: { color: string }) {
+/* ─── Exit overlay — single fast fade, no GPU-heavy shapes ──────── */
+function ExitFade({ color }: { color: string }) {
   return (
-    <motion.div className="fixed inset-0 z-[9999] overflow-hidden" style={{ background: "#050308" }}>
-      {[0, 1, 2].map(i => (
-        <motion.div key={i} className="absolute inset-x-0"
-          style={{ height: "45vh", background: color, bottom: -8, borderRadius: "50% 50% 0 0" }}
-          initial={{ y: "100%" }} animate={{ y: `${-i * 35}%` }}
-          transition={{ duration: 0.65, delay: i * 0.07, ease: [0.65, 0, 0.35, 1] }} />
-      ))}
-    </motion.div>
-  );
-}
-function CreatorExit({ color }: { color: string }) {
-  return (
-    <motion.div className="fixed inset-0 z-[9999]" style={{ background: color }}
-      initial={{ clipPath: "circle(0% at 50% 50%)" }}
-      animate={{ clipPath: "circle(150% at 50% 50%)" }}
-      transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }} />
-  );
-}
-function ProfessionalExit({ color }: { color: string }) {
-  return (
-    <motion.div className="fixed inset-0 z-[9999] flex items-center justify-center" style={{ background: "#050308" }}>
-      {[0, 1, 2].map(i => (
-        <motion.div key={i} className="absolute rounded-full"
-          style={{ width: 180, height: 180, border: `1.5px solid ${color}` }}
-          initial={{ scale: 0, opacity: 0.7 }} animate={{ scale: 7 + i * 3, opacity: 0 }}
-          transition={{ duration: 0.75, delay: i * 0.09, ease: "easeOut" }} />
-      ))}
-      <motion.div className="absolute inset-0" style={{ background: color }}
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.28 }} />
-    </motion.div>
+    <motion.div
+      className="fixed inset-0 z-[9999]"
+      style={{ background: color }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.22, ease: "easeIn" }}
+    />
   );
 }
 
@@ -424,17 +400,11 @@ export default function PersonaGate() {
     setBurstOrigin({ x: e.clientX, y: e.clientY });
     setBurst(true);
     setSelected(p);
-    setTimeout(() => { setExiting(true); setTimeout(() => setPersona(p), 900); }, 120);
+    setExiting(true);
+    setTimeout(() => setPersona(p), 320);
   }
 
   const accent = selected ? ACCENT[selected] : "#ffffff";
-
-  function ExitOverlay() {
-    if (!selected) return null;
-    if (selected === "student")  return <StudentExit color={accent} />;
-    if (selected === "creator")  return <CreatorExit color={accent} />;
-    return <ProfessionalExit color={accent} />;
-  }
 
   return (
     <>
@@ -489,7 +459,7 @@ export default function PersonaGate() {
         )}
       </AnimatePresence>
 
-      <AnimatePresence>{exiting && <ExitOverlay />}</AnimatePresence>
+      <AnimatePresence>{exiting && <ExitFade color={accent} />}</AnimatePresence>
     </>
   );
 }
