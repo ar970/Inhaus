@@ -68,7 +68,7 @@ export default function ProductPage() {
         <div className="grid gap-12 md:grid-cols-2">
           {/* Images */}
           <div className="flex flex-col gap-4">
-            <div className="relative overflow-hidden rounded-3xl aspect-square" style={{ background: `${accent}10` }}>
+            <div className="relative overflow-hidden rounded-2xl aspect-square" style={{ background: `${accent}08` }}>
               <motion.div
                 key={activeImg}
                 initial={{ opacity: 0, x: 24 }}
