@@ -36,7 +36,7 @@ const SCENES = {
   student: {
     accent:  "#F56B00",
     glow:    "rgba(245,107,0,0.22)",
-    image:   "/product-study.jpeg",
+    image:   "/s.png",
     texture: `repeating-linear-gradient(transparent 0,transparent 27px,rgba(245,107,0,0.05) 27px,rgba(245,107,0,0.05) 28px)`,
     objects: [
       { id:"books",      x:11, y:14, depth:0.42, size:130, rotateZ:-12, floatOffset:0.0, floatAmp:12, layer:"back"  },
@@ -49,7 +49,7 @@ const SCENES = {
   professional: {
     accent:  "#00A896",
     glow:    "rgba(0,168,150,0.24)",
-    image:   "/product-workflow.jpeg",
+    image:   "/w.png",
     texture: `linear-gradient(rgba(0,168,150,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,168,150,0.05) 1px,transparent 1px)`,
     objects: [
       { id:"laptop",    x:9,  y:12, depth:0.60, size:148, rotateZ: -7, floatOffset:0.0, floatAmp:10, layer:"back"  },
@@ -728,7 +728,7 @@ export default function Hero() {
                       className="object-contain"
                       style={{
                         filter: `contrast(1.1) saturate(1.2) drop-shadow(0 32px 64px rgba(0,0,0,0.7)) drop-shadow(0 0 40px ${scene.accent}48)`,
-                        mixBlendMode: scene.image === "/creator.png" ? "screen" : "normal",
+                        mixBlendMode: "screen",
                       }}
                     />
                     {/* Gloss highlight */}

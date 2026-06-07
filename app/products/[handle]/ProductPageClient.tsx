@@ -81,7 +81,7 @@ export default function ProductPageClient({ handle }: { handle: string }) {
                   className="object-contain"
                   priority
                   style={{
-                    mixBlendMode: product.handle === "creator-fuel" ? "screen" : "normal",
+                    mixBlendMode: "screen",
                   }}
                 />
               </motion.div>

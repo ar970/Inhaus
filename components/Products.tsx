@@ -38,7 +38,7 @@ const products = {
     desc: "Clean, precise concentration calibrated for deep focus and sustained output. No noise, no machine, no wasted minutes. The same premium cup, every single morning.",
     color: "#00A896",
     colorSoft: "rgba(0,168,150,0.18)",
-    image: "/product-workflow.jpeg",
+    image: "/w.png",
     heroStat: { value: "60", unit: "seconds", label: "to brew" },
     stats: [
       { label: "Brew time", value: "60 sec" },
@@ -54,7 +54,7 @@ const products = {
     desc: "Bold, affordable, and ready before your laptop wakes up. Pull an all-nighter without leaving your desk. Every sip buys you another hour — deadline or not.",
     color: "#F56B00",
     colorSoft: "rgba(245,107,0,0.18)",
-    image: "/product-study.jpeg",
+    image: "/s.png",
     heroStat: { value: "₹25", unit: "per cup", label: "always" },
     stats: [
       { label: "Ready in", value: "60 sec" },
@@ -480,7 +480,7 @@ function ProductShowcase({
                          drop-shadow(0 38px 76px rgba(0,0,0,0.96))
                          drop-shadow(0 0 52px ${product.color}68)
                          drop-shadow(0 18px 44px ${product.color}42)`,
-                mixBlendMode: product.image === "/creator.png" ? "screen" : "normal",
+                mixBlendMode: "screen",
               }}
               sizes="(max-width: 768px) 85vw, 42vw"
               priority

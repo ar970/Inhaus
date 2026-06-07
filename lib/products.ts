@@ -31,8 +31,8 @@ export const products: Product[] = [
     tagline: "Fuel for the 2:17 AM grind.",
     persona: "student",
     color: "#F04E12",
-    image: "/product-study.jpeg",
-    images: ["/study fuel 2.png", "/study fuel 3.png", "/product-study.jpeg"],
+    image: "/s.png",
+    images: ["/s.png", "/study fuel 2.png", "/study fuel 3.png"],
     description: "Café-grade coffee concentrate for late-night study sessions, deadlines, and ambitious goals. Ready in 60 seconds. No machine needed.",
     longDescription: "Study Fuel is INHAUS's answer to the café run you never have time for. Made from 100% Arabica speciality coffee, cold-brewed and concentrated into a bottle that fits your hostel fridge. Pour over milk or water, hot or iced, and you're sorted in 60 seconds.",
     variants: [
@@ -77,8 +77,8 @@ export const products: Product[] = [
     tagline: "Skip the coffee run. Keep going.",
     persona: "professional",
     color: "#00A896",
-    image: "/product-workflow.jpeg",
-    images: ["/work flow 2.png", "/work flow 3.png", "/product-workflow.jpeg"],
+    image: "/w.png",
+    images: ["/w.png", "/work flow 2.png", "/work flow 3.png"],
     description: "Café-grade coffee concentrate for people who ship, build, and execute without compromise. Ready in 60 seconds. No machine needed.",
     longDescription: "WorkFlow is precision in a bottle. Built for professionals who won't compromise on quality or time. The same great cup every single morning — no inconsistency, no café queue, no machine. INHAUS replaces the ritual without losing the result.",
     variants: [
