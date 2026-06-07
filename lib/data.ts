@@ -154,11 +154,35 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How long does it last?",
-    a: "Full shelf-life and storage details will be confirmed with the final product. Keep it cool and sealed for the best flavour.",
+    a: "INHAUS concentrate keeps for 1 year sealed. Once opened, refrigerate and use within 30 days for the best flavour.",
   },
   {
     q: "Do you offer a trial or returns?",
-    a: "If your first order isn't for you, reach out and we'll make it right. Complete trial and return terms will be shared at launch.",
+    a: "If your first order isn't for you, reach out at admin@inhauscoffee.com and we'll make it right.",
+  },
+  {
+    q: "What is coffee concentrate?",
+    a: "Coffee concentrate is brewed coffee made at a much higher ratio of coffee to water — typically 2–4× stronger than regular coffee. You dilute it with milk or water when drinking, which gives you full café-strength flavour in seconds. INHAUS uses cold extraction to preserve the natural aroma and smoothness.",
+  },
+  {
+    q: "Is liquid coffee concentrate better than instant coffee?",
+    a: "Yes — significantly. Instant coffee is made by spray-drying or freeze-drying brewed coffee, which destroys much of the aroma and body. INHAUS is cold-extracted speciality Arabica, so you get the full complexity of a properly brewed cup — none of the hollow, bitter taste instant gives you.",
+  },
+  {
+    q: "What is the difference between coffee concentrate and cold brew?",
+    a: "Cold brew is typically brewed for 12–24 hours and consumed as-is. Coffee concentrate is brewed at a much higher coffee-to-water ratio, so a small amount (15ml) makes a full cup when diluted. INHAUS cold-extracts its concentrate slowly at low temperature, giving you cold brew quality that's shelf-stable and ready in seconds.",
+  },
+  {
+    q: "How do I make iced coffee with INHAUS?",
+    a: "Fill a glass with ice, pour 15–20ml of INHAUS concentrate, add 100–120ml of cold milk or water, and stir. Done — you have a café-style iced latte or iced americano in under 30 seconds, no machine needed.",
+  },
+  {
+    q: "Is INHAUS good for studying?",
+    a: "Yes — Study Fuel is specifically made for late-night study sessions and deadline-mode. It's 100% Arabica with no added sugar, so you get clean caffeine without a crash. Ready in 60 seconds, no noise, no mess — perfect for a hostel room or dorm.",
+  },
+  {
+    q: "Do you ship across India?",
+    a: "Yes. INHAUS ships across India. Standard delivery is 2–5 business days. For questions about your order, contact admin@inhauscoffee.com or call +91 93113 49922.",
   },
 ];
 

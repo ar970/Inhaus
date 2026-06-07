@@ -1,18 +1,32 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const columns = [
+const columns: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Shop",
-    links: ["Concentrate", "Bundles", "Gift cards", "Coming soon"],
+    links: [
+      { label: "Concentrate", href: "/#products" },
+      { label: "Bundles",     href: "#" },
+      { label: "Gift cards",  href: "#" },
+      { label: "Coming soon", href: "#" },
+    ],
   },
   {
     title: "Company",
-    links: ["Our story", "Sourcing", "Sustainability", "Stockists"],
+    links: [
+      { label: "Our story",      href: "/about" },
+      { label: "Sourcing",       href: "#" },
+      { label: "Sustainability", href: "#" },
+      { label: "Stockists",      href: "#" },
+    ],
   },
   {
     title: "Help",
-    links: ["FAQ", "Shipping & returns", "Brew guide"],
+    links: [
+      { label: "FAQ",               href: "/#faq" },
+      { label: "Shipping & returns", href: "#" },
+      { label: "Brew guide",        href: "#" },
+    ],
   },
 ];
 
@@ -58,12 +72,12 @@ export default function Footer() {
               </h3>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((l) => (
-                  <li key={l}>
-                    <Link href="#"
+                  <li key={l.label}>
+                    <Link href={l.href}
                       className="text-[13px] transition-opacity hover:opacity-100 focusable"
                       style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 65%, transparent)" }}
                     >
-                      {l}
+                      {l.label}
                     </Link>
                   </li>
                 ))}
