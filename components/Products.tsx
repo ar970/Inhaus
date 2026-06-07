@@ -415,19 +415,21 @@ function ProductShowcase({
             <div className="pointer-events-none absolute bottom-[6%] left-1/2 h-[55%] w-[62%] -translate-x-1/2 blur-[60px]"
               style={{ background: `${product.color}68` }} />
           </>}
-          {/* Animated accent ring behind pouch */}
-          <motion.div
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-            style={{ width: 220, height: 220, border: `1px solid ${product.color}30` }}
-            animate={{ scale: [1, 1.18, 1], opacity: [0.5, 0.15, 0.5] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-            style={{ width: 320, height: 320, border: `1px solid ${product.color}18` }}
-            animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0.1, 0.4] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-          />
+          {/* Animated accent rings — desktop only */}
+          {!isMobile && <>
+            <motion.div
+              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              style={{ width: 220, height: 220, border: `1px solid ${product.color}30` }}
+              animate={{ scale: [1, 1.18, 1], opacity: [0.5, 0.15, 0.5] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              style={{ width: 320, height: 320, border: `1px solid ${product.color}18` }}
+              animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0.1, 0.4] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+            />
+          </>}
 
           {/* Mouse-tracked glow */}
           <motion.div
@@ -446,8 +448,7 @@ function ProductShowcase({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              background: "rgba(0,0,0,0.58)",
-              backdropFilter: "blur(12px)",
+              background: "rgba(0,0,0,0.72)",
               border: `1px solid ${product.color}35`,
               borderRadius: 14,
               padding: "10px 16px",
@@ -467,8 +468,8 @@ function ProductShowcase({
           {/* Pouch image — ~13% bigger than before */}
           <motion.div
             className="relative z-10 h-[93%] w-[76%]"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+            animate={isMobile ? {} : { y: [0, -10, 0] }}
+            transition={isMobile ? {} : { duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
           >
             <Image

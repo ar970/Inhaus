@@ -493,6 +493,10 @@ const ITEM = {
   hidden: { opacity: 0, y: 34, filter: "blur(10px)" },
   show:   { opacity: 1, y: 0,  filter: "blur(0px)", transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
 };
+const ITEM_MOBILE = {
+  hidden: { opacity: 0, y: 28 },
+  show:   { opacity: 1, y: 0,  transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+};
 const ITEM_F = {
   hidden: { opacity: 0, y: 18 },
   show:   { opacity: 1, y: 0,  transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
@@ -604,18 +608,18 @@ export default function Hero() {
 
         {/* ── Copy ── */}
         <motion.div className="order-2 md:order-1 md:py-20" variants={C_WRAP} initial="hidden" animate="show">
-          <motion.p variants={ITEM} className="label" style={{ color: scene?.accent ?? "var(--theme-accent)" }}>
+          <motion.p variants={isMobile ? ITEM_MOBILE : ITEM} className="label" style={{ color: scene?.accent ?? "var(--theme-accent)" }}>
             {copy.eyebrow}
           </motion.p>
 
           <h1 className="mt-4 text-[50px] leading-none tracking-tight md:text-[82px] lg:text-[96px]"
             style={{ fontFamily:"var(--vibe-head-font)", fontStyle:"var(--vibe-head-style)", fontWeight:"var(--vibe-head-weight)" }}>
             {lines.map((line, i) => (
-              <motion.span key={i} variants={ITEM} className="block overflow-hidden">{line}</motion.span>
+              <motion.span key={i} variants={isMobile ? ITEM_MOBILE : ITEM} className="block overflow-hidden">{line}</motion.span>
             ))}
           </h1>
 
-          <motion.p variants={ITEM} className="mt-6 max-w-[420px] text-[17px] leading-[1.68] opacity-68">
+          <motion.p variants={isMobile ? ITEM_MOBILE : ITEM} className="mt-6 max-w-[420px] text-[17px] leading-[1.68] opacity-68">
             {copy.sub}
           </motion.p>
 
@@ -742,9 +746,9 @@ export default function Hero() {
                   </motion.div>
                 ) : (
                   <motion.div key="bottle"
-                    initial={{ opacity: 0, scale: 0.88, filter: "blur(14px)" }}
-                    animate={{ opacity: 1, scale: 1,    filter: "blur(0px)"  }}
-                    exit={{    opacity: 0, scale: 0.94,  filter: "blur(8px)"  }}
+                    initial={{ opacity: 0, scale: 0.88, ...(isMobile ? {} : { filter: "blur(14px)" }) }}
+                    animate={{ opacity: 1, scale: 1,    ...(isMobile ? {} : { filter: "blur(0px)"  }) }}
+                    exit={{    opacity: 0, scale: 0.94,  ...(isMobile ? {} : { filter: "blur(8px)"  }) }}
                     transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                     className="relative z-10 w-[220px] md:w-[300px]"
                   >

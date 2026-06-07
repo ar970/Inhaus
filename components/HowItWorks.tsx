@@ -5,9 +5,11 @@ import Reveal from "@/components/Reveal";
 import { DoodleIcon } from "@/components/Doodles";
 import { steps } from "@/lib/data";
 import { usePersona } from "@/context/PersonaContext";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function HowItWorks() {
   const { persona } = usePersona();
+  const isMobile = useIsMobile();
 
   /* Video ring / glow colour per persona */
   const accentColor =
@@ -106,16 +108,18 @@ export default function HowItWorks() {
                 background: "#0A0A0A",
                 boxShadow: `0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px ${accentColor}25`,
               }}
-              initial={{ opacity: 0, scale: 0.94, filter: "blur(12px)" }}
-              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              initial={{ opacity: 0, scale: 0.94, ...(isMobile ? {} : { filter: "blur(12px)" }) }}
+              whileInView={{ opacity: 1, scale: 1, ...(isMobile ? {} : { filter: "blur(0px)" }) }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Ambient glow behind video */}
-              <div
-                className="pointer-events-none absolute bottom-0 left-1/2 h-[50%] w-[80%] -translate-x-1/2 blur-[70px]"
-                style={{ background: glowColor }}
-              />
+              {/* Ambient glow behind video — desktop only */}
+              {!isMobile && (
+                <div
+                  className="pointer-events-none absolute bottom-0 left-1/2 h-[50%] w-[80%] -translate-x-1/2 blur-[70px]"
+                  style={{ background: glowColor }}
+                />
+              )}
 
               <video
                 src="/how-it-works2.mp4"

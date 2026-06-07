@@ -56,7 +56,7 @@ export default function Reveal({
       whileInView="visible"
       viewport={{ once, margin: "-40px" }}
       transition={{ duration, delay: mobileDelay, ease: [0.22, 1, 0.36, 1] }}
-      style={{ willChange: "transform, opacity" }}
+      style={isMobile ? undefined : { willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>

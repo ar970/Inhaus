@@ -7,6 +7,7 @@ import { DoodleIcon } from "@/components/Doodles";
 import { benefits } from "@/lib/data";
 import { usePersona } from "@/context/PersonaContext";
 import { personaContent } from "@/lib/personas";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const collage = [
   { text: "No sugar",          tone: "crema"  as const, className: "left-0 top-6",    rotate: -9 },
@@ -30,6 +31,7 @@ const defaultContent = {
 
 export default function WhyInhaus() {
   const { persona } = usePersona();
+  const isMobile = useIsMobile();
   const c = persona ? personaContent[persona].why : defaultContent;
   const videoSrc = persona ? personaVideos[persona] : null;
 
@@ -45,9 +47,9 @@ export default function WhyInhaus() {
               <motion.div
                 key={videoSrc}
                 className="absolute inset-0 flex items-center justify-center"
-                initial={{ opacity: 0, scale: 0.92, filter: "blur(12px)" }}
-                animate={{ opacity: 1, scale: 1,    filter: "blur(0px)"  }}
-                exit={{    opacity: 0, scale: 0.96,  filter: "blur(8px)"  }}
+                initial={{ opacity: 0, scale: 0.92, ...(isMobile ? {} : { filter: "blur(12px)" }) }}
+                animate={{ opacity: 1, scale: 1,    ...(isMobile ? {} : { filter: "blur(0px)"  }) }}
+                exit={{    opacity: 0, scale: 0.96,  ...(isMobile ? {} : { filter: "blur(8px)"  }) }}
                 transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   maskImage: "radial-gradient(ellipse 92% 92% at 50% 50%, black 50%, transparent 100%)",
