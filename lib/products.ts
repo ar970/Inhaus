@@ -54,8 +54,8 @@ export const products: Product[] = [
     tagline: "Make. Edit. Repeat.",
     persona: "creator",
     color: "#FF2D78",
-    image: "/product-creator.jpeg",
-    images: ["/creator flow 2.png", "/creator flow 3.png", "/product-creator.jpeg"],
+    image: "/creator flow.jpeg",
+    images: ["/creator flow 2.png", "/creator flow 3.png", "/creator flow.jpeg"],
     description: "Café-grade coffee concentrate for deep work, creative flow, and sessions that can't afford an interruption. Ready in 60 seconds. No machine needed.",
     longDescription: "Creator Fuel is for the people who can't afford a break in their flow. No café run, no machine setup, no waiting. INHAUS concentrate on your desk — stir into milk or water whenever the session calls for it. The same quality you'd get at a good café, made in seconds.",
     variants: [
