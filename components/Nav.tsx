@@ -48,7 +48,7 @@ export default function Nav() {
       <nav className="container-x flex items-center justify-between py-[14px]">
         <Link href="/" className="focusable flex items-center">
           <Image
-            src="/inhaus-logo.jpeg"
+            src="/l1.jpeg"
             alt="INHAUS"
             width={100}
             height={40}
