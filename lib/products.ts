@@ -33,7 +33,7 @@ export const products: Product[] = [
     color: "#F04E12",
     image: "/product-study.jpeg",
     images: ["/study fuel 2.png", "/study fuel 3.png", "/product-study.jpeg"],
-    description: "Concentrated speciality coffee built for late nights, big deadlines, and bigger goals.",
+    description: "Café-grade coffee concentrate for late-night study sessions, deadlines, and ambitious goals. Ready in 60 seconds. No machine needed.",
     longDescription: "Study Fuel is INHAUS's answer to the café run you never have time for. Made from 100% Arabica speciality coffee, cold-brewed and concentrated into a bottle that fits your hostel fridge. Pour over milk or water, hot or iced, and you're sorted in 60 seconds.",
     variants: [
       { id: "study-100", name: "100ml (10 cups)", price: 0, cups: 10, ml: 100, comingSoon: true },
@@ -56,7 +56,7 @@ export const products: Product[] = [
     color: "#FF2D78",
     image: "/product-creator.jpeg",
     images: ["/creator flow 2.png", "/creator flow 3.png", "/product-creator.jpeg"],
-    description: "One pour and you're back in the zone. Built for creators, designers, editors and storytellers.",
+    description: "Café-grade coffee concentrate for deep work, creative flow, and sessions that can't afford an interruption. Ready in 60 seconds. No machine needed.",
     longDescription: "Creator Fuel is for the people who can't afford a break in their flow. No café run, no machine setup, no waiting. INHAUS concentrate on your desk — stir into milk or water whenever the session calls for it. The same quality you'd get at a good café, made in seconds.",
     variants: [
       { id: "creator-100", name: "100ml (10 cups)", price: 0, cups: 10, ml: 100, comingSoon: true },
@@ -79,7 +79,7 @@ export const products: Product[] = [
     color: "#00A896",
     image: "/product-workflow.jpeg",
     images: ["/work flow 2.png", "/work flow 3.png", "/product-workflow.jpeg"],
-    description: "Premium coffee for people who ship, build and execute. Café-grade. No machine.",
+    description: "Café-grade coffee concentrate for people who ship, build, and execute without compromise. Ready in 60 seconds. No machine needed.",
     longDescription: "WorkFlow is precision in a bottle. Built for professionals who won't compromise on quality or time. The same great cup every single morning — no inconsistency, no café queue, no machine. INHAUS replaces the ritual without losing the result.",
     variants: [
       { id: "workflow-100", name: "100ml (10 cups)", price: 0, cups: 10, ml: 100, comingSoon: true },

@@ -67,7 +67,7 @@ export default function ProductPage() {
 
         <div className="grid gap-12 md:grid-cols-2">
           {/* Images */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <div className="relative overflow-hidden rounded-2xl aspect-square" style={{ background: `${accent}08` }}>
               <motion.div
                 key={activeImg}
@@ -109,19 +109,25 @@ export default function ProductPage() {
                   <path d="M6 4l4 4-4 4" />
                 </svg>
               </button>
+            </div>
 
-              {/* Dot indicators */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-                {product.images.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveImg(i)}
-                    className="h-1.5 rounded-full transition-all"
-                    style={{ width: i === activeImg ? 20 : 6, background: i === activeImg ? accent : `${accent}40` }}
-                    aria-label={`Image ${i + 1}`}
-                  />
-                ))}
-              </div>
+            {/* Thumbnails */}
+            <div className="flex gap-2.5">
+              {product.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveImg(i)}
+                  className="relative h-[72px] w-[72px] flex-shrink-0 overflow-hidden rounded-xl transition-all duration-200"
+                  style={{
+                    border: `1.5px solid ${i === activeImg ? accent : "rgba(128,128,128,0.15)"}`,
+                    opacity: i === activeImg ? 1 : 0.55,
+                    background: `${accent}06`,
+                  }}
+                  aria-label={`View image ${i + 1}`}
+                >
+                  <Image src={img} alt="" fill className="object-contain p-1" />
+                </button>
+              ))}
             </div>
           </div>
 
@@ -147,7 +153,7 @@ export default function ProductPage() {
                   {selectedVariant.originalPrice && (
                     <span className="text-lg line-through opacity-30">₹{selectedVariant.originalPrice}</span>
                   )}
-                  <span className="text-sm opacity-50">· ₹{Math.round(selectedVariant.price / selectedVariant.cups)} per cup</span>
+                  <span className="text-sm opacity-50">· Makes ~{selectedVariant.cups} café-grade cups</span>
                 </>
               )}
             </div>
@@ -165,15 +171,15 @@ export default function ProductPage() {
                     style={{
                       border: `1.5px solid ${v.id === selectedVariant.id ? accent : "rgba(128,128,128,0.2)"}`,
                       background: v.id === selectedVariant.id ? `${accent}10` : "transparent",
-                      opacity: v.comingSoon ? 0.6 : 1,
+                      opacity: v.comingSoon ? 0.85 : 1,
                       cursor: v.comingSoon ? "default" : "pointer",
                     }}
                   >
                     <div className="flex items-center gap-2.5">
                       <span className="font-medium">{v.name}</span>
                       {v.comingSoon && (
-                        <span className="rounded-full px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest"
-                          style={{ background: `${accent}12`, color: accent, border: `1px solid ${accent}25` }}>
+                        <span className="rounded-full px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-widest"
+                          style={{ background: `${accent}18`, color: accent, border: `1.5px solid ${accent}45` }}>
                           Launching Soon
                         </span>
                       )}
