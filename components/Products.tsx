@@ -385,10 +385,10 @@ function ProductShowcase({
   return (
     <motion.div
       key={product.id}
-      initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
-      animate={{ opacity: 1, y: 0,  filter: "blur(0px)"  }}
-      exit={{    opacity: 0, y: -30, filter: "blur(8px)"  }}
-      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: 40, filter: isMobile ? "none" : "blur(12px)" }}
+      animate={{ opacity: 1, y: 0,  filter: "none"  }}
+      exit={{    opacity: 0, y: -30, filter: "none"  }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       className="mx-auto grid w-full max-w-5xl items-center gap-10 md:grid-cols-[1fr_1fr] lg:gap-20"
     >
       {/* ── Pouch visual ── */}
@@ -408,12 +408,13 @@ function ProductShowcase({
           {persona === "professional" && <ProfessionalDecorations color={product.color} />}
           {persona === "creator"      && <CreatorDecorations      color={product.color} />}
 
-          {/* Wide ambient glow */}
-          <div className="pointer-events-none absolute bottom-0 left-1/2 h-[70%] w-[95%] -translate-x-1/2 blur-[100px]"
-            style={{ background: `${product.color}48` }} />
-          {/* Tight glow behind pouch */}
-          <div className="pointer-events-none absolute bottom-[6%] left-1/2 h-[55%] w-[62%] -translate-x-1/2 blur-[60px]"
-            style={{ background: `${product.color}68` }} />
+          {/* Wide ambient glow — desktop only (GPU cost too high on mobile) */}
+          {!isMobile && <>
+            <div className="pointer-events-none absolute bottom-0 left-1/2 h-[70%] w-[95%] -translate-x-1/2 blur-[100px]"
+              style={{ background: `${product.color}48` }} />
+            <div className="pointer-events-none absolute bottom-[6%] left-1/2 h-[55%] w-[62%] -translate-x-1/2 blur-[60px]"
+              style={{ background: `${product.color}68` }} />
+          </>}
           {/* Animated accent ring behind pouch */}
           <motion.div
             className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"

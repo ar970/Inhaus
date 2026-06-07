@@ -40,9 +40,9 @@ export default function DrinkModal({ drink, onClose }: Props) {
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 z-[1000] bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[1000] bg-black/60"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            transition={{ duration: 0.28 }}
+            transition={{ duration: 0.22 }}
             onClick={onClose}
           />
 
@@ -81,7 +81,7 @@ export default function DrinkModal({ drink, onClose }: Props) {
             </div>
 
             {/* Scrollable content */}
-            <div className="flex-1 overflow-y-auto px-6 pb-8 pt-2 md:px-8">
+            <div className="flex-1 overflow-y-auto overscroll-contain px-6 pb-8 pt-2 md:px-8" style={{ WebkitOverflowScrolling: "touch" }}>
 
               {/* Name + mood */}
               <p className="label" style={{ color: accent }}>{drink.mood} · {drink.time}</p>

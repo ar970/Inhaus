@@ -39,7 +39,7 @@ export default function Nav() {
       className={cn(
         "sticky top-0 z-50 transition-all duration-500",
         scrolled
-          ? "border-b border-espresso/8 bg-oat/80 shadow-[0_1px_20px_rgba(0,0,0,0.06)] backdrop-blur-xl"
+          ? "border-b border-espresso/8 bg-oat/90 shadow-[0_1px_20px_rgba(0,0,0,0.06)] backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       )}
     >

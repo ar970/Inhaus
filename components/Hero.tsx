@@ -441,7 +441,9 @@ function FloatObj({
         translateX: "-50%",
         translateY: "-50%",
         x: isMobile ? 0 : px,
-        filter: `drop-shadow(0 16px 36px ${accent}55) drop-shadow(0 4px 12px rgba(0,0,0,0.4)) blur(${(1 - obj.depth) * 0.65}px)`,
+        filter: isMobile
+          ? `drop-shadow(0 8px 20px ${accent}44)`
+          : `drop-shadow(0 16px 36px ${accent}55) drop-shadow(0 4px 12px rgba(0,0,0,0.4)) blur(${(1 - obj.depth) * 0.65}px)`,
         opacity: 0.55 + obj.depth * 0.4,
       }}
       initial={{ opacity: 0, scale: 0.4, y: 48, rotate: obj.rotateZ - 10 }}
@@ -692,36 +694,36 @@ export default function Hero() {
             <motion.div className="relative z-[10]"
               style={isMobile ? {} : { rotateY: pouchRotY, rotateX: pouchRotX, transformPerspective: 900 }}
             >
-              {/* Deep glow — slow pulse */}
-              <motion.div className="absolute inset-[-55%] -z-10 blur-[100px]"
-                style={{ background: scene
-                  ? `radial-gradient(ellipse at 50% 65%, ${scene.accent}45 0%, transparent 65%)`
-                  : "radial-gradient(ellipse at 50% 65%, var(--theme-accent-soft) 0%, transparent 65%)" }}
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: [1, 1.15, 1] }}
-                transition={{ opacity: { duration: 1.2 }, scale: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.3 } }}
-              />
-              {/* Tight accent glow right behind pouch */}
-              <motion.div className="absolute inset-[-20%] -z-10 blur-[48px]"
-                style={{ background: scene
-                  ? `radial-gradient(ellipse at 50% 68%, ${scene.accent}70 0%, transparent 55%)`
-                  : "radial-gradient(ellipse at 50% 68%, var(--theme-accent)55 0%, transparent 55%)" }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              />
+              {/* Deep glow — desktop only */}
+              {!isMobile && <>
+                <motion.div className="absolute inset-[-55%] -z-10 blur-[100px]"
+                  style={{ background: scene
+                    ? `radial-gradient(ellipse at 50% 65%, ${scene.accent}45 0%, transparent 65%)`
+                    : "radial-gradient(ellipse at 50% 65%, var(--theme-accent-soft) 0%, transparent 65%)" }}
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  animate={{ opacity: 1, scale: [1, 1.15, 1] }}
+                  transition={{ opacity: { duration: 1.2 }, scale: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.3 } }}
+                />
+                <motion.div className="absolute inset-[-20%] -z-10 blur-[48px]"
+                  style={{ background: scene
+                    ? `radial-gradient(ellipse at 50% 68%, ${scene.accent}70 0%, transparent 55%)`
+                    : "radial-gradient(ellipse at 50% 68%, var(--theme-accent)55 0%, transparent 55%)" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                />
+              </>}
 
               <AnimatePresence mode="wait">
                 {scene ? (
                   <motion.div key={scene.image}
-                    initial={{ opacity: 0, scale: 0.75, filter: "blur(16px)" }}
-                    animate={{ opacity: 1, scale: 1,    filter: "blur(0px)",
-                      y: [-6, 6, -6] as unknown as number }}
-                    exit={{    opacity: 0, scale: 0.92,  filter: "blur(8px)"  }}
+                    initial={{ opacity: 0, scale: isMobile ? 0.88 : 0.75 }}
+                    animate={{ opacity: 1, scale: 1,
+                      y: isMobile ? 0 : ([-6, 6, -6] as unknown as number) }}
+                    exit={{    opacity: 0, scale: 0.92 }}
                     transition={{
-                      opacity: { duration: 0.8 },
-                      scale:   { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
-                      filter:  { duration: 0.8 },
+                      opacity: { duration: isMobile ? 0.4 : 0.8 },
+                      scale:   { duration: isMobile ? 0.4 : 0.9, ease: [0.22, 1, 0.36, 1] },
                       y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 },
                     }}
                     className="relative h-[290px] w-[195px] sm:h-[380px] sm:w-[256px] md:h-[660px] md:w-[445px]"
