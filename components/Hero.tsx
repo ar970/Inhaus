@@ -413,17 +413,19 @@ const OBJ_MAP: Record<string, React.FC<{c: string}>> = {
 
 // ─── FloatingObject — own component so hooks are valid ──────────────────
 function FloatObj({
-  obj, accent, smoothX, smoothY, index,
+  obj, accent, smoothX, smoothY, index, isMobile = false,
 }: {
   obj: Obj; accent: string;
   smoothX: MotionValue<number>; smoothY: MotionValue<number>;
   index: number;
+  isMobile?: boolean;
 }) {
   const px  = useTransform(smoothX, [0, 1], [-24 * obj.depth, 24 * obj.depth]);
   const py  = useTransform(smoothY, [0, 1], [-16 * obj.depth, 16 * obj.depth]);
   const Svg = OBJ_MAP[obj.id];
   if (!Svg) return null;
   const zClass   = obj.layer === "back" ? "z-[5]" : "z-[15]";
+  const size     = isMobile ? obj.size * 0.58 : obj.size;
   const floatY   = [obj.floatAmp * 0.5, -obj.floatAmp * 0.5, obj.floatAmp * 0.5];
   const wobbleRZ = obj.wobble
     ? [obj.rotateZ - 4, obj.rotateZ + 4, obj.rotateZ - 4]
@@ -434,11 +436,11 @@ function FloatObj({
       style={{
         left: `${obj.x}%`,
         top:  `${obj.y}%`,
-        width: obj.size,
-        height: obj.size,
+        width: size,
+        height: size,
         translateX: "-50%",
         translateY: "-50%",
-        x: px,
+        x: isMobile ? 0 : px,
         filter: `drop-shadow(0 16px 36px ${accent}55) drop-shadow(0 4px 12px rgba(0,0,0,0.4)) blur(${(1 - obj.depth) * 0.65}px)`,
         opacity: 0.55 + obj.depth * 0.4,
       }}
@@ -655,7 +657,7 @@ export default function Hero() {
         {/* ── 3D Scene ── */}
         <div className="order-1 md:order-2">
           <div
-            className="relative mx-auto flex h-[560px] max-w-[560px] items-center justify-center md:h-[780px]"
+            className="relative mx-auto flex h-[340px] max-w-[560px] items-center justify-center sm:h-[420px] md:h-[780px]"
             style={scene ? {
               backgroundImage: scene.texture,
               backgroundSize: persona === "professional" ? "32px 32px" : persona === "creator" ? "22px 22px" : "auto",
@@ -678,11 +680,11 @@ export default function Hero() {
               />
             ))}
 
-            {/* Back-layer objects — skip on mobile */}
+            {/* Back-layer objects */}
             <AnimatePresence>
-              {!isMobile && scene && scene.objects.filter(o => o.layer === "back").map((obj, i) => (
+              {scene && scene.objects.filter(o => o.layer === "back").map((obj, i) => (
                 <FloatObj key={`${persona}-${obj.id}`} obj={obj} accent={scene.accent}
-                  smoothX={smoothX} smoothY={smoothY} index={i} />
+                  smoothX={smoothX} smoothY={smoothY} index={i} isMobile={isMobile} />
               ))}
             </AnimatePresence>
 
@@ -722,7 +724,7 @@ export default function Hero() {
                       filter:  { duration: 0.8 },
                       y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 },
                     }}
-                    className="relative h-[470px] w-[316px] md:h-[660px] md:w-[445px]"
+                    className="relative h-[290px] w-[195px] sm:h-[380px] sm:w-[256px] md:h-[660px] md:w-[445px]"
                   >
                     <Image src={scene.image} alt="INHAUS product" fill priority
                       className="object-contain"
@@ -750,11 +752,11 @@ export default function Hero() {
               </AnimatePresence>
             </motion.div>
 
-            {/* Front-layer objects — skip on mobile */}
+            {/* Front-layer objects */}
             <AnimatePresence>
-              {!isMobile && scene && scene.objects.filter(o => o.layer === "front").map((obj, i) => (
+              {scene && scene.objects.filter(o => o.layer === "front").map((obj, i) => (
                 <FloatObj key={`${persona}-${obj.id}`} obj={obj} accent={scene.accent}
-                  smoothX={smoothX} smoothY={smoothY} index={i + 3} />
+                  smoothX={smoothX} smoothY={smoothY} index={i + 3} isMobile={isMobile} />
               ))}
             </AnimatePresence>
 
