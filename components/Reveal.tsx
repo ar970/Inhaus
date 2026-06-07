@@ -25,11 +25,11 @@ const mobileVariantMap: Record<VariantName, Variants> = {
 
 // Desktop variants: can afford blur
 const desktopVariantMap: Record<VariantName, Variants> = {
-  fade:        { hidden: { opacity: 0, y: 22, filter: "blur(6px)"   }, visible: { opacity: 1, y: 0, filter: "none" } },
-  "slide-up":  { hidden: { opacity: 0, y: 48 },                        visible: { opacity: 1, y: 0 } },
-  "slide-left":{ hidden: { opacity: 0, x: 40 },                        visible: { opacity: 1, x: 0 } },
-  zoom:        { hidden: { opacity: 0, scale: 0.94, filter: "blur(4px)" }, visible: { opacity: 1, scale: 1, filter: "none" } },
-  blur:        { hidden: { opacity: 0, y: 14, filter: "blur(12px)"  }, visible: { opacity: 1, y: 0, filter: "none" } },
+  fade:        { hidden: { opacity: 0, y: 22, filter: "blur(6px)"  }, visible: { opacity: 1, y: 0, filter: "blur(0px)" } },
+  "slide-up":  { hidden: { opacity: 0, y: 48 },                       visible: { opacity: 1, y: 0 } },
+  "slide-left":{ hidden: { opacity: 0, x: 40 },                       visible: { opacity: 1, x: 0 } },
+  zoom:        { hidden: { opacity: 0, scale: 0.94, filter: "blur(4px)" }, visible: { opacity: 1, scale: 1, filter: "blur(0px)" } },
+  blur:        { hidden: { opacity: 0, y: 14, filter: "blur(12px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)" } },
 };
 
 export default function Reveal({
