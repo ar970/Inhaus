@@ -2,17 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
-import Image from "next/image";
 import { cn } from "@/lib/cn";
 import Button from "@/components/ui/Button";
 import { useCart } from "@/context/CartContext";
 
 const links = [
-  { href: "#products", label: "Shop" },
-  { href: "#how", label: "How it works" },
-  { href: "#make", label: "What you can make" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#products", label: "Shop" },
+  { href: "/#how", label: "How it works" },
+  { href: "/#make", label: "What you can make" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 function BagIcon({ className }: { className?: string }) {
@@ -46,16 +44,10 @@ export default function Nav() {
       )}
     >
       <nav className="container-x flex items-center justify-between py-[14px]">
-        <Link href="/" className="focusable flex items-center">
-          <Image
-            src="/l1.jpeg"
-            alt="INHAUS"
-            width={100}
-            height={40}
-            className="h-10 w-auto object-contain"
-            style={{ mixBlendMode: "multiply" }}
-            priority
-          />
+        <Link href="/" className="focusable">
+          <span className="font-serif text-xl font-semibold tracking-tight" style={{ color: "var(--theme-ink, #1E0C04)" }}>
+            inhaus
+          </span>
         </Link>
 
         <div className="hidden items-center gap-9 md:flex">
@@ -71,7 +63,7 @@ export default function Nav() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button href="#products" size="sm" className="hidden sm:inline-flex">Shop now</Button>
+          <Button href="/#products" size="sm" className="hidden sm:inline-flex">Shop now</Button>
           <button
             onClick={() => cartDispatch({ type: "OPEN" })}
             aria-label={`Cart (${count} items)`}
