@@ -94,6 +94,9 @@ export default function Footer() {
             <p className="label" style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 35%, transparent)" }}>
               © {new Date().getFullYear()} INHAUS · Made for home baristas
             </p>
+            <p className="label" style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 30%, transparent)" }}>
+              FSSAI Lic. No. 21526030000986
+            </p>
             <div className="flex gap-5">
               {["Privacy", "Terms", "Instagram"].map((l) => (
                 <Link key={l} href="#"
