@@ -490,12 +490,8 @@ const DEFAULT_C = {
 
 const C_WRAP = { hidden: {}, show: { transition: { staggerChildren: 0.11, delayChildren: 0.2 } } };
 const ITEM = {
-  hidden: { opacity: 0, y: 34, filter: "blur(10px)" },
-  show:   { opacity: 1, y: 0,  filter: "blur(0px)", transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
-};
-const ITEM_MOBILE = {
-  hidden: { opacity: 0, y: 28 },
-  show:   { opacity: 1, y: 0,  transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 34 },
+  show:   { opacity: 1, y: 0,  transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
 };
 const ITEM_F = {
   hidden: { opacity: 0, y: 18 },
@@ -608,18 +604,18 @@ export default function Hero() {
 
         {/* ── Copy ── */}
         <motion.div className="order-2 md:order-1 md:py-20" variants={C_WRAP} initial="hidden" animate="show">
-          <motion.p variants={isMobile ? ITEM_MOBILE : ITEM} className="label" style={{ color: scene?.accent ?? "var(--theme-accent)" }}>
+          <motion.p variants={ITEM} className="label" style={{ color: scene?.accent ?? "var(--theme-accent)" }}>
             {copy.eyebrow}
           </motion.p>
 
           <h1 className="mt-4 text-[50px] leading-none tracking-tight md:text-[82px] lg:text-[96px]"
             style={{ fontFamily:"var(--vibe-head-font)", fontStyle:"var(--vibe-head-style)", fontWeight:"var(--vibe-head-weight)" }}>
             {lines.map((line, i) => (
-              <motion.span key={i} variants={isMobile ? ITEM_MOBILE : ITEM} className="block overflow-hidden">{line}</motion.span>
+              <motion.span key={i} variants={ITEM} className="block overflow-hidden">{line}</motion.span>
             ))}
           </h1>
 
-          <motion.p variants={isMobile ? ITEM_MOBILE : ITEM} className="mt-6 max-w-[420px] text-[17px] leading-[1.68] opacity-68">
+          <motion.p variants={ITEM} className="mt-6 max-w-[420px] text-[17px] leading-[1.68] opacity-68">
             {copy.sub}
           </motion.p>
 
