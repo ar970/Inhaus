@@ -62,7 +62,7 @@ const SCENES = {
   creator: {
     accent:  "#FF2D78",
     glow:    "rgba(255,45,120,0.22)",
-    image:   "/creator flow.jpeg",
+    image:   "/creator fuel 4.png",
     texture: `radial-gradient(circle,rgba(255,45,120,0.09) 1px,transparent 1px)`,
     objects: [
       { id:"camera",     x:8,  y:13, depth:0.68, size:153, rotateZ:-9,  floatOffset:0.0, floatAmp:11, layer:"back"  },

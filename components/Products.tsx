@@ -22,7 +22,7 @@ const products = {
     desc: "Espresso-grade concentrate brewed for long sessions. Smooth, dark, relentless — pour it, stay in the zone, keep making. Your best work has never been this close.",
     color: "#FF2D78",
     colorSoft: "rgba(255,45,120,0.18)",
-    image: "/creator flow.jpeg",
+    image: "/creator fuel 4.png",
     heroStat: { value: "20", unit: "sessions", label: "per pack" },
     stats: [
       { label: "Pour & create", value: "60 sec" },
