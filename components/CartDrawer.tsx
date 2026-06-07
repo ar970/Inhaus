@@ -13,7 +13,7 @@ function formatPrice(n: number) {
 
 const RECOMMENDED = [
   { name: "Study Fuel",   handle: "study-fuel",   image: "/product-study.jpeg",   price: 499, color: "#F04E12", persona: "Student" },
-  { name: "Creator Fuel", handle: "creator-fuel", image: "/creator fuel 4.png", price: 499, color: "#FF2D78", persona: "Creator" },
+  { name: "Creator Fuel", handle: "creator-fuel", image: "/creator.png", price: 499, color: "#FF2D78", persona: "Creator" },
   { name: "WorkFlow",     handle: "workflow",     image: "/product-workflow.jpeg", price: 499, color: "#00A896", persona: "Professional" },
 ];
 
