@@ -81,7 +81,7 @@ export default function ProductPageClient({ handle }: { handle: string }) {
                   className="object-contain"
                   priority
                   style={{
-                    mixBlendMode: "screen",
+                    mixBlendMode: ["/s.png", "/creator.png", "/w.png"].includes(product.images[activeImg]) ? "screen" : "normal",
                   }}
                 />
               </motion.div>
