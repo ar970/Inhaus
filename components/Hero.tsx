@@ -726,7 +726,10 @@ export default function Hero() {
                   >
                     <Image src={scene.image} alt="INHAUS product" fill priority
                       className="object-contain"
-                      style={{ filter:`contrast(1.1) saturate(1.2) drop-shadow(0 32px 64px rgba(0,0,0,0.7)) drop-shadow(0 0 40px ${scene.accent}48)` }}
+                      style={{
+                        filter: `contrast(1.1) saturate(1.2) drop-shadow(0 32px 64px rgba(0,0,0,0.7)) drop-shadow(0 0 40px ${scene.accent}48)`,
+                        mixBlendMode: scene.image === "/creator.png" ? "screen" : "normal",
+                      }}
                     />
                     {/* Gloss highlight */}
                     <div className="pointer-events-none absolute inset-0"

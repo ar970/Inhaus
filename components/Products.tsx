@@ -480,6 +480,7 @@ function ProductShowcase({
                          drop-shadow(0 38px 76px rgba(0,0,0,0.96))
                          drop-shadow(0 0 52px ${product.color}68)
                          drop-shadow(0 18px 44px ${product.color}42)`,
+                mixBlendMode: product.image === "/creator.png" ? "screen" : "normal",
               }}
               sizes="(max-width: 768px) 85vw, 42vw"
               priority
