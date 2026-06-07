@@ -32,7 +32,7 @@ export const products: Product[] = [
     persona: "student",
     color: "#F04E12",
     image: "/s.png",
-    images: ["/s.png", "/study fuel 2.png", "/study fuel 3.png"],
+    images: ["/s1.png", "/s2.png", "/s.png"],
     description: "Café-grade coffee concentrate for late-night study sessions, deadlines, and ambitious goals. Ready in 60 seconds. No machine needed.",
     longDescription: "Study Fuel is INHAUS's answer to the café run you never have time for. Made from 100% Arabica speciality coffee, cold-brewed and concentrated into a bottle that fits your hostel fridge. Pour over milk or water, hot or iced, and you're sorted in 60 seconds.",
     variants: [
@@ -55,7 +55,7 @@ export const products: Product[] = [
     persona: "creator",
     color: "#FF2D78",
     image: "/creator.png",
-    images: ["/creator.png", "/creator flow 2.png", "/creator flow 3.png"],
+    images: ["/c1.png", "/c2.png", "/creator.png"],
     description: "Café-grade coffee concentrate for deep work, creative flow, and sessions that can't afford an interruption. Ready in 60 seconds. No machine needed.",
     longDescription: "Creator Fuel is for the people who can't afford a break in their flow. No café run, no machine setup, no waiting. INHAUS concentrate on your desk — stir into milk or water whenever the session calls for it. The same quality you'd get at a good café, made in seconds.",
     variants: [
@@ -78,7 +78,7 @@ export const products: Product[] = [
     persona: "professional",
     color: "#00A896",
     image: "/w.png",
-    images: ["/w.png", "/work flow 2.png", "/work flow 3.png"],
+    images: ["/p1.png", "/p2.png", "/w.png"],
     description: "Café-grade coffee concentrate for people who ship, build, and execute without compromise. Ready in 60 seconds. No machine needed.",
     longDescription: "WorkFlow is precision in a bottle. Built for professionals who won't compromise on quality or time. The same great cup every single morning — no inconsistency, no café queue, no machine. INHAUS replaces the ritual without losing the result.",
     variants: [
