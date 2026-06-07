@@ -68,32 +68,60 @@ export default function ProductPage() {
         <div className="grid gap-12 md:grid-cols-2">
           {/* Images */}
           <div className="flex flex-col gap-4">
-            <motion.div
-              key={activeImg}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="relative aspect-square overflow-hidden rounded-3xl"
-              style={{ background: `${accent}15` }}
-            >
-              <Image
-                src={product.images[activeImg]}
-                alt={product.name}
-                fill
-                className="object-cover"
-                priority
-              />
-            </motion.div>
-            <div className="flex gap-3">
-              {product.images.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveImg(i)}
-                  className="relative h-20 w-20 overflow-hidden rounded-xl transition-all"
-                  style={{ border: `2px solid ${i === activeImg ? accent : "transparent"}`, opacity: i === activeImg ? 1 : 0.5 }}
-                >
-                  <Image src={img} alt="" fill className="object-cover" />
-                </button>
-              ))}
+            <div className="relative overflow-hidden rounded-3xl aspect-square" style={{ background: `${accent}10` }}>
+              <motion.div
+                key={activeImg}
+                initial={{ opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -24 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 flex items-center justify-center p-4"
+              >
+                <Image
+                  src={product.images[activeImg]}
+                  alt={product.name}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </motion.div>
+
+              {/* Prev arrow */}
+              <button
+                onClick={() => setActiveImg(i => (i - 1 + product.images.length) % product.images.length)}
+                className="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm transition-opacity hover:opacity-100"
+                style={{ opacity: 0.65 }}
+                aria-label="Previous image"
+              >
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                  <path d="M10 4L6 8l4 4" />
+                </svg>
+              </button>
+
+              {/* Next arrow */}
+              <button
+                onClick={() => setActiveImg(i => (i + 1) % product.images.length)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 shadow-sm backdrop-blur-sm transition-opacity hover:opacity-100"
+                style={{ opacity: 0.65 }}
+                aria-label="Next image"
+              >
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                  <path d="M6 4l4 4-4 4" />
+                </svg>
+              </button>
+
+              {/* Dot indicators */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                {product.images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveImg(i)}
+                    className="h-1.5 rounded-full transition-all"
+                    style={{ width: i === activeImg ? 20 : 6, background: i === activeImg ? accent : `${accent}40` }}
+                    aria-label={`Image ${i + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 

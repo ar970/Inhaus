@@ -32,7 +32,7 @@ export const products: Product[] = [
     persona: "student",
     color: "#F04E12",
     image: "/product-study.jpeg",
-    images: ["/product-study.jpeg", "/study fuel 2.png", "/study fuel 3.png"],
+    images: ["/study fuel 2.png", "/study fuel 3.png", "/product-study.jpeg"],
     description: "Concentrated speciality coffee built for late nights, big deadlines, and bigger goals.",
     longDescription: "Study Fuel is INHAUS's answer to the café run you never have time for. Made from 100% Arabica speciality coffee, cold-brewed and concentrated into a bottle that fits your hostel fridge. Pour over milk or water, hot or iced, and you're sorted in 60 seconds.",
     variants: [
@@ -55,7 +55,7 @@ export const products: Product[] = [
     persona: "creator",
     color: "#FF2D78",
     image: "/product-creator.jpeg",
-    images: ["/product-creator.jpeg", "/creator flow 2.png", "/creator flow 3.png"],
+    images: ["/creator flow 2.png", "/creator flow 3.png", "/product-creator.jpeg"],
     description: "One pour and you're back in the zone. Built for creators, designers, editors and storytellers.",
     longDescription: "Creator Fuel is for the people who can't afford a break in their flow. No café run, no machine setup, no waiting. INHAUS concentrate on your desk — stir into milk or water whenever the session calls for it. The same quality you'd get at a good café, made in seconds.",
     variants: [
@@ -78,7 +78,7 @@ export const products: Product[] = [
     persona: "professional",
     color: "#00A896",
     image: "/product-workflow.jpeg",
-    images: ["/product-workflow.jpeg", "/work flow 2.png", "/work flow 3.png"],
+    images: ["/work flow 2.png", "/work flow 3.png", "/product-workflow.jpeg"],
     description: "Premium coffee for people who ship, build and execute. Café-grade. No machine.",
     longDescription: "WorkFlow is precision in a bottle. Built for professionals who won't compromise on quality or time. The same great cup every single morning — no inconsistency, no café queue, no machine. INHAUS replaces the ritual without losing the result.",
     variants: [
