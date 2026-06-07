@@ -80,13 +80,13 @@ export default function ProductPageClient({ handle }: { handle: string }) {
                 exit={{ opacity: 0, x: -24 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0 flex items-center justify-center"
-                style={{ padding: isPack ? "0" : "0" }}
               >
                 <Image
                   src={product.images[activeImg]}
                   alt={product.name}
                   fill
                   className={isPack ? "object-contain" : "object-cover"}
+                  sizes="(max-width: 768px) 90vw, 50vw"
                   priority
                 />
               </motion.div>
@@ -119,14 +119,14 @@ export default function ProductPageClient({ handle }: { handle: string }) {
             })()}
 
             {/* Thumbnails */}
-            <div className="flex gap-2.5">
+            <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {product.images.map((img, i) => {
                 const isPackThumb = ["/s.png", "/creator.png", "/w.png"].includes(img);
                 return (
                 <button
                   key={i}
                   onClick={() => setActiveImg(i)}
-                  className="relative h-[72px] w-[72px] flex-shrink-0 overflow-hidden rounded-xl transition-all duration-200"
+                  className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl transition-all duration-200 sm:h-[72px] sm:w-[72px]"
                   style={{
                     border: `1.5px solid ${i === activeImg ? accent : "rgba(128,128,128,0.15)"}`,
                     opacity: i === activeImg ? 1 : 0.55,
@@ -134,7 +134,7 @@ export default function ProductPageClient({ handle }: { handle: string }) {
                   }}
                   aria-label={`View image ${i + 1}`}
                 >
-                  <Image src={img} alt={`${product.name} — view ${i + 1}`} fill className={isPackThumb ? "object-contain p-1" : "object-cover"} />
+                  <Image src={img} alt={`${product.name} — view ${i + 1}`} fill sizes="80px" className={isPackThumb ? "object-contain p-1" : "object-cover"} />
                 </button>
                 );
               })}

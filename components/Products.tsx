@@ -400,7 +400,7 @@ function ProductShowcase({
         className="group relative flex items-center justify-center"
       >
         <div
-          className="relative flex h-[440px] w-full items-center justify-center overflow-hidden rounded-[28px] md:h-[540px]"
+          className="relative flex h-[360px] w-full items-center justify-center overflow-hidden rounded-[28px] sm:h-[440px] md:h-[540px]"
           style={{ background: stageBg }}
         >
           {/* Persona-specific decorations */}

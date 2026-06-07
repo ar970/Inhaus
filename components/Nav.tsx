@@ -71,7 +71,7 @@ export default function Nav() {
           >
             <BagIcon className="h-5 w-5" />
             {count > 0 && (
-              <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--accent-p,#F04E12)] text-[9px] font-bold text-white">
+              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--accent-p,#F04E12)] text-[9px] font-bold text-white">
                 {count}
               </span>
             )}

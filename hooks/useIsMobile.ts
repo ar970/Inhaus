@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
  * Defaults to true (mobile-safe) until client hydrates.
  */
 export function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const check = () =>
       setIsMobile(

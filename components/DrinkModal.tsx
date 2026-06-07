@@ -63,7 +63,7 @@ export default function DrinkModal({ drink, onClose }: Props) {
 
             {/* Hero image */}
             <div className="relative h-52 w-full shrink-0 overflow-hidden md:h-64">
-              <Image src={drink.image} alt={drink.name} fill className="object-cover" />
+              <Image src={drink.image} alt={drink.name} fill sizes="(max-width: 768px) 100vw, 672px" className="object-cover" />
               <div className="absolute inset-0"
                 style={{ background: "linear-gradient(to top, var(--theme-bg) 0%, transparent 55%)" }} />
               {/* Close button */}

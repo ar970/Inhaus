@@ -132,7 +132,7 @@ export default function CartDrawer() {
                         >
                           <div className="relative h-11 w-11 flex-shrink-0 overflow-hidden rounded-xl"
                             style={{ background: `${p.color}18` }}>
-                            <Image src={p.image} alt={p.name} fill className="object-cover" />
+                            <Image src={p.image} alt={p.name} fill sizes="44px" className="object-cover" />
                           </div>
                           <div className="flex flex-1 flex-col gap-1">
                             <div className="flex items-center gap-2">
@@ -191,7 +191,7 @@ export default function CartDrawer() {
                       >
                         <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-xl"
                           style={{ background: `${accent}14` }}>
-                          <Image src={item.image} alt={item.name} fill className="object-cover" />
+                          <Image src={item.image} alt={item.name} fill sizes="80px" className="object-cover" />
                         </div>
                         <div className="flex flex-1 flex-col gap-1">
                           <span className="font-serif text-base font-medium leading-tight"
