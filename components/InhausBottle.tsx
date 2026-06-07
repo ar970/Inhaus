@@ -168,7 +168,7 @@ function BottleArtFallback({ className }: Props) {
         {/* ₹22 / cup pill */}
         <rect x="80" y="392" width="60" height="17" rx="8.5" fill="#3D2308" />
         <text x="110" y="404" textAnchor="middle" fontFamily="monospace" fontSize="7.5" letterSpacing="0.5" fill="#F7F0DC">
-          ₹22 / cup
+          ₹25 / cup
         </text>
 
         {/* Veg mark */}

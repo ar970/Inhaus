@@ -633,7 +633,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div variants={ITEM_F} className="mt-7 flex items-center gap-2">
-            {["~20 Cups", "₹22 per Cup", "Ready in 60 Seconds"].map((stat, i) => (
+            {["~20 Cups", "₹25 per Cup", "Ready in 60 Seconds"].map((stat, i) => (
               <span key={stat} className="flex items-center gap-2">
                 {i > 0 && <span className="opacity-25">·</span>}
                 <span className="text-[13px] font-medium opacity-55">{stat}</span>
@@ -643,7 +643,7 @@ export default function Hero() {
 
           <motion.div variants={ITEM_F} className="mt-7 flex flex-wrap gap-2 border-t pt-6"
             style={{ borderColor: "color-mix(in srgb, var(--theme-ink) 10%, transparent)" }}>
-            {["₹22 / cup", "20+ drinks", "60-sec brew", "No machine"].map(f => (
+            {["₹25 / cup", "20+ drinks", "60-sec brew", "No machine"].map(f => (
               <span key={f} className="vibe-shape border px-3.5 py-1.5 text-[12px] font-medium opacity-55 transition-colors hover:opacity-80"
                 style={{ borderColor:"color-mix(in srgb, var(--theme-ink) 12%, transparent)", background:"color-mix(in srgb, var(--theme-ink) 4%, transparent)" }}>
                 {f}

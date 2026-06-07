@@ -55,12 +55,12 @@ const products = {
     color: "#F56B00",
     colorSoft: "rgba(245,107,0,0.18)",
     image: "/product-study.jpeg",
-    heroStat: { value: "₹22", unit: "per cup", label: "always" },
+    heroStat: { value: "₹25", unit: "per cup", label: "always" },
     stats: [
       { label: "Ready in", value: "60 sec" },
       { label: "Makes", value: "~20 cups" },
       { label: "No machine needed", value: "Ever" },
-      { label: "Per cup", value: "~₹22" },
+      { label: "Per cup", value: "~₹25" },
     ],
   },
 };
