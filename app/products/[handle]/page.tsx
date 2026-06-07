@@ -26,7 +26,8 @@ export default function ProductPage() {
 
   const { dispatch } = useCart();
   const { setPersona } = usePersona();
-  const [selectedVariant, setSelectedVariant] = useState(productData?.variants[1] ?? { id: "", name: "", price: 0, cups: 0, ml: 0 });
+  const defaultVariant = productData?.variants.find(v => !v.comingSoon) ?? productData?.variants[0] ?? { id: "", name: "", price: 0, cups: 0, ml: 0 };
+  const [selectedVariant, setSelectedVariant] = useState(defaultVariant);
   const [activeImg, setActiveImg] = useState(0);
   const [added, setAdded] = useState(false);
 
@@ -108,13 +109,19 @@ export default function ProductPage() {
 
             {/* Price */}
             <div className="flex items-baseline gap-3">
-              <span className="font-serif text-3xl font-medium" style={{ color: accent }}>
-                ₹{selectedVariant.price}
-              </span>
-              {selectedVariant.originalPrice && (
-                <span className="text-lg line-through opacity-30">₹{selectedVariant.originalPrice}</span>
+              {selectedVariant.comingSoon ? (
+                <span className="font-serif text-3xl font-medium opacity-40">Coming Soon</span>
+              ) : (
+                <>
+                  <span className="font-serif text-3xl font-medium" style={{ color: accent }}>
+                    ₹{selectedVariant.price}
+                  </span>
+                  {selectedVariant.originalPrice && (
+                    <span className="text-lg line-through opacity-30">₹{selectedVariant.originalPrice}</span>
+                  )}
+                  <span className="text-sm opacity-50">· ₹{Math.round(selectedVariant.price / selectedVariant.cups)} per cup</span>
+                </>
               )}
-              <span className="text-sm opacity-50">· {Math.round(selectedVariant.price / selectedVariant.cups)} per cup</span>
             </div>
 
             {/* Variants */}
@@ -124,19 +131,34 @@ export default function ProductPage() {
                 {product.variants.map(v => (
                   <button
                     key={v.id}
-                    onClick={() => setSelectedVariant(v)}
+                    onClick={() => !v.comingSoon && setSelectedVariant(v)}
+                    disabled={v.comingSoon}
                     className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm transition-all"
                     style={{
                       border: `1.5px solid ${v.id === selectedVariant.id ? accent : "rgba(128,128,128,0.2)"}`,
                       background: v.id === selectedVariant.id ? `${accent}10` : "transparent",
+                      opacity: v.comingSoon ? 0.6 : 1,
+                      cursor: v.comingSoon ? "default" : "pointer",
                     }}
                   >
-                    <span className="font-medium">{v.name}</span>
+                    <div className="flex items-center gap-2.5">
+                      <span className="font-medium">{v.name}</span>
+                      {v.comingSoon && (
+                        <span className="rounded-full px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest"
+                          style={{ background: `${accent}12`, color: accent, border: `1px solid ${accent}25` }}>
+                          Launching Soon
+                        </span>
+                      )}
+                    </div>
                     <div className="flex items-center gap-3">
                       {v.originalPrice && (
                         <span className="text-xs line-through opacity-30">₹{v.originalPrice}</span>
                       )}
-                      <span style={{ color: accent }}>₹{v.price}</span>
+                      {v.comingSoon ? (
+                        <span className="text-xs opacity-40">Coming Soon</span>
+                      ) : (
+                        <span style={{ color: accent }}>₹{v.price}</span>
+                      )}
                     </div>
                   </button>
                 ))}
@@ -146,12 +168,13 @@ export default function ProductPage() {
             {/* CTA */}
             <motion.button
               onClick={addToCart}
+              disabled={selectedVariant.comingSoon}
               className="flex w-full items-center justify-center rounded-full py-4 text-sm font-semibold text-white transition-all"
-              style={{ background: accent }}
-              whileTap={{ scale: 0.98 }}
+              style={{ background: selectedVariant.comingSoon ? "rgba(128,128,128,0.3)" : accent, cursor: selectedVariant.comingSoon ? "default" : "pointer" }}
+              whileTap={selectedVariant.comingSoon ? {} : { scale: 0.98 }}
               animate={added ? { scale: [1, 1.02, 1] } : {}}
             >
-              {added ? "Added to cart ✓" : `Add to cart — ₹${selectedVariant.price}`}
+              {added ? "Added to cart ✓" : selectedVariant.comingSoon ? "Coming Soon" : `Add to cart — ₹${selectedVariant.price}`}
             </motion.button>
 
             {/* Benefits */}
