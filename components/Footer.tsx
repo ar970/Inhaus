@@ -12,7 +12,7 @@ const columns = [
   },
   {
     title: "Help",
-    links: ["FAQ", "Shipping & returns", "Brew guide", "Contact"],
+    links: ["FAQ", "Shipping & returns", "Brew guide"],
   },
 ];
 
@@ -67,6 +67,27 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+                {col.title === "Help" && (
+                  <>
+                    <li className="pt-1">
+                      <p className="label mb-1.5" style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 38%, transparent)" }}>
+                        Support
+                      </p>
+                      <a href="mailto:admin@inhauscoffee.com"
+                        className="block text-[13px] transition-opacity hover:opacity-100 focusable"
+                        style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 65%, transparent)" }}
+                      >
+                        admin@inhauscoffee.com
+                      </a>
+                      <a href="tel:+919311349922"
+                        className="mt-1 block text-[13px] transition-opacity hover:opacity-100 focusable"
+                        style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 65%, transparent)" }}
+                      >
+                        +91 93113 49922
+                      </a>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           ))}
