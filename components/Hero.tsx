@@ -491,7 +491,7 @@ const DEFAULT_C = {
 const C_WRAP = { hidden: {}, show: { transition: { staggerChildren: 0.11, delayChildren: 0.2 } } };
 const ITEM = {
   hidden: { opacity: 0, y: 34, filter: "blur(10px)" },
-  show:   { opacity: 1, y: 0,  filter: "blur(0px)", transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
+  show:   { opacity: 1, y: 0,  filter: "none", transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
 };
 const ITEM_MOBILE = {
   hidden: { opacity: 0, y: 28 },
@@ -747,7 +747,7 @@ export default function Hero() {
                 ) : (
                   <motion.div key="bottle"
                     initial={{ opacity: 0, scale: 0.88, ...(isMobile ? {} : { filter: "blur(14px)" }) }}
-                    animate={{ opacity: 1, scale: 1,    ...(isMobile ? {} : { filter: "blur(0px)"  }) }}
+                    animate={{ opacity: 1, scale: 1,    ...(isMobile ? {} : { filter: "none"       }) }}
                     exit={{    opacity: 0, scale: 0.94,  ...(isMobile ? {} : { filter: "blur(8px)"  }) }}
                     transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                     className="relative z-10 w-[220px] md:w-[300px]"

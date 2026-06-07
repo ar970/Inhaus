@@ -48,7 +48,7 @@ export default function WhyInhaus() {
                 key={videoSrc}
                 className="absolute inset-0 flex items-center justify-center"
                 initial={{ opacity: 0, scale: 0.92, ...(isMobile ? {} : { filter: "blur(12px)" }) }}
-                animate={{ opacity: 1, scale: 1,    ...(isMobile ? {} : { filter: "blur(0px)"  }) }}
+                animate={{ opacity: 1, scale: 1,    ...(isMobile ? {} : { filter: "none"       }) }}
                 exit={{    opacity: 0, scale: 0.96,  ...(isMobile ? {} : { filter: "blur(8px)"  }) }}
                 transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                 style={{

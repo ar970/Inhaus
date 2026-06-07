@@ -109,7 +109,7 @@ export default function HowItWorks() {
                 boxShadow: `0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px ${accentColor}25`,
               }}
               initial={{ opacity: 0, scale: 0.94, ...(isMobile ? {} : { filter: "blur(12px)" }) }}
-              whileInView={{ opacity: 1, scale: 1, ...(isMobile ? {} : { filter: "blur(0px)" }) }}
+              whileInView={{ opacity: 1, scale: 1, ...(isMobile ? {} : { filter: "none"      }) }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >

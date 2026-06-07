@@ -25,11 +25,11 @@ const mobileVariantMap: Record<VariantName, Variants> = {
 
 // Desktop variants: can afford blur
 const desktopVariantMap: Record<VariantName, Variants> = {
-  fade:        { hidden: { opacity: 0, y: 22, filter: "blur(6px)"  }, visible: { opacity: 1, y: 0, filter: "blur(0px)" } },
-  "slide-up":  { hidden: { opacity: 0, y: 48 },                       visible: { opacity: 1, y: 0 } },
-  "slide-left":{ hidden: { opacity: 0, x: 40 },                       visible: { opacity: 1, x: 0 } },
-  zoom:        { hidden: { opacity: 0, scale: 0.94, filter: "blur(4px)" }, visible: { opacity: 1, scale: 1, filter: "blur(0px)" } },
-  blur:        { hidden: { opacity: 0, y: 14, filter: "blur(12px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)" } },
+  fade:        { hidden: { opacity: 0, y: 22, filter: "blur(6px)"   }, visible: { opacity: 1, y: 0, filter: "none" } },
+  "slide-up":  { hidden: { opacity: 0, y: 48 },                        visible: { opacity: 1, y: 0 } },
+  "slide-left":{ hidden: { opacity: 0, x: 40 },                        visible: { opacity: 1, x: 0 } },
+  zoom:        { hidden: { opacity: 0, scale: 0.94, filter: "blur(4px)" }, visible: { opacity: 1, scale: 1, filter: "none" } },
+  blur:        { hidden: { opacity: 0, y: 14, filter: "blur(12px)"  }, visible: { opacity: 1, y: 0, filter: "none" } },
 };
 
 export default function Reveal({
@@ -42,11 +42,10 @@ export default function Reveal({
   const reduce = useReducedMotion();
   const isMobile = useIsMobile();
 
-  if (reduce) return <div className={className}>{children}</div>;
+  // On mobile or reduced motion: no animation, no Framer Motion overhead
+  if (reduce || isMobile) return <div className={className}>{children}</div>;
 
-  const v = isMobile ? mobileVariantMap[variant] : desktopVariantMap[variant];
-  const duration = isMobile ? 0.5 : 0.75;
-  const mobileDelay = isMobile ? Math.min(delay, 0.15) : delay; // cap stagger on mobile
+  const v = desktopVariantMap[variant];
 
   return (
     <motion.div
@@ -55,8 +54,8 @@ export default function Reveal({
       initial="hidden"
       whileInView="visible"
       viewport={{ once, margin: "-40px" }}
-      transition={{ duration, delay: mobileDelay, ease: [0.22, 1, 0.36, 1] }}
-      style={isMobile ? undefined : { willChange: "transform, opacity" }}
+      transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>
