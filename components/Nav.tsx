@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+
 import { cn } from "@/lib/cn";
 import Button from "@/components/ui/Button";
 import { useCart } from "@/context/CartContext";
@@ -45,15 +45,22 @@ export default function Nav() {
       )}
     >
       <nav className="container-x flex items-center justify-between py-[14px]">
-        <Link href="#top" className="focusable flex items-center">
-          <Image
-            src="/inhaus-logo.jpeg"
-            alt="inhaus"
-            width={80}
-            height={60}
-            className="h-10 w-auto object-contain mix-blend-multiply"
-            priority
-          />
+        <Link href="#top" className="focusable flex items-center gap-2">
+          <span
+            className="font-serif text-[22px] font-light tracking-tight leading-none"
+            style={{
+              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+              color: "var(--ink, #1E0C04)",
+            }}
+          >
+            INHAUS
+          </span>
+          <span
+            className="hidden sm:inline font-mono text-[8px] uppercase tracking-[0.22em] opacity-40 mt-0.5 self-end mb-0.5"
+            style={{ color: "var(--ink, #1E0C04)" }}
+          >
+            Coffee
+          </span>
         </Link>
 
         <div className="hidden items-center gap-9 md:flex">
