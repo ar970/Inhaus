@@ -65,24 +65,29 @@ export default function ProductPageClient({ handle }: { handle: string }) {
         <div className="grid gap-12 md:grid-cols-2">
           {/* Images */}
           <div className="flex flex-col gap-3">
-            <div className="relative overflow-hidden rounded-2xl aspect-square" style={{ background: `${accent}08` }}>
+            {(() => {
+              const PACK = ["/s.png", "/creator.png", "/w.png"];
+              const isPack = PACK.includes(product.images[activeImg]);
+              return (
+            <div
+              className="relative overflow-hidden rounded-2xl aspect-square transition-colors duration-300"
+              style={{ background: isPack ? "#0e0e0e" : `${accent}08` }}
+            >
               <motion.div
                 key={activeImg}
                 initial={{ opacity: 0, x: 24 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -24 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 flex items-center justify-center p-4"
+                className="absolute inset-0 flex items-center justify-center"
+                style={{ padding: isPack ? "0" : "0" }}
               >
                 <Image
                   src={product.images[activeImg]}
                   alt={product.name}
                   fill
-                  className="object-contain"
+                  className={isPack ? "object-contain" : "object-cover"}
                   priority
-                  style={{
-                    mixBlendMode: ["/s.png", "/creator.png", "/w.png"].includes(product.images[activeImg]) ? "screen" : "normal",
-                  }}
                 />
               </motion.div>
 
@@ -110,10 +115,14 @@ export default function ProductPageClient({ handle }: { handle: string }) {
                 </svg>
               </button>
             </div>
+              );
+            })()}
 
             {/* Thumbnails */}
             <div className="flex gap-2.5">
-              {product.images.map((img, i) => (
+              {product.images.map((img, i) => {
+                const isPackThumb = ["/s.png", "/creator.png", "/w.png"].includes(img);
+                return (
                 <button
                   key={i}
                   onClick={() => setActiveImg(i)}
@@ -121,13 +130,14 @@ export default function ProductPageClient({ handle }: { handle: string }) {
                   style={{
                     border: `1.5px solid ${i === activeImg ? accent : "rgba(128,128,128,0.15)"}`,
                     opacity: i === activeImg ? 1 : 0.55,
-                    background: `${accent}06`,
+                    background: isPackThumb ? "#0e0e0e" : `${accent}06`,
                   }}
                   aria-label={`View image ${i + 1}`}
                 >
-                  <Image src={img} alt={`${product.name} — view ${i + 1}`} fill className="object-contain p-1" />
+                  <Image src={img} alt={`${product.name} — view ${i + 1}`} fill className={isPackThumb ? "object-contain p-1" : "object-cover"} />
                 </button>
-              ))}
+                );
+              })}
             </div>
           </div>
 
