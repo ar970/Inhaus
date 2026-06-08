@@ -28,9 +28,9 @@ function applyTheme(p: Persona | null) {
   root.style.setProperty("--theme-accent-2", t.accentSecondary);
   /* dark-section tokens */
   const darkBgs: Record<string, [string, string]> = {
-    student:      ["#1E0C04", "#FFF2DC"],
+    student:      ["#0F0400", "#FFF2DC"],
     creator:      ["#0E0208", "#FFE8F2"],
-    professional: ["#031412", "#EEF2F8"],
+    professional: ["#020B14", "#EEF2F8"],
   };
   const [dbg, dink] = darkBgs[p] ?? ["#1C0E06", "#F5EBD8"];
   root.style.setProperty("--theme-dark-bg", dbg);
@@ -39,19 +39,26 @@ function applyTheme(p: Persona | null) {
 }
 
 export function PersonaProvider({ children }: { children: ReactNode }) {
-  /*
-   * The gate is shown on EVERY visit by design — persona always starts null,
-   * so the "Who are you?" screen appears each time the site is opened.
-   * The choice lives only in memory for the current session.
-   */
   const [persona, setPersonaState] = useState<Persona | null>(null);
 
-  /* Ensure any previously-applied theme is cleared on a fresh load */
+  /* Clear theme on fresh load */
   useEffect(() => {
     applyTheme(null);
   }, []);
 
+  /* Back button: when browser navigates back, return to the gate */
+  useEffect(() => {
+    const onPopState = () => {
+      setPersonaState(null);
+      applyTheme(null);
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
   function setPersona(p: Persona) {
+    /* Push a history entry so the back button returns to the gate */
+    window.history.pushState({ persona: p }, "");
     setPersonaState(p);
     applyTheme(p);
   }

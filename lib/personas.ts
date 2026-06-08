@@ -42,11 +42,11 @@ export interface PersonaContent {
 
 export const personaThemes: Record<Persona, PersonaTheme> = {
   student: {
-    bg: "#FFF2DC",
-    surface: "#FFFBF2",
-    ink: "#1E0C04",
+    bg: "#1A0800",
+    surface: "#220C00",
+    ink: "#F04E12",
     accent: "#F04E12",
-    accentSoft: "#FFDDB3",
+    accentSoft: "rgba(240,78,18,0.20)",
     accentSecondary: "#FF9328",
     gateHover: "#F04E12",
     gateText: "#FFF2DC",
@@ -54,7 +54,7 @@ export const personaThemes: Record<Persona, PersonaTheme> = {
   creator: {
     bg: "#1A0510",
     surface: "#26081A",
-    ink: "#FFE8F2",
+    ink: "#FF2D78",
     accent: "#FF2D78",
     accentSoft: "rgba(255,45,120,0.20)",
     accentSecondary: "#FF7AAE",
@@ -62,9 +62,9 @@ export const personaThemes: Record<Persona, PersonaTheme> = {
     gateText: "#FFE8F2",
   },
   professional: {
-    bg: "#EEF2F8",
-    surface: "#F8FAFD",
-    ink: "#050D1F",
+    bg: "#041220",
+    surface: "#071A2E",
+    ink: "#00A896",
     accent: "#00A896",
     accentSoft: "rgba(0,168,150,0.20)",
     accentSecondary: "#00C4AE",
