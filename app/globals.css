@@ -32,7 +32,7 @@
 [data-persona="student"] {
   --theme-bg:            #FFF2DC;
   --theme-surface:       #FFFBF2;
-  --theme-ink:           #1E0C04;
+  --theme-ink:           #F04E12;
   --theme-accent:        #F04E12;
   --theme-accent-soft:   #FFDDB3;
   --theme-accent-2:      #FF9328;
@@ -72,7 +72,7 @@
 [data-persona="professional"] {
   --theme-bg:            #EEF2F8;
   --theme-surface:       #F8FAFD;
-  --theme-ink:           #050D1F;
+  --theme-ink:           #00A896;
   --theme-accent:        #00A896;
   --theme-accent-soft:   rgba(0,168,150,0.20);
   --theme-accent-2:      #00C4AE;

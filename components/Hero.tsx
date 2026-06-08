@@ -609,10 +609,7 @@ export default function Hero() {
           </motion.p>
 
           <h1 className="mt-4 text-[50px] leading-none tracking-tight md:text-[82px] lg:text-[96px]"
-            style={{
-              fontFamily:"var(--vibe-head-font)", fontStyle:"var(--vibe-head-style)", fontWeight:"var(--vibe-head-weight)",
-              color: scene?.accent ?? "var(--theme-ink)",
-            }}>
+            style={{ fontFamily:"var(--vibe-head-font)", fontStyle:"var(--vibe-head-style)", fontWeight:"var(--vibe-head-weight)" }}>
             {lines.map((line, i) => (
               <motion.span key={i} variants={ITEM} className="block overflow-hidden">{line}</motion.span>
             ))}
