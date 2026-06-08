@@ -403,10 +403,10 @@ function ProductShowcase({
           className="relative flex h-[360px] w-full items-center justify-center overflow-hidden rounded-[28px] sm:h-[440px] md:h-[540px]"
           style={{ background: stageBg }}
         >
-          {/* Persona-specific decorations */}
-          {persona === "student"      && <StudentDecorations      color={product.color} />}
-          {persona === "professional" && <ProfessionalDecorations color={product.color} />}
-          {persona === "creator"      && <CreatorDecorations      color={product.color} />}
+          {/* Persona-specific decorations — desktop only (too costly on mobile GPU) */}
+          {!isMobile && persona === "student"      && <StudentDecorations      color={product.color} />}
+          {!isMobile && persona === "professional" && <ProfessionalDecorations color={product.color} />}
+          {!isMobile && persona === "creator"      && <CreatorDecorations      color={product.color} />}
 
           {/* Wide ambient glow — desktop only (GPU cost too high on mobile) */}
           {!isMobile && <>
@@ -478,10 +478,12 @@ function ProductShowcase({
               fill
               className="object-contain"
               style={{
-                filter: `contrast(1.12) saturate(1.25) brightness(1.06)
-                         drop-shadow(0 38px 76px rgba(0,0,0,0.96))
-                         drop-shadow(0 0 52px ${product.color}68)
-                         drop-shadow(0 18px 44px ${product.color}42)`,
+                filter: isMobile
+                  ? undefined
+                  : `contrast(1.12) saturate(1.25) brightness(1.06)
+                     drop-shadow(0 38px 76px rgba(0,0,0,0.96))
+                     drop-shadow(0 0 52px ${product.color}68)
+                     drop-shadow(0 18px 44px ${product.color}42)`,
                 mixBlendMode: "screen",
               }}
               sizes="(max-width: 768px) 85vw, 42vw"

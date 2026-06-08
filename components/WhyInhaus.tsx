@@ -51,7 +51,7 @@ export default function WhyInhaus() {
                 animate={{ opacity: 1, scale: 1,    ...(isMobile ? {} : { filter: "blur(0px)"  }) }}
                 exit={{    opacity: 0, scale: 0.96,  ...(isMobile ? {} : { filter: "blur(8px)"  }) }}
                 transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                style={{
+                style={isMobile ? {} : {
                   maskImage: "radial-gradient(ellipse 92% 92% at 50% 50%, black 50%, transparent 100%)",
                   WebkitMaskImage: "radial-gradient(ellipse 92% 92% at 50% 50%, black 50%, transparent 100%)",
                 }}

@@ -3,7 +3,8 @@
 import { useState, useCallback, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePersona } from "@/context/PersonaContext";
-import { personaThemes, gateCards, type Persona } from "@/lib/personas";
+import { gateCards, type Persona } from "@/lib/personas";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 /* ─── Gate copy ──────────────────────────────────────────────────── */
 const GATE: Record<Persona, { label: string; desc: string; cta: string; num: string }> = {
@@ -230,6 +231,7 @@ const GatePanel = memo(function GatePanel({
   onEnter: (p: Persona) => void; onLeave: () => void;
   onSelect: (p: Persona, e: React.MouseEvent) => void;
 }) {
+  const isMobile = useIsMobile();
   const accent  = ACCENT[id];
   const content = GATE[id];
   const SVGSet  = PERSONA_SVGS[id];
@@ -286,23 +288,29 @@ const GatePanel = memo(function GatePanel({
           transition: "box-shadow 0.5s cubic-bezier(0.16,1,0.3,1)",
         }} />
 
-      {/* Ripples */}
-      <div className="pointer-events-none absolute inset-0"
-        style={{ opacity: isHot ? 1 : 0, transition: "opacity 0.5s" }}>
-        <EnergyRipple persona={id} />
-      </div>
+      {/* Ripples — desktop only */}
+      {!isMobile && (
+        <div className="pointer-events-none absolute inset-0"
+          style={{ opacity: isHot ? 1 : 0, transition: "opacity 0.5s" }}>
+          <EnergyRipple persona={id} />
+        </div>
+      )}
 
-      {/* SVG icons */}
-      <div className="pointer-events-none absolute inset-0"
-        style={{ opacity: isHot ? 1 : 0, transition: "opacity 0.5s" }}>
-        <SVGSet color={accent} />
-      </div>
+      {/* SVG icons — desktop only */}
+      {!isMobile && (
+        <div className="pointer-events-none absolute inset-0"
+          style={{ opacity: isHot ? 1 : 0, transition: "opacity 0.5s" }}>
+          <SVGSet color={accent} />
+        </div>
+      )}
 
-      {/* Particles */}
-      <div className="pointer-events-none absolute inset-0"
-        style={{ opacity: isHot ? 1 : 0, transition: "opacity 0.5s" }}>
-        <CardParticles color={accent} />
-      </div>
+      {/* Particles — desktop only */}
+      {!isMobile && (
+        <div className="pointer-events-none absolute inset-0"
+          style={{ opacity: isHot ? 1 : 0, transition: "opacity 0.5s" }}>
+          <CardParticles color={accent} />
+        </div>
+      )}
 
       {/* Ghost number */}
       <div className="pointer-events-none absolute right-4 top-3 select-none font-serif font-light leading-none

@@ -422,6 +422,7 @@ function FloatObj({
 }) {
   const px  = useTransform(smoothX, [0, 1], [-24 * obj.depth, 24 * obj.depth]);
   const py  = useTransform(smoothY, [0, 1], [-16 * obj.depth, 16 * obj.depth]);
+  if (isMobile) return null;
   const Svg = OBJ_MAP[obj.id];
   if (!Svg) return null;
   const zClass   = obj.layer === "back" ? "z-[5]" : "z-[15]";
@@ -731,7 +732,7 @@ export default function Hero() {
                     <Image src={scene.image} alt="INHAUS product" fill priority
                       className="object-contain"
                       style={{
-                        filter: `contrast(1.1) saturate(1.2) drop-shadow(0 32px 64px rgba(0,0,0,0.7)) drop-shadow(0 0 40px ${scene.accent}48)`,
+                        filter: isMobile ? undefined : `contrast(1.1) saturate(1.2) drop-shadow(0 32px 64px rgba(0,0,0,0.7)) drop-shadow(0 0 40px ${scene.accent}48)`,
                         mixBlendMode: "screen",
                       }}
                     />

@@ -88,29 +88,30 @@
   --vibe-eyebrow-tr:     0.32em;
 }
 
-/* ─── Per-persona background textures ───────────────────────────── */
-[data-persona="student"] body {
-  background-image: radial-gradient(
-    color-mix(in srgb, #F04E12 18%, transparent) 1.5px,
-    transparent 1.5px
-  );
-  background-size: 20px 20px;
-}
-[data-persona="creator"] body {
-  background-image:
-    radial-gradient(ellipse 60% 50% at 5% 5%,  rgba(255,45,120,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 55% 45% at 95% 20%, rgba(255,122,174,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 60% at 75% 90%, rgba(255,45,120,0.10) 0%, transparent 70%);
-  /* background-attachment: fixed disabled — breaks GPU compositing on mobile */
-}
-[data-persona="professional"] body {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 39px,
-    color-mix(in srgb, #061008 6%, transparent) 39px,
-    color-mix(in srgb, #061008 6%, transparent) 40px
-  );
+/* ─── Per-persona background textures — desktop only ─────────────── */
+@media (pointer: fine) {
+  [data-persona="student"] body {
+    background-image: radial-gradient(
+      color-mix(in srgb, #F04E12 18%, transparent) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 20px 20px;
+  }
+  [data-persona="creator"] body {
+    background-image:
+      radial-gradient(ellipse 60% 50% at 5% 5%,  rgba(255,45,120,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 55% 45% at 95% 20%, rgba(255,122,174,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 75% 90%, rgba(255,45,120,0.10) 0%, transparent 70%);
+  }
+  [data-persona="professional"] body {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 39px,
+      color-mix(in srgb, #061008 6%, transparent) 39px,
+      color-mix(in srgb, #061008 6%, transparent) 40px
+    );
+  }
 }
 
 /* ─── Typography posture driven by vibe tokens ──────────────────── */
