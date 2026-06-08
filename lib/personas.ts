@@ -44,7 +44,7 @@ export const personaThemes: Record<Persona, PersonaTheme> = {
   student: {
     bg: "#1A0800",
     surface: "#220C00",
-    ink: "#F04E12",
+    ink: "#FFF2DC",
     accent: "#F04E12",
     accentSoft: "rgba(240,78,18,0.20)",
     accentSecondary: "#FF9328",
@@ -54,7 +54,7 @@ export const personaThemes: Record<Persona, PersonaTheme> = {
   creator: {
     bg: "#1A0510",
     surface: "#26081A",
-    ink: "#FF2D78",
+    ink: "#FFE8F2",
     accent: "#FF2D78",
     accentSoft: "rgba(255,45,120,0.20)",
     accentSecondary: "#FF7AAE",
@@ -64,7 +64,7 @@ export const personaThemes: Record<Persona, PersonaTheme> = {
   professional: {
     bg: "#041220",
     surface: "#071A2E",
-    ink: "#00A896",
+    ink: "#EEF2F8",
     accent: "#00A896",
     accentSoft: "rgba(0,168,150,0.20)",
     accentSecondary: "#00C4AE",

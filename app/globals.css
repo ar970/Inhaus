@@ -32,7 +32,7 @@
 [data-persona="student"] {
   --theme-bg:            #1A0800;
   --theme-surface:       #220C00;
-  --theme-ink:           #F04E12;
+  --theme-ink:           #FFF2DC;
   --theme-accent:        #F04E12;
   --theme-accent-soft:   rgba(240,78,18,0.20);
   --theme-accent-2:      #FF9328;
@@ -52,7 +52,7 @@
 [data-persona="creator"] {
   --theme-bg:            #1A0510;
   --theme-surface:       #26081A;
-  --theme-ink:           #FF2D78;
+  --theme-ink:           #FFE8F2;
   --theme-accent:        #FF2D78;
   --theme-accent-soft:   rgba(255,45,120,0.20);
   --theme-accent-2:      #FF7AAE;
@@ -72,7 +72,7 @@
 [data-persona="professional"] {
   --theme-bg:            #041220;
   --theme-surface:       #071A2E;
-  --theme-ink:           #00A896;
+  --theme-ink:           #EEF2F8;
   --theme-accent:        #00A896;
   --theme-accent-soft:   rgba(0,168,150,0.20);
   --theme-accent-2:      #00C4AE;

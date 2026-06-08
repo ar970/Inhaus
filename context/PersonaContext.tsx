@@ -16,6 +16,9 @@ function applyTheme(p: Persona | null) {
   const root = document.documentElement;
   if (!p) {
     root.removeAttribute("data-persona");
+    ["--theme-bg","--theme-surface","--theme-ink","--theme-accent",
+     "--theme-accent-soft","--theme-accent-2","--theme-dark-bg",
+     "--theme-dark-ink","--theme-dark-accent"].forEach(v => root.style.removeProperty(v));
     return;
   }
   root.setAttribute("data-persona", p);
