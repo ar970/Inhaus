@@ -421,10 +421,6 @@ export default function PersonaGate() {
                 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", color: "rgba(255,255,255,0.75)" }}>
                 INHAUS
               </span>
-              <p className="hidden font-mono text-[10px] uppercase tracking-[0.3em] md:block"
-                style={{ color: "rgba(255,255,255,0.35)" }}>
-                Specialty instant coffee
-              </p>
             </div>
 
             <motion.div className="shrink-0 px-6 pb-4 pt-1 md:px-12 md:pb-6 md:pt-2"
