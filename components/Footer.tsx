@@ -1,6 +1,34 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const SOCIAL = [
+  {
+    id: "instagram",
+    label: "Follow us on Instagram",
+    handle: "@inhauscoffeee",
+    href: "https://www.instagram.com/inhauscoffeee",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4.5"/>
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+      </svg>
+    ),
+  },
+  {
+    id: "linkedin",
+    label: "Connect on LinkedIn",
+    handle: "INHAUS Coffee",
+    href: "https://www.linkedin.com/company/inhaus-coffee/",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+        <rect x="2" y="2" width="20" height="20" rx="4"/>
+        <path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/>
+      </svg>
+    ),
+  },
+];
+
 const columns: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Shop",
@@ -50,17 +78,31 @@ export default function Footer() {
               style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 55%, transparent)" }}>
               Café-style coffee concentrate. Brewed with care, poured at home.
             </p>
-            <div className="mt-6 flex gap-4">
-              {["IG", "TW", "YT"].map((s) => (
-                <Link key={s} href="#"
-                  className="label flex h-8 w-8 items-center justify-center rounded-full border transition-colors focusable"
-                  style={{
-                    borderColor: "color-mix(in srgb, var(--theme-dark-ink) 18%, transparent)",
-                    color: "color-mix(in srgb, var(--theme-dark-ink) 50%, transparent)",
-                  }}
+            <div className="mt-6 flex flex-col gap-3">
+              {SOCIAL.map((s) => (
+                <a key={s.id} href={s.href} target="_blank" rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 focusable"
                 >
-                  {s}
-                </Link>
+                  <span
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors duration-200 group-hover:border-[var(--theme-dark-accent)] group-hover:text-[var(--theme-dark-accent)]"
+                    style={{
+                      borderColor: "color-mix(in srgb, var(--theme-dark-ink) 22%, transparent)",
+                      color: "color-mix(in srgb, var(--theme-dark-ink) 55%, transparent)",
+                    }}
+                  >
+                    {s.icon}
+                  </span>
+                  <span className="flex flex-col leading-tight">
+                    <span className="text-[12px] font-semibold transition-colors duration-200 group-hover:text-[var(--theme-dark-accent)]"
+                      style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 80%, transparent)" }}>
+                      {s.label}
+                    </span>
+                    <span className="label"
+                      style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 38%, transparent)" }}>
+                      {s.handle}
+                    </span>
+                  </span>
+                </a>
               ))}
             </div>
           </div>
@@ -133,14 +175,19 @@ export default function Footer() {
               FSSAI Lic. No. 21526030000986
             </p>
             <div className="flex gap-5">
-              {["Privacy", "Terms", "Instagram"].map((l) => (
-                <Link key={l} href="#"
-                  className="label transition-opacity hover:opacity-80 focusable"
-                  style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 35%, transparent)" }}
-                >
-                  {l}
-                </Link>
-              ))}
+              <Link href="#" className="label transition-opacity hover:opacity-80 focusable"
+                style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 35%, transparent)" }}>
+                Privacy
+              </Link>
+              <Link href="#" className="label transition-opacity hover:opacity-80 focusable"
+                style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 35%, transparent)" }}>
+                Terms
+              </Link>
+              <a href="https://www.instagram.com/inhauscoffeee" target="_blank" rel="noopener noreferrer"
+                className="label transition-opacity hover:opacity-80 focusable"
+                style={{ color: "color-mix(in srgb, var(--theme-dark-ink) 35%, transparent)" }}>
+                Instagram
+              </a>
             </div>
           </div>
         </div>
