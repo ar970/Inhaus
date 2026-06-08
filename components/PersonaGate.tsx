@@ -438,7 +438,7 @@ export default function PersonaGate() {
               </h1>
               <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] md:mt-3 md:text-[11px] md:tracking-[0.25em]"
                 style={{ color: "rgba(255,255,255,0.58)" }}>
-                Every ambition deserves a different brew.
+                One Coffee. Three Identities. Which One Are You?
               </p>
             </motion.div>
 
