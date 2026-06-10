@@ -413,16 +413,14 @@ const OBJ_MAP: Record<string, React.FC<{c: string}>> = {
 
 // ─── FloatingObject — own component so hooks are valid ──────────────────
 function FloatObj({
-  obj, accent, smoothX, smoothY, index, isMobile = false,
+  obj, accent, smoothX, smoothY, index,
 }: {
   obj: Obj; accent: string;
   smoothX: MotionValue<number>; smoothY: MotionValue<number>;
   index: number;
-  isMobile?: boolean;
 }) {
   const px  = useTransform(smoothX, [0, 1], [-24 * obj.depth, 24 * obj.depth]);
   const py  = useTransform(smoothY, [0, 1], [-16 * obj.depth, 16 * obj.depth]);
-  if (isMobile) return null;
   const Svg = OBJ_MAP[obj.id];
   if (!Svg) return null;
   const zClass   = obj.layer === "back" ? "z-[5]" : "z-[15]";
@@ -683,13 +681,15 @@ export default function Hero() {
               />
             ))}
 
-            {/* Back-layer objects */}
-            <AnimatePresence>
-              {scene && scene.objects.filter(o => o.layer === "back").map((obj, i) => (
-                <FloatObj key={`${persona}-${obj.id}`} obj={obj} accent={scene.accent}
-                  smoothX={smoothX} smoothY={smoothY} index={i} isMobile={isMobile} />
-              ))}
-            </AnimatePresence>
+            {/* Back-layer objects — desktop only */}
+            {!isMobile && (
+              <AnimatePresence>
+                {scene && scene.objects.filter(o => o.layer === "back").map((obj, i) => (
+                  <FloatObj key={`${persona}-${obj.id}`} obj={obj} accent={scene.accent}
+                    smoothX={smoothX} smoothY={smoothY} index={i} />
+                ))}
+              </AnimatePresence>
+            )}
 
             {/* ── Central pouch at z-[10] ── */}
             <motion.div className="relative z-[10]"
@@ -755,13 +755,15 @@ export default function Hero() {
               </AnimatePresence>
             </motion.div>
 
-            {/* Front-layer objects */}
-            <AnimatePresence>
-              {scene && scene.objects.filter(o => o.layer === "front").map((obj, i) => (
-                <FloatObj key={`${persona}-${obj.id}`} obj={obj} accent={scene.accent}
-                  smoothX={smoothX} smoothY={smoothY} index={i + 3} isMobile={isMobile} />
-              ))}
-            </AnimatePresence>
+            {/* Front-layer objects — desktop only */}
+            {!isMobile && (
+              <AnimatePresence>
+                {scene && scene.objects.filter(o => o.layer === "front").map((obj, i) => (
+                  <FloatObj key={`${persona}-${obj.id}`} obj={obj} accent={scene.accent}
+                    smoothX={smoothX} smoothY={smoothY} index={i + 3} />
+                ))}
+              </AnimatePresence>
+            )}
 
           </div>
         </div>
