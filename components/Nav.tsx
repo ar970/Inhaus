@@ -63,7 +63,7 @@ export default function Nav() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button href="/#products" size="sm" className="hidden sm:inline-flex">Shop now</Button>
+          <Button href="/#products" size="sm" className="inline-flex">Buy Now</Button>
           <button
             onClick={() => cartDispatch({ type: "OPEN" })}
             aria-label={`Cart (${count} items)`}

@@ -154,11 +154,11 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How long does it last?",
-    a: "INHAUS concentrate keeps for 1 year sealed. Once opened, refrigerate and use within 30 days for the best flavour.",
+    a: "INHAUS concentrate lasts 1 year unopened at room temperature. Once opened, seal it and refrigerate — best consumed within 25 days. No cold chain needed before opening.",
   },
   {
     q: "Do you offer a trial or returns?",
-    a: "If your first order isn't for you, reach out at admin@inhauscoffee.com and we'll make it right.",
+    a: "If your bottle arrives damaged, leaking, or defective, contact us within 48 hours of delivery with a photo and we will send a replacement at no charge. We do not accept returns on opened products. For any issue, reach us at admin@inhauscoffee.com or +91 93113 49922.",
   },
   {
     q: "What is coffee concentrate?",

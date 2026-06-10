@@ -79,7 +79,7 @@ export const personaContent: Record<Persona, PersonaContent> = {
     mono: "STUDENT",
     tagline: "Fuel for the grind.",
     gateDescription: "Skip the café run. Brew it in seconds.",
-    announcement: "Student favourite · Use code WELCOME10 for 10% off your first order",
+    announcement: "Batch 001 — Limited to 200 bottles · Free shipping across India · Use code WELCOME10 for 10% off",
     hero: {
       eyebrow: "Built for late nights",
       headline: "Fuel for the\n2:17 AM grind.",
@@ -112,7 +112,7 @@ export const personaContent: Record<Persona, PersonaContent> = {
     mono: "CREATOR",
     tagline: "Stay in the flow.",
     gateDescription: "Stay in it. The good coffee's already here.",
-    announcement: "Free shipping across India · Use code WELCOME10 for 10% off your first order",
+    announcement: "Batch 001 — Limited to 200 bottles · Free shipping across India · Use code WELCOME10 for 10% off",
     hero: {
       eyebrow: "Your creative fuel",
       headline: "Make.\nEdit.\nRepeat.",
@@ -145,7 +145,7 @@ export const personaContent: Record<Persona, PersonaContent> = {
     mono: "PROFESSIONAL",
     tagline: "Sharper mornings.",
     gateDescription: "No machine. No barista. Just results.",
-    announcement: "Free shipping across India · Use code WELCOME10 for 10% off your first order",
+    announcement: "Batch 001 — Limited to 200 bottles · Free shipping across India · Use code WELCOME10 for 10% off",
     hero: {
       eyebrow: "Built for momentum",
       headline: "Skip the coffee\nrun. Keep going.",

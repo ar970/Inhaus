@@ -515,8 +515,15 @@ function ProductShowcase({
 
         <motion.p
           initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-3 text-[13px] font-semibold tracking-wide"
+          style={{ color: product.color, opacity: 0.85 }}
+        >₹499 · 200ml · ~20 cups · ₹25 per cup</motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.30, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-5 max-w-[380px] text-[16px] leading-[1.72]"
+          className="mt-4 max-w-[380px] text-[16px] leading-[1.72]"
           style={{ color: "var(--theme-ink)", opacity: 0.65 }}
         >{product.desc}</motion.p>
 

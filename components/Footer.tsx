@@ -34,26 +34,20 @@ const columns: { title: string; links: { label: string; href: string }[] }[] = [
     title: "Shop",
     links: [
       { label: "Concentrate", href: "/#products" },
-      { label: "Bundles",     href: "#" },
-      { label: "Gift cards",  href: "#" },
-      { label: "Coming soon", href: "#" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "Our story",      href: "/about" },
-      { label: "Sourcing",       href: "#" },
-      { label: "Sustainability", href: "#" },
-      { label: "Stockists",      href: "#" },
+      { label: "Our story", href: "/about" },
     ],
   },
   {
     title: "Help",
     links: [
-      { label: "FAQ",               href: "/#faq" },
+      { label: "FAQ",                href: "/#faq" },
       { label: "Shipping & returns", href: "#" },
-      { label: "Brew guide",        href: "#" },
+      { label: "Brew guide",         href: "#" },
     ],
   },
 ];
