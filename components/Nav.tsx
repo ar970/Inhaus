@@ -16,9 +16,9 @@ const links = [
 ];
 
 const PERSONA_LOGOS: Record<string, string> = {
-  student:      "/logo-student.png",
-  creator:      "/logo-creator.png",
-  professional: "/logo-professional.png",
+  student:      "/logo s.jpeg",
+  creator:      "/logo c.jpeg",
+  professional: "/logo p.jpeg",
 };
 
 function BagIcon({ className }: { className?: string }) {
