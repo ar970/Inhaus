@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 import Button from "@/components/ui/Button";
 import { useCart } from "@/context/CartContext";
+import { usePersona } from "@/context/PersonaContext";
 
 const links = [
   { href: "/#products", label: "Shop" },
@@ -12,6 +14,12 @@ const links = [
   { href: "/#make", label: "What you can make" },
   { href: "/#faq", label: "FAQ" },
 ];
+
+const PERSONA_LOGOS: Record<string, string> = {
+  student:      "/logo-student.png",
+  creator:      "/logo-creator.png",
+  professional: "/logo-professional.png",
+};
 
 function BagIcon({ className }: { className?: string }) {
   return (
@@ -26,6 +34,9 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { count, dispatch: cartDispatch } = useCart();
+  const { persona } = usePersona();
+
+  const logoSrc = persona ? PERSONA_LOGOS[persona] : "/inhaus-logo.jpeg";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -45,9 +56,15 @@ export default function Nav() {
     >
       <nav className="container-x flex items-center justify-between py-[14px]">
         <Link href="/" className="focusable">
-          <span className="font-serif text-xl font-semibold tracking-tight" style={{ color: "var(--theme-ink, #1E0C04)" }}>
-            inhaus
-          </span>
+          <Image
+            key={logoSrc}
+            src={logoSrc}
+            alt="inhaus"
+            width={120}
+            height={40}
+            className="h-9 w-auto object-contain transition-opacity duration-300"
+            priority
+          />
         </Link>
 
         <div className="hidden items-center gap-9 md:flex">
