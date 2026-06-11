@@ -424,7 +424,6 @@ function FloatObj({
   const Svg = OBJ_MAP[obj.id];
   if (!Svg) return null;
   const zClass   = obj.layer === "back" ? "z-[5]" : "z-[15]";
-  const size     = isMobile ? obj.size * 0.58 : obj.size;
   const floatY   = [obj.floatAmp * 0.5, -obj.floatAmp * 0.5, obj.floatAmp * 0.5];
   const wobbleRZ = obj.wobble
     ? [obj.rotateZ - 4, obj.rotateZ + 4, obj.rotateZ - 4]
@@ -435,14 +434,12 @@ function FloatObj({
       style={{
         left: `${obj.x}%`,
         top:  `${obj.y}%`,
-        width: size,
-        height: size,
+        width: obj.size,
+        height: obj.size,
         translateX: "-50%",
         translateY: "-50%",
-        x: isMobile ? 0 : px,
-        filter: isMobile
-          ? `drop-shadow(0 8px 20px ${accent}44)`
-          : `drop-shadow(0 16px 36px ${accent}55) drop-shadow(0 4px 12px rgba(0,0,0,0.4)) blur(${(1 - obj.depth) * 0.65}px)`,
+        x: px,
+        filter: `drop-shadow(0 16px 36px ${accent}55) drop-shadow(0 4px 12px rgba(0,0,0,0.4)) blur(${(1 - obj.depth) * 0.65}px)`,
         opacity: 0.55 + obj.depth * 0.4,
       }}
       initial={{ opacity: 0, scale: 0.4, y: 48, rotate: obj.rotateZ - 10 }}
