@@ -753,7 +753,7 @@ export default function Hero() {
           {/* Price */}
           <motion.p
             variants={ITEM}
-            className="mt-4 text-[13px] font-semibold tracking-wide"
+            className="mt-4 text-[18px] font-bold tracking-wide"
             style={{ color: scene?.accent ?? "var(--theme-accent)" }}
           >
             ₹499 · 200 ml · ~20 cups · ₹25 per cup
