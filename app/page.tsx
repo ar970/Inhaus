@@ -3,7 +3,6 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
-import Products from "@/components/Products";
 import PersonaGate from "@/components/PersonaGate";
 import PersonaSwitcher from "@/components/PersonaSwitcher";
 import { faqs } from "@/lib/data";
@@ -42,7 +41,6 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
-        <Products />
         <HowItWorks />
         <WhyInhaus />
         <WhatCanYouMake />

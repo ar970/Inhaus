@@ -478,12 +478,19 @@ const PARTICLES = Array.from({ length: 14 }, (_, i) => ({
   drop: i % 5 === 0,
 }));
 
+// ─── Per-persona product info ─────────────────────────────────────────────
+const PRODUCT_INFO: Record<string, { name: string; href: string }> = {
+  student:      { name: "Study\nFuel",   href: "/products/study-fuel"   },
+  creator:      { name: "Creator\nFuel", href: "/products/creator-fuel" },
+  professional: { name: "Work\nFlow",    href: "/products/workflow"     },
+};
+
 // ─── Copy defaults ────────────────────────────────────────────────────────
 const DEFAULT_C = {
   eyebrow: "Speciality coffee concentrate",
   headline: "Café coffee,\nin seconds.",
   sub: "Pour, add milk or water, and sip. Café-grade coffee at home — no machine, no mess.",
-  cta: "Explore",
+  cta: "Buy Now",
   ctaSecondary: "How it works",
 };
 
@@ -500,9 +507,10 @@ const ITEM_F = {
 // ─── Hero ─────────────────────────────────────────────────────────────────
 export default function Hero() {
   const { persona } = usePersona();
-  const copy  = persona ? personaContent[persona].hero : DEFAULT_C;
-  const scene = persona ? SCENES[persona] : null;
-  const lines = copy.headline.split("\n");
+  const copy        = persona ? personaContent[persona].hero : DEFAULT_C;
+  const scene       = persona ? SCENES[persona] : null;
+  const productInfo = persona ? PRODUCT_INFO[persona] : { name: "INHAUS\nCoffee", href: "/products/study-fuel" };
+  const productName = productInfo.name;
 
   const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -599,64 +607,10 @@ export default function Hero() {
         )}
       </AnimatePresence>
 
-      <div className="container-x grid min-h-[90vh] items-center gap-6 py-12 md:grid-cols-[1fr_1.25fr] md:gap-0 md:py-0">
+      <div className="container-x grid min-h-[90vh] items-center gap-8 py-12 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-0">
 
-        {/* ── Copy ── */}
-        <motion.div className="order-2 md:order-1 md:py-20" variants={C_WRAP} initial="hidden" animate="show">
-          <motion.p variants={ITEM} className="label" style={{ color: scene?.accent ?? "var(--theme-accent)" }}>
-            {copy.eyebrow}
-          </motion.p>
-
-          <h1 className="mt-4 text-[50px] leading-none tracking-tight md:text-[82px] lg:text-[96px]"
-            style={{ fontFamily:"var(--vibe-head-font)", fontStyle:"var(--vibe-head-style)", fontWeight:"var(--vibe-head-weight)" }}>
-            {lines.map((line, i) => (
-              <motion.span key={i} variants={ITEM} className="block overflow-hidden">{line}</motion.span>
-            ))}
-          </h1>
-
-          <motion.p variants={ITEM} className="mt-6 max-w-[420px] text-[17px] leading-[1.68] opacity-68">
-            {copy.sub}
-          </motion.p>
-
-          <motion.div variants={ITEM_F} className="mt-8 flex flex-wrap items-center gap-3">
-            <Link href="#products"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-7 py-3.5 text-[13px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 focusable"
-              style={{ background: scene?.accent ?? "var(--theme-accent)", boxShadow: scene ? `0 8px 30px ${scene.accent}52` : undefined }}
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                {copy.cta}
-                <Arrow className="h-3.5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
-            </Link>
-            <Link href="#how"
-              className="inline-flex items-center gap-2 rounded-full border border-current/20 px-7 py-3.5 text-[13px] font-semibold opacity-62 transition-all duration-300 hover:opacity-100 focusable">
-              {copy.ctaSecondary}
-            </Link>
-          </motion.div>
-
-          <motion.div variants={ITEM_F} className="mt-7 flex items-center gap-2">
-            {["~20 Cups", "₹25 per Cup", "Ready in 60 Seconds"].map((stat, i) => (
-              <span key={stat} className="flex items-center gap-2">
-                {i > 0 && <span className="opacity-25">·</span>}
-                <span className="text-[13px] font-medium opacity-55">{stat}</span>
-              </span>
-            ))}
-          </motion.div>
-
-          <motion.div variants={ITEM_F} className="mt-7 flex flex-wrap gap-2 border-t pt-6"
-            style={{ borderColor: "color-mix(in srgb, var(--theme-ink) 10%, transparent)" }}>
-            {["₹25 / cup", "20+ drinks", "60-sec brew", "No machine"].map(f => (
-              <span key={f} className="vibe-shape border px-3.5 py-1.5 text-[12px] font-medium opacity-55 transition-colors hover:opacity-80"
-                style={{ borderColor:"color-mix(in srgb, var(--theme-ink) 12%, transparent)", background:"color-mix(in srgb, var(--theme-ink) 4%, transparent)" }}>
-                {f}
-              </span>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* ── 3D Scene ── */}
-        <div className="order-1 md:order-2">
+        {/* ── 3D Scene — left on desktop, top on mobile ── */}
+        <div className="order-1">
           <div
             className="relative mx-auto flex h-[340px] max-w-[560px] items-center justify-center overflow-hidden sm:h-[420px] md:h-[780px]"
             style={scene ? {
@@ -767,6 +721,97 @@ export default function Hero() {
 
           </div>
         </div>
+
+        {/* ── Product details — right on desktop, bottom on mobile ── */}
+        <motion.div className="order-2 md:py-20" variants={C_WRAP} initial="hidden" animate="show">
+
+          {/* Eyebrow */}
+          <motion.p variants={ITEM} className="label" style={{ color: scene?.accent ?? "var(--theme-accent)" }}>
+            {copy.eyebrow}
+          </motion.p>
+
+          {/* Product name — large serif */}
+          <h1
+            className="mt-3 whitespace-pre-line leading-none tracking-[-0.03em]"
+            style={{
+              fontFamily: "var(--font-fraunces), Georgia, serif",
+              fontWeight: 700,
+              fontSize: "clamp(52px, 7.5vw, 88px)",
+            }}
+          >
+            {productName.split("\n").map((line, i) => (
+              <motion.span key={i} variants={ITEM} className="block overflow-hidden">{line}</motion.span>
+            ))}
+          </h1>
+
+          {/* Hero tagline as sub-headline */}
+          <motion.p
+            variants={ITEM}
+            className="mt-3 text-[16px] italic leading-snug"
+            style={{ color: "var(--theme-ink)", opacity: 0.5, fontFamily: "var(--font-fraunces), Georgia, serif" }}
+          >
+            &ldquo;{copy.headline.replace(/\n/g, " ")}&rdquo;
+          </motion.p>
+
+          {/* Price */}
+          <motion.p
+            variants={ITEM}
+            className="mt-4 text-[13px] font-semibold tracking-wide"
+            style={{ color: scene?.accent ?? "var(--theme-accent)" }}
+          >
+            ₹499 · 200 ml · ~20 cups · ₹25 per cup
+          </motion.p>
+
+          {/* Description */}
+          <motion.p variants={ITEM} className="mt-4 max-w-[400px] text-[16px] leading-[1.68]" style={{ opacity: 0.65 }}>
+            {copy.sub}
+          </motion.p>
+
+          {/* Feature pills */}
+          <motion.div
+            variants={ITEM_F}
+            className="mt-6 flex flex-wrap gap-2 border-t pt-5"
+            style={{ borderColor: "color-mix(in srgb, var(--theme-ink) 10%, transparent)" }}
+          >
+            {["₹25 / cup", "~20 cups", "60-sec brew", "No machine"].map(f => (
+              <span
+                key={f}
+                className="vibe-shape border px-3.5 py-1.5 text-[12px] font-medium opacity-55 transition-opacity hover:opacity-80"
+                style={{
+                  borderColor: "color-mix(in srgb, var(--theme-ink) 12%, transparent)",
+                  background: "color-mix(in srgb, var(--theme-ink) 4%, transparent)",
+                }}
+              >
+                {f}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div variants={ITEM_F} className="mt-7 flex flex-wrap items-center gap-3">
+            <Link
+              href={productInfo.href}
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-8 py-4 text-[14px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 focusable"
+              style={{
+                background: scene?.accent ?? "var(--theme-accent)",
+                boxShadow: scene ? `0 8px 30px ${scene.accent}52` : undefined,
+              }}
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Buy Now
+                <Arrow className="h-3.5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
+            </Link>
+            <Link
+              href="#how"
+              className="inline-flex items-center gap-2 rounded-full border border-current/20 px-7 py-3.5 text-[13px] font-semibold opacity-62 transition-all duration-300 hover:opacity-100 focusable"
+            >
+              {copy.ctaSecondary}
+            </Link>
+          </motion.div>
+
+        </motion.div>
 
       </div>
     </section>
