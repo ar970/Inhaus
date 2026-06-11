@@ -13,8 +13,8 @@ export default function AnnouncementBar() {
   return (
     <div className="section-dark">
       <div className="container-x flex items-center justify-center gap-3 py-2.5 text-center">
-        <span className="label opacity-70 md:hidden">{SHORT_TEXT}</span>
-        <span className="label opacity-70 hidden md:inline">{full}</span>
+        <span className="label opacity-70 md:hidden" style={{ fontSize: 12 }}>{SHORT_TEXT}</span>
+        <span className="label opacity-70 hidden md:inline" style={{ fontSize: 12 }}>{full}</span>
         <Sparkle className="h-2.5 w-2.5 opacity-50 shrink-0" style={{ color: "var(--theme-dark-accent)" }} />
       </div>
     </div>
