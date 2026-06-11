@@ -611,8 +611,9 @@ export default function Hero() {
           <div
             className="relative mx-auto flex h-[460px] max-w-[560px] items-center justify-center sm:h-[420px] md:h-[780px]"
             style={{
-              maskImage: "radial-gradient(ellipse 88% 82% at 50% 52%, black 48%, transparent 100%)",
-              WebkitMaskImage: "radial-gradient(ellipse 88% 82% at 50% 52%, black 48%, transparent 100%)",
+              mixBlendMode: "screen",
+              maskImage: "radial-gradient(ellipse 90% 86% at 50% 54%, black 52%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(ellipse 90% 86% at 50% 54%, black 52%, transparent 100%)",
             }}
           >
             {/* Coffee particles — skip on mobile */}
@@ -684,7 +685,6 @@ export default function Hero() {
                       className="object-contain"
                       style={{
                         filter: isMobile ? undefined : `contrast(1.1) saturate(1.2) drop-shadow(0 32px 64px rgba(0,0,0,0.7)) drop-shadow(0 0 40px ${scene.accent}48)`,
-                        mixBlendMode: "screen",
                       }}
                     />
                     {/* Gloss highlight */}
