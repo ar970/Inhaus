@@ -610,6 +610,10 @@ export default function Hero() {
         <div className="order-1">
           <div
             className="relative mx-auto flex h-[460px] max-w-[560px] items-center justify-center sm:h-[420px] md:h-[780px]"
+            style={{
+              maskImage: "radial-gradient(ellipse 88% 82% at 50% 52%, black 48%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(ellipse 88% 82% at 50% 52%, black 48%, transparent 100%)",
+            }}
           >
             {/* Coffee particles — skip on mobile */}
             {!isMobile && PARTICLES.map(p => (
