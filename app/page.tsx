@@ -8,8 +8,9 @@ import PersonaSwitcher from "@/components/PersonaSwitcher";
 import { faqs } from "@/lib/data";
 
 // Lazy-load everything below the fold — keeps the gate→site transition fast
-const HowItWorks    = dynamic(() => import("@/components/HowItWorks"));
-const WhyInhaus     = dynamic(() => import("@/components/WhyInhaus"));
+const HowItWorks      = dynamic(() => import("@/components/HowItWorks"));
+const ConcentrateFAQ  = dynamic(() => import("@/components/ConcentrateFAQ"));
+const WhyInhaus       = dynamic(() => import("@/components/WhyInhaus"));
 const WhatCanYouMake = dynamic(() => import("@/components/WhatCanYouMake"));
 const RealPours     = dynamic(() => import("@/components/RealPours"));
 const Reviews       = dynamic(() => import("@/components/Reviews"));
@@ -42,6 +43,7 @@ export default function Home() {
         <Hero />
         <Marquee />
         <HowItWorks />
+        <ConcentrateFAQ />
         <WhyInhaus />
         <WhatCanYouMake />
         <RealPours />
