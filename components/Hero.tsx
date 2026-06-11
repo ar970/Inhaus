@@ -609,11 +609,7 @@ export default function Hero() {
         {/* ── 3D Scene — left on desktop, top on mobile ── */}
         <div className="order-1">
           <div
-            className="relative mx-auto flex h-[460px] max-w-[560px] items-center justify-center overflow-hidden sm:h-[420px] md:h-[780px]"
-            style={scene ? {
-              backgroundImage: scene.texture,
-              backgroundSize: persona === "professional" ? "32px 32px" : persona === "creator" ? "22px 22px" : "auto",
-            } : undefined}
+            className="relative mx-auto flex h-[460px] max-w-[560px] items-center justify-center sm:h-[420px] md:h-[780px]"
           >
             {/* Coffee particles — skip on mobile */}
             {!isMobile && PARTICLES.map(p => (
